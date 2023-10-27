@@ -5,12 +5,15 @@ namespace app\models;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Oficina;
+use Yii;
 
 /**
  * OficinaSearch represents the model behind the search form of `app\models\Oficina`.
  */
 class OficinaSearch extends Oficina
 {
+
+   
     /**
      * {@inheritdoc}
      */
@@ -59,7 +62,7 @@ class OficinaSearch extends Oficina
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'empresa_id' => $this->empresa_id,
+            'empresa_id' => Yii::$app->user->identity->empresa_id,
         ]);
 
         $query->andFilterWhere(['like', 'nombre', $this->nombre])

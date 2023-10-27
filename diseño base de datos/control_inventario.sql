@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:8889
--- Tiempo de generación: 23-10-2023 a las 16:05:52
--- Versión del servidor: 5.7.39
--- Versión de PHP: 8.2.0
+-- Servidor: localhost:3306
+-- Tiempo de generación: 27-10-2023 a las 01:13:56
+-- Versión del servidor: 5.7.24
+-- Versión de PHP: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -296,19 +297,22 @@ CREATE TABLE `usuario` (
   `dni` varchar(9) DEFAULT NULL,
   `telefono` int(9) NOT NULL,
   `empresa_id` int(11) NOT NULL,
-  `rol` varchar(45) NOT NULL
+  `rol` varchar(45) NOT NULL,
+  `password` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `nombre`, `apellidos`, `dni`, `telefono`, `empresa_id`, `rol`) VALUES
-(1, 'Usuario 1', 'Apellido 1', 'DNI1', 111111111, 1, 'Rol 1'),
-(2, 'Usuario 2', 'Apellido 2', 'DNI2', 222222222, 2, 'Rol 2'),
-(3, 'Usuario 3', 'Apellido 3', 'DNI3', 333333333, 3, 'Rol 3'),
-(4, 'Usuario 4', 'Apellido 4', 'DNI4', 444444444, 4, 'Rol 4'),
-(5, 'Usuario 5', 'Apellido 5', 'DNI5', 555555555, 5, 'Rol 5');
+INSERT INTO `usuario` (`id`, `nombre`, `apellidos`, `dni`, `telefono`, `empresa_id`, `rol`, `password`) VALUES
+(1, 'Usuario 1', 'Apellido 1', 'DNI1', 111111111, 1, 'Rol 1', '1234'),
+(2, 'Usuario 2', 'Apellido 2', 'DNI2', 222222222, 2, 'Rol 2', '1234'),
+(3, 'Usuario 3', 'Apellido 3', 'DNI3', 333333333, 3, 'Rol 3', '1234'),
+(4, 'Usuario 4', 'Apellido 4', 'DNI4', 444444444, 4, 'Rol 4', '1234'),
+(5, 'carlostecnico', 'Apellido 5', 'DNI5', 555555555, 5, '2', '1234'),
+(7, 'carlosadmin', 'Apellido 5', 'DNI6', 555555555, 5, '1', '1234'),
+(8, 'carloscliente', 'Apellido 5', 'DNI7', 555555555, 5, '3', '1234');
 
 -- --------------------------------------------------------
 
@@ -502,7 +506,7 @@ ALTER TABLE `oficina`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas

@@ -6,34 +6,27 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
 {
     public $id;
     public $username;
+    public $nombre;
     public $password;
     public $authKey;
     public $accessToken;
+    public $apellidos;
+    public $dni;
+    public $telefono;
+    public $empresa_id;
+    public $rol;
 
-    private static $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
-
-
+  
     /**
      * {@inheritdoc}
      */
     public static function findIdentity($id)
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+        $user = Usuario::findOne(['id' => $id]);
+
+        if ($user !== null) {
+            return new static($user);
+        }
     }
 
     /**
@@ -58,13 +51,12 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public static function findByUsername($username)
     {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
+        // Utiliza el método findOne para buscar un usuario en la base de datos
+        $user = Usuario::findOne(['nombre' => $username]);
 
-        return null;
+        if ($user !== null) {
+            return new static($user);
+        }
     }
 
     /**
@@ -73,6 +65,14 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     public function getId()
     {
         return $this->id;
+    }
+
+        /**
+     * {@inheritdoc}
+     */
+    public function getnombre()
+    {
+        return $this->nombre;
     }
 
     /**
@@ -101,4 +101,50 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     {
         return $this->password === $password;
     }
+
+    
+
+
+/**
+     * Creacion de Roles
+     * https://jquery-manual.blogspot.com/2015/02/yii-framework-2-user-y-admin-control-de.html
+     */
+
+    public $role;
+
+    public static function isUserAdmin($id)
+    {
+       if (Yii::$app->user->identity->rol === 1){
+        return true;
+       } else {
+
+        return false;
+       }
+
+    }
+
+    public static function isUserTecnico($id)
+    {
+       if (Yii::$app->user->identity->rol === 2){
+       return true;
+       } else {
+
+       return false;
+       }
+    }
+
+    public static function isUserCliente($id)
+    {
+       if (Yii::$app->user->identity->rol === 3){
+       return true;
+       } else {
+
+       return false;
+       }
+    }
+
+
+
+
+
 }
