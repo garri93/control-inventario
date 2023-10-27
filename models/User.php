@@ -2,103 +2,125 @@
 
 namespace app\models;
 
-class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
+use Yii;
+
+/**
+ * This is the model class for table "user".
+ *
+ * @property int $id
+ * @property string $username
+ * @property string $surname
+ * @property string|null $dni
+ * @property int $phone
+ * @property int $company_id
+ * @property string $role
+ * @property string $password
+ *
+ * @property Company $company
+ * @property OfficeAssignment[] $officeAssignments
+ * @property Office[] $offices
+ * @property Performance[] $performances
+ * @property UserPerformance[] $userPerformances
+ */
+class User extends \yii\db\ActiveRecord
 {
-    public $id;
-    public $username;
-    public $password;
-    public $authKey;
-    public $accessToken;
-
-    private static $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
-
-
     /**
      * {@inheritdoc}
      */
-    public static function findIdentity($id)
+    public static function tableName()
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+        return 'user';
     }
 
     /**
      * {@inheritdoc}
      */
-    public static function findIdentityByAccessToken($token, $type = null)
+    public function rules()
     {
-        foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
-            }
-        }
-
-        return null;
+        return [
+            [['username', 'surname', 'phone', 'company_id', 'role', 'password'], 'required'],
+            [['phone', 'company_id'], 'integer'],
+            [['username', 'surname', 'password'], 'string', 'max' => 100],
+            [['dni'], 'string', 'max' => 9],
+            [['role'], 'string', 'max' => 45],
+            [['dni'], 'unique'],
+            [['company_id'], 'exist', 'skipOnError' => true, 'targetClass' => Company::class, 'targetAttribute' => ['company_id' => 'id']],
+        ];
     }
 
     /**
-     * Finds user by username
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => 'Username',
+            'surname' => 'Surname',
+            'dni' => 'Dni',
+            'phone' => 'Phone',
+            'company_id' => 'Company ID',
+            'role' => 'Role',
+            'password' => 'Password',
+        ];
+    }
+
+    /**
+     * Gets query for [[Company]].
      *
-     * @param string $username
-     * @return static|null
+     * @return \yii\db\ActiveQuery|CompanyQuery
      */
-    public static function findByUsername($username)
+    public function getCompany()
     {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
-
-        return null;
+        return $this->hasOne(Company::class, ['id' => 'company_id']);
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAuthKey()
-    {
-        return $this->authKey;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function validateAuthKey($authKey)
-    {
-        return $this->authKey === $authKey;
-    }
-
-    /**
-     * Validates password
+     * Gets query for [[OfficeAssignments]].
      *
-     * @param string $password password to validate
-     * @return bool if password provided is valid for current user
+     * @return \yii\db\ActiveQuery|OfficeAssignmentQuery
      */
-    public function validatePassword($password)
+    public function getOfficeAssignments()
     {
-        return $this->password === $password;
+        return $this->hasMany(OfficeAssignment::class, ['user_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Offices]].
+     *
+     * @return \yii\db\ActiveQuery|OfficeQuery
+     */
+    public function getOffices()
+    {
+        return $this->hasMany(Office::class, ['id' => 'office_id'])->viaTable('office_assignment', ['user_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Performances]].
+     *
+     * @return \yii\db\ActiveQuery|PerformanceQuery
+     */
+    public function getPerformances()
+    {
+        return $this->hasMany(Performance::class, ['id' => 'performance_id'])->viaTable('user_performance', ['user_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[UserPerformances]].
+     *
+     * @return \yii\db\ActiveQuery|UserPerformanceQuery
+     */
+    public function getUserPerformances()
+    {
+        return $this->hasMany(UserPerformance::class, ['user_id' => 'id']);
+    }
+
+    /**
+     * {@inheritdoc}
+     * @return UserQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new UserQuery(get_called_class());
     }
 }
