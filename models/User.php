@@ -16,6 +16,18 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     public $empresa_id;
     public $rol;
 
+
+    const ROL_ADMIN = 1;
+    const ROL_TRABAJADOR = 1;
+
+    static $rolOptions = [
+        self::ROL_ADMIN = 'Administrador',
+        self::ROL_TRABAJADOR = 'Trabajador',
+    ];
+
+    public funcion rolToString(){
+        return self::$rolOptions[$this->rol];
+    }
   
     /**
      * {@inheritdoc}
@@ -125,25 +137,13 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
 
     public static function isUserTecnico($id)
     {
-       if (Yii::$app->user->identity->rol === 2){
-       return true;
-       } else {
-
-       return false;
-       }
+       return $this->rol === self::ROL_TRABAJADOR;
     }
 
     public static function isUserCliente($id)
     {
-       if (Yii::$app->user->identity->rol === 3){
-       return true;
-       } else {
-
-       return false;
-       }
+       return $this->rol === self::ROL_ADMIN;
     }
-
-
 
 
 
