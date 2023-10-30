@@ -66,11 +66,11 @@ INSERT INTO user (username, surname, dni, phone, company_id, role, password	) VA
 INSERT INTO user (username, surname, dni, phone, company_id, role, password	) VALUES ('pruebacliente', 'Apellido 5', 'DNI9', 555555555, 5, 'Rol 5', '1234');
 
 
-INSERT INTO device_attribute (attribute_id, device_id) VALUES (1, 1);
-INSERT INTO device_attribute (attribute_id, device_id) VALUES (2, 2);
-INSERT INTO device_attribute (attribute_id, device_id) VALUES (3, 3);
-INSERT INTO device_attribute (attribute_id, device_id) VALUES (4, 4);
-INSERT INTO device_attribute (attribute_id, device_id) VALUES (5, 5);
+INSERT INTO device_attribute (attribute_id, device_id, description) VALUES (1, 1, 'description');
+INSERT INTO device_attribute (attribute_id, device_id, description) VALUES (2, 2, 'description');
+INSERT INTO device_attribute (attribute_id, device_id, description) VALUES (3, 3, 'description');
+INSERT INTO device_attribute (attribute_id, device_id, description) VALUES (4, 4, 'description');
+INSERT INTO device_attribute (attribute_id, device_id, description) VALUES (5, 5, 'description');
 
 INSERT INTO office_assignment (user_id, office_id) VALUES (1, 1);
 INSERT INTO office_assignment (user_id, office_id) VALUES (2, 2);

@@ -15,6 +15,7 @@ use Yii;
  * @property int $company_id
  * @property string $role
  * @property string $password
+ * 
  *
  * @property Company $company
  * @property OfficeAssignment[] $officeAssignments
@@ -22,7 +23,7 @@ use Yii;
  * @property Performance[] $performances
  * @property UserPerformance[] $userPerformances
  */
-class User extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     /**
      * {@inheritdoc}
@@ -45,6 +46,8 @@ class User extends \yii\db\ActiveRecord
             [['role'], 'string', 'max' => 45],
             [['dni'], 'unique'],
             [['company_id'], 'exist', 'skipOnError' => true, 'targetClass' => Company::class, 'targetAttribute' => ['company_id' => 'id']],
+            [['auth_key'], 'string'],
+            [['accessToken'], 'string'],
         ];
     }
 
@@ -55,12 +58,12 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'username' => 'Username',
-            'surname' => 'Surname',
+            'username' => 'Nombre',
+            'surname' => 'Apellidos',
             'dni' => 'Dni',
-            'phone' => 'Phone',
-            'company_id' => 'Company ID',
-            'role' => 'Role',
+            'phone' => 'Telefono',
+            'company_id' => 'Empresa',
+            'role' => 'Rol',
             'password' => 'Password',
         ];
     }
@@ -123,4 +126,72 @@ class User extends \yii\db\ActiveRecord
     {
         return new UserQuery(get_called_class());
     }
+
+    
+/**
+ * Preparando el Login
+ */
+
+
+    public static function findIdentity($id)
+    {
+        return static::findOne($id);
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return static::findOne(['access_token' => $token]);
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getAuthKey()
+    {
+        return $this->auth_key;
+    }
+
+    public function validateAuthKey($authKey)
+    {
+        return $this->getAuthKey() === $authKey;
+    }
+
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if ($this->isNewRecord) {
+                $this->auth_key = \Yii::$app->security->generateRandomString();
+            }
+            return true;
+        }
+        return false;
+    }
+
+        /**
+     * Finds user by username
+     *
+     * @param string $username
+     * @return static|null
+     */
+    public static function findByUsername($username)
+    {
+        return static::findOne(['username' => $username]);
+    }
+
+
+
+    /**
+     * Validates password
+     *
+     * @param string $password password to validate
+     * @return bool if password provided is valid for current user
+     */
+    public function validatePassword($password)
+    {
+        return $this->password === $password;
+    }
 }
+
