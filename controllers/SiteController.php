@@ -59,7 +59,7 @@ class SiteController extends Controller
                        'allow' => true,
                        'roles' => ['@'],
                        'matchCallback' => function ($rule, $action) {
-                          return User::isUserTechnical();
+                          return Yii::$app->user->isUserTechnical();
                       },
                    ],
                     // Acceso sólo para usuarios con rol Encargado                  

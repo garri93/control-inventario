@@ -29,12 +29,12 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     const ROL_TECHNICAL = 2;
     const ROL_MANAGER = 3;
 
-  /* static $rolOptions = [
-        self::ROL_ADMIN = 'Admin',
-        self::ROL_TECHNICAL = 'Tecnico',
-        self::ROL_MANAGER = 'Encargado';
-    ]
-*/
+ static $rolOptions = [
+        self::ROL_ADMIN => 'Admin',
+        self::ROL_TECHNICAL => 'Tecnico',
+        self::ROL_MANAGER => 'Encargado'
+ ];
+
 
     public function getRolToString(){
         return self::$rolOptions[$this->role];
@@ -64,7 +64,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             [['phone', 'company_id'], 'integer'],
             [['username', 'surname', 'password'], 'string', 'max' => 100],
             [['dni'], 'string', 'max' => 9],
-            [['role'], 'string', 'max' => 45],
+            [['role'], 'integer', 'max' => 1],
             [['dni'], 'unique'],
             [['company_id'], 'exist', 'skipOnError' => true, 'targetClass' => Company::class, 'targetAttribute' => ['company_id' => 'id']],
             [['auth_key'], 'string'],
@@ -226,19 +226,19 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      *
      */
 
-    public static function isUserAdmin()
+    public function isUserAdmin()
     {
-        return Yii::$app->user->identity->role === self::ROL_ADMIN;
+        return $this->getRole() === self::ROL_ADMIN;
     }
 
-    public static function isUserTechnical()
+    public function isUserTechnical()
     {
-        return Yii::$app->user->identity->role === self::ROL_TECHNICAL;
+        return $this->getRole() === self::ROL_TECHNICAL;
     }
 
-    public static function isUserManager()
+    public function isUserManager()
     {
-        return Yii::$app->user->Identity->role === self::ROL_MANAGER;
+        return $this->getRole() === self::ROL_MANAGER;
     }
 
 

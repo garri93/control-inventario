@@ -7,7 +7,7 @@ use app\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii;
 /**
  * UserController implements the CRUD actions for User model.
  */
@@ -22,55 +22,16 @@ class UserController extends Controller
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
-
-                    // Acceso libre para todo el mundo
-                    [
-                        'actions' => [],
-                        'allow' => true,
-                    ],
-
-                    // Acceso sólo invitados
-                    [                       
-                        'actions' => ['index', 'view', 'create', 'update','delete'],                      
-                        'allow' => false,                       
-                        'roles' => ['?'],
-                    ],
-
-                    // Acceso sólo para usuarios logueados independientemente del rol
-                    [
-                        'actions' => [],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-
                     // Acceso sólo para usuarios con rol administrador
                     [
                         'actions' => ['index', 'view', 'create', 'update','delete'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return User::isUserAdmin();
+                            return Yii::$app->user->identity->isUserAdmin();
                         },
                     ],
 
-                    // Acceso sólo para usuarios con rol Tecnico
-                    [
-                       'actions' => ['index', 'view', 'create', 'update','delete'],
-                       'allow' => false,
-                       'roles' => ['@'],
-                       'matchCallback' => function ($rule, $action) {
-                          return User::isUserTechnical();
-                      },
-                   ],
-                    // Acceso sólo para usuarios con rol Encargado                  
-                   [
-                        'actions' => ['index', 'view', 'create', 'update','delete'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                        'matchCallback' => function ($rule, $action) {
-                        return User::isUserManager();
-                    },
-                ],
                 ],
             ],
      //Controla el modo en que se accede a las acciones, en este ejemplo a la acción logout
