@@ -25,6 +25,27 @@ use Yii;
  */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
+    const ROL_ADMIN = 1;
+    const ROL_TECHNICAL = 2;
+    const ROL_MANAGER = 3;
+
+  /* static $rolOptions = [
+        self::ROL_ADMIN = 'Admin',
+        self::ROL_TECHNICAL = 'Tecnico',
+        self::ROL_MANAGER = 'Encargado';
+    ]
+*/
+
+    public function getRolToString(){
+        return self::$rolOptions[$this->role];
+    }
+
+
+    public function isAdmin(){
+        return $this->role === self::ROL_ADMIN;
+    }
+    
+
     /**
      * {@inheritdoc}
      */
@@ -158,6 +179,11 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return $this->getAuthKey() === $authKey;
     }
 
+    public function getRole()
+    {
+        return $this->role;
+    }
+
 
     public function beforeSave($insert)
     {
@@ -193,5 +219,35 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return $this->password === $password;
     }
-}
 
+  /**
+     *
+     * Verificacion de usuarios
+     *
+     */
+
+    public static function isUserAdmin()
+    {
+        return Yii::$app->user->identity->role === self::ROL_ADMIN;
+    }
+
+    public static function isUserTechnical()
+    {
+        return Yii::$app->user->identity->role === self::ROL_TECHNICAL;
+    }
+
+    public static function isUserManager()
+    {
+        return Yii::$app->user->Identity->role === self::ROL_MANAGER;
+    }
+
+
+
+
+
+
+
+
+
+
+}

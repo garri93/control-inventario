@@ -15,20 +15,65 @@ class SiteController extends Controller
     /**
      * {@inheritdoc}
      */
+
     public function behaviors()
     {
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
                 'rules' => [
+
+                    // Acceso libre para todo el mundo
                     [
-                        'actions' => ['logout'],
+                        'actions' => [],
+                        'allow' => true,
+                    ],
+
+                    // Acceso sólo invitados
+                    [                       
+                        'actions' => [],                      
+                        'allow' => true,                       
+                        'roles' => ['?'],
+                    ],
+
+                    // Acceso sólo para usuarios logueados independientemente del rol
+                    [
+                        'actions' => [],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
+
+                    // Acceso sólo para usuarios con rol administrador
+                    [
+                        'actions' => [],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return User::isUserAdmin();
+                        },
+                    ],
+
+                    // Acceso sólo para usuarios con rol Tecnico
+                    [
+                       'actions' => [],
+                       'allow' => true,
+                       'roles' => ['@'],
+                       'matchCallback' => function ($rule, $action) {
+                          return User::isUserTechnical();
+                      },
+                   ],
+                    // Acceso sólo para usuarios con rol Encargado                  
+                   [
+                        'actions' => [],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                        return User::isUserManager();
+                    },
+                ],
                 ],
             ],
+     //Controla el modo en que se accede a las acciones, en este ejemplo a la acción logout
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -37,6 +82,7 @@ class SiteController extends Controller
             ],
         ];
     }
+
 
     /**
      * {@inheritdoc}

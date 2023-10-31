@@ -18,6 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php if(!Yii::$app->user->isGuest): ?>
                     <?=$id = Yii::$app->user->identity->accessToken?>
                     <?=$id = Yii::$app->user->identity->username?>
+                    <?=$id = Yii::$app->user->identity->role?>
                 <?php endif; ?>
             </h1>
     </p>

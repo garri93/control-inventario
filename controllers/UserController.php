@@ -1,7 +1,7 @@
 <?php
 
 namespace app\controllers;
-
+use yii\filters\AccessControl;
 use app\models\User;
 use app\models\UserSearch;
 use yii\web\Controller;
@@ -16,19 +16,71 @@ class UserController extends Controller
     /**
      * @inheritDoc
      */
-    public function behaviors()
+      public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+
+                    // Acceso libre para todo el mundo
+                    [
+                        'actions' => [],
+                        'allow' => true,
                     ],
+
+                    // Acceso sólo invitados
+                    [                       
+                        'actions' => ['index', 'view', 'create', 'update','delete'],                      
+                        'allow' => false,                       
+                        'roles' => ['?'],
+                    ],
+
+                    // Acceso sólo para usuarios logueados independientemente del rol
+                    [
+                        'actions' => [],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+
+                    // Acceso sólo para usuarios con rol administrador
+                    [
+                        'actions' => ['index', 'view', 'create', 'update','delete'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return User::isUserAdmin();
+                        },
+                    ],
+
+                    // Acceso sólo para usuarios con rol Tecnico
+                    [
+                       'actions' => ['index', 'view', 'create', 'update','delete'],
+                       'allow' => false,
+                       'roles' => ['@'],
+                       'matchCallback' => function ($rule, $action) {
+                          return User::isUserTechnical();
+                      },
+                   ],
+                    // Acceso sólo para usuarios con rol Encargado                  
+                   [
+                        'actions' => ['index', 'view', 'create', 'update','delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                        return User::isUserManager();
+                    },
                 ],
-            ]
-        );
+                ],
+            ],
+     //Controla el modo en que se accede a las acciones, en este ejemplo a la acción logout
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
     }
 
     /**
