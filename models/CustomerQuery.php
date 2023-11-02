@@ -31,4 +31,10 @@ class CustomerQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+    public function deMiEmpesa(){
+        return $this->andFilterWhere(['company_id' => \Yii::$app->user->identity->company_id]);
+    }
+ 
+
 }

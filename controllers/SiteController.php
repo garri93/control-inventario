@@ -49,7 +49,7 @@ class SiteController extends Controller
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return User::isUserAdmin();
+                            return Yii::$app->user->identity->isUserAdmin();
                         },
                     ],
 
@@ -59,7 +59,7 @@ class SiteController extends Controller
                        'allow' => true,
                        'roles' => ['@'],
                        'matchCallback' => function ($rule, $action) {
-                          return Yii::$app->user->isUserTechnical();
+                        return Yii::$app->user->identity->isUserTechnical();
                       },
                    ],
                     // Acceso sólo para usuarios con rol Encargado                  
@@ -68,7 +68,7 @@ class SiteController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                        return User::isUserManager();
+                            return Yii::$app->user->identity->isUserManager();
                     },
                 ],
                 ],
