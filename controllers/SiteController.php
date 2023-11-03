@@ -45,7 +45,7 @@ class SiteController extends Controller
 
                     // Acceso sólo para usuarios con rol administrador
                     [
-                        'actions' => [],                       
+                        'actions' => ['administration'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -118,12 +118,33 @@ class SiteController extends Controller
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            switch (Yii::$app->user->identity->role) {
+                case Yii::$app->user->identity->ROL_ADMIN:
+                        return $this->redirect(["site/administration"]);
+                    break;
+                case Yii::$app->user->ROL_TECHNICAL :
+                        return $this->redirect(["site/technical"]);
+                    break;
+                case Yii::$app->user->ROL_MANAGER :
+                        return $this->redirect(["site/manager"]);
+                    break;
+            }
         }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+     
+            switch (Yii::$app->user->identity->role) {
+                case ROL_ADMIN:
+                        return $this->redirect(["site/administration"]);
+                    break;
+                case Yii::$app->user->identity->ROL_TECHNICAL :
+                        return $this->redirect(["site/technical"]);
+                    break;
+                case Yii::$app->user->identity->ROL_MANAGER :
+                        return $this->redirect(["site/manager"]);
+                    break;
+            }
         }
 
         $model->password = '';
@@ -171,4 +192,26 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+        /**
+     * Render areas
+     *
+     * 
+     */
+    public function actionAdministration()
+    {
+        return $this->render('administration');
+    }
+
+    public function actionTechnical()
+    {
+        return $this->render('technical');
+    }
+
+    public function actionManager()
+    {
+        return $this->render('manager');
+    }
+
+
 }
