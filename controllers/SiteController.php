@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\User;
 
 class SiteController extends Controller
 {
@@ -119,15 +120,15 @@ class SiteController extends Controller
     {
         if (!Yii::$app->user->isGuest) {
             switch (Yii::$app->user->identity->role) {
-                case Yii::$app->user->identity->ROL_ADMIN:
-                        return $this->redirect(["site/administration"]);
-                    break;
-                case Yii::$app->user->ROL_TECHNICAL :
-                        return $this->redirect(["site/technical"]);
-                    break;
-                case Yii::$app->user->ROL_MANAGER :
-                        return $this->redirect(["site/manager"]);
-                    break;
+                case User::ROL_ADMIN:
+                    return $this->redirect(["site/administration"]);
+                break;
+            case User::ROL_TECHNICAL :
+                    return $this->redirect(["site/technical"]);
+                break;
+            case User::ROL_MANAGER :
+                    return $this->redirect(["site/manager"]);
+                break;
             }
         }
 
@@ -135,13 +136,13 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
      
             switch (Yii::$app->user->identity->role) {
-                case ROL_ADMIN:
+                case User::ROL_ADMIN:
                         return $this->redirect(["site/administration"]);
                     break;
-                case Yii::$app->user->identity->ROL_TECHNICAL :
+                case User::ROL_TECHNICAL :
                         return $this->redirect(["site/technical"]);
                     break;
-                case Yii::$app->user->identity->ROL_MANAGER :
+                case User::ROL_MANAGER :
                         return $this->redirect(["site/manager"]);
                     break;
             }

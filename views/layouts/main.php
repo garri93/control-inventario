@@ -3,12 +3,15 @@
 /** @var yii\web\View $this */
 /** @var string $content */
 
+
 use app\assets\AppAsset;
 use app\widgets\Alert;
 use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
+
+
 
 AppAsset::register($this);
 ?>
@@ -38,7 +41,11 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Jose', 'url' => ['/jose/index']],
+            //['label' => 'Usuarios', 'visible' => Yii::$app->user->identity->isUserAdmin() ? true : false],
+           // ['label' => 'Maak afbeeldingen aan', 'url' => ['create'], 'icon' => 'file', 'visible' => Yii::$app->user->identity->isUsermanager() ? true : false],
+            //['label' => 'Beheer afbeeldingen', 'url' => ['admin'], 'icon' => 'list-alt', 'visible' => Yii::$app->user->identity->isUserAdmin('admin') ? true : false],
+            
+            ['label' => 'Jose', 'url' => ['/jose/index'],'visible' => Yii::$app->user->identity->isUserAdmin() ||],
             ['label' => 'Dispositivo', 'url' => ['/dispositivo/index']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
