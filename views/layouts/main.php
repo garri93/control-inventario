@@ -37,18 +37,32 @@ AppAsset::register($this);
             'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
         ],
     ]);
+
+    $menuItemsVisitor = [
+        ['label' => 'Inicio', 'url' => ['/site/index']],
+        ['label' => 'About', 'url' => ['/site/about']],
+        ['label' => 'Contact', 'url' => ['/site/contact']],
+    ];
+
+    $menuItemRegistered = [
+        ['label' => 'Inicio', 'url' => ['/site/index'],'visible' => Yii::$app->user->identity->isUserAdmin()],
+        ['label' => 'Usuarios', 'url' => ['/user/index'],'visible' => Yii::$app->user->identity->isUserAdmin()],
+        ['label' => 'Empresa', 'url' => ['/company/index'],'visible' => Yii::$app->user->identity->isUserAdmin()],
+        ['label' => 'Clientes', 'url' => ['/customer/index'],'visible' => Yii::$app->user->identity->isUserAdmin()],
+        ['label' => 'Oficinas', 'url' => ['/office/index'],'visible' => Yii::$app->user->identity->isUserAdmin()],
+    ];
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            //['label' => 'Usuarios', 'visible' => Yii::$app->user->identity->isUserAdmin() ? true : false],
-           // ['label' => 'Maak afbeeldingen aan', 'url' => ['create'], 'icon' => 'file', 'visible' => Yii::$app->user->identity->isUsermanager() ? true : false],
-            //['label' => 'Beheer afbeeldingen', 'url' => ['admin'], 'icon' => 'list-alt', 'visible' => Yii::$app->user->identity->isUserAdmin('admin') ? true : false],
-            
-            ['label' => 'Jose', 'url' => ['/jose/index'],'visible' => Yii::$app->user->identity->isUserAdmin() ||],
-            ['label' => 'Dispositivo', 'url' => ['/dispositivo/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+
+            Yii::$app->user->isGuest ? (
+                echo $menuItemRegistered;
+            ) else (
+                echo  $menuItemsVisitor;
+            )
+           
+          
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
