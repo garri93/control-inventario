@@ -243,6 +243,24 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     }
 
 
+    /* Establecer pagina de inicio segun usuario */
+    public function getUserAdminPanel()
+    {
+        switch (Yii::$app->user->identity->role) {
+            case User::ROL_ADMIN:
+                    return "/administration/administration";
+                break;
+            case User::ROL_TECHNICAL :
+                    return "/administration/technical";
+                break;
+            case User::ROL_MANAGER :
+                    return "/administration/manager";
+                break;
+        }
+
+    }
+
+
 
 
 

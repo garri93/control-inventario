@@ -32,7 +32,7 @@ AppAsset::register($this);
     <?php
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->user->identity->getUserAdminPanel(),
+        'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
         ],
@@ -41,12 +41,10 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
-            ['label' => 'Inicio', 'url' => [Yii::$app->user->identity->getUserAdminPanel()]],
-            ['label' => 'Usuarios', 'url' => ['/user/index'],'visible' => Yii::$app->user->identity->isUserAdmin()],
-            ['label' => 'Empresa', 'url' => ['/company/index'],'visible' => Yii::$app->user->identity->isUserAdmin()],
-            ['label' => 'Clientes', 'url' => ['/customer/index'],'visible' => Yii::$app->user->identity->isUserAdmin()|| Yii::$app->user->identity->isUserTechnical()],
-            ['label' => 'Oficinas', 'url' => ['/office/index']],
 
+            ['label' => 'Inicio', 'url' => ['/site/index']],
+            ['label' => 'About', 'url' => ['/site/about']],
+            ['label' => 'Contact', 'url' => ['/site/contact']],
            
           
             Yii::$app->user->isGuest ? (
