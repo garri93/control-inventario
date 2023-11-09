@@ -67,7 +67,7 @@ INSERT INTO user (username, surname, dni, phone, company_id, role, email, passwo
 INSERT INTO user (username, surname, dni, phone, company_id, role, email, password	) VALUES ('user 5', 'Apellido 5', 'DNI6', 555555555, 5, '1','user6@1.com', '1234');
 INSERT INTO user (username, surname, dni, phone, company_id, role, email, password	) VALUES ('pruebaadmin', 'Apellido 5', 'DNI7', 555555555, 5, '1','pruebaadmin@1.com', '1234');
 INSERT INTO user (username, surname, dni, phone, company_id, role, email, password	) VALUES ('pruebatrabajdor', 'Apellido 5', 'DNI8', 555555555, 5, '2','pruebatrabajador@1.com', '1234');
-INSERT INTO user (username, surname, dni, phone, company_id, role, email, password	) VALUES ('pruebacliente', 'Apellido 5', 'DNI9', 555555555, 5, 'Rol 5','preubacliente@1.com', '1234');
+INSERT INTO user (username, surname, dni, phone, company_id, role, email, password	) VALUES ('pruebacliente', 'Apellido 5', 'DNI9', 555555555, 5, '3','preubacliente@1.com', '1234');
 
 
 /* User oficinas */

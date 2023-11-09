@@ -65,8 +65,10 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             [['phone', 'company_id'], 'integer'],
             [['username', 'surname', 'password'], 'string', 'max' => 100],
             [['dni'], 'string', 'max' => 9],
+            [['email'], 'string', 'max' => 9],
             [['role'], 'integer', 'max' => 1],
             [['dni'], 'unique'],
+            [['email'], 'unique'],
             [['company_id'], 'exist', 'skipOnError' => true, 'targetClass' => Company::class, 'targetAttribute' => ['company_id' => 'id']],
             [['auth_key'], 'string'],
             [['accessToken'], 'string'],
@@ -87,6 +89,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'company_id' => 'Empresa',
             'role' => 'Rol',
             'password' => 'Password',
+            'correo' => 'Password',
         ];
     }
 
@@ -207,6 +210,20 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return static::findOne(['username' => $username]);
     }
+
+            /**
+     * Finds user by email
+     *
+     * @param string $email
+     * @return static|null
+     */
+
+
+    public static function findByUserEmail($email)
+    {
+        return static::findOne(['email' => $email]);
+    }
+   
 
 
 
