@@ -3,11 +3,11 @@
 namespace app\models;
 
 /**
- * This is the ActiveQuery class for [[Customer]].
+ * This is the ActiveQuery class for [[User]].
  *
- * @see Customer
+ * @see User
  */
-class CustomerQuery extends \yii\db\ActiveQuery
+class UsuarioQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -16,7 +16,7 @@ class CustomerQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return Customer[]|array
+     * @return User[]|array
      */
     public function all($db = null)
     {
@@ -25,16 +25,10 @@ class CustomerQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return Customer|array|null
+     * @return User|array|null
      */
     public function one($db = null)
     {
         return parent::one($db);
     }
-
-    public function deMiEmpesa(){
-        return $this->andFilterWhere(['company_id' => \Yii::$app->user->identity->company_id]);
-    }
- 
-
 }

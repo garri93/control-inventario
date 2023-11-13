@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 
+
 /**
  * This is the model class for table "user".
  *
@@ -15,6 +16,7 @@ use Yii;
  * @property int $company_id
  * @property string $role
  * @property string $password
+ * 
  *
  * @property Company $company
  * @property OfficeAssignment[] $officeAssignments
@@ -22,8 +24,29 @@ use Yii;
  * @property Performance[] $performances
  * @property UserPerformance[] $userPerformances
  */
-class User extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
+    const ROL_ADMIN = 1;
+    const ROL_TECHNICAL = 2;
+    const ROL_MANAGER = 3;
+
+ static $rolOptions = [
+        self::ROL_ADMIN => 'Admin',
+        self::ROL_TECHNICAL => 'Tecnico',
+        self::ROL_MANAGER => 'Encargado'
+ ];
+
+
+    public function getRolToString(){
+        return self::$rolOptions[$this->role];
+    }
+
+
+    public function isAdmin(){
+        return $this->role === self::ROL_ADMIN;
+    }
+    
+
     /**
      * {@inheritdoc}
      */
@@ -42,9 +65,13 @@ class User extends \yii\db\ActiveRecord
             [['phone', 'company_id'], 'integer'],
             [['username', 'surname', 'password'], 'string', 'max' => 100],
             [['dni'], 'string', 'max' => 9],
-            [['role'], 'string', 'max' => 45],
+            [['email'], 'string', 'max' => 50],
+            [['role'], 'integer', 'max' => 3],
             [['dni'], 'unique'],
+            [['email'], 'unique'],
             [['company_id'], 'exist', 'skipOnError' => true, 'targetClass' => Company::class, 'targetAttribute' => ['company_id' => 'id']],
+            [['auth_key'], 'string'],
+            [['accessToken'], 'string'],
         ];
     }
 
@@ -55,13 +82,14 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'username' => 'Username',
-            'surname' => 'Surname',
+            'username' => 'Nombre',
+            'surname' => 'Apellidos',
             'dni' => 'Dni',
-            'phone' => 'Phone',
-            'company_id' => 'Company ID',
-            'role' => 'Role',
+            'phone' => 'Telefono',
+            'company_id' => 'Empresa',
+            'role' => 'Rol',
             'password' => 'Password',
+            'correo' => 'Password',
         ];
     }
 
@@ -123,4 +151,145 @@ class User extends \yii\db\ActiveRecord
     {
         return new UserQuery(get_called_class());
     }
+
+    
+/**
+ * Preparando el Login
+ */
+
+
+    public static function findIdentity($id)
+    {
+        return static::findOne($id);
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return static::findOne(['access_token' => $token]);
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getAuthKey()
+    {
+        return $this->auth_key;
+    }
+
+    public function validateAuthKey($authKey)
+    {
+        return $this->getAuthKey() === $authKey;
+    }
+
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if ($this->isNewRecord) {
+                $this->auth_key = \Yii::$app->security->generateRandomString();
+                $this->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
+            }
+            return true;
+        }
+        return false;
+    }
+
+        /**
+     * Finds user by username
+     *
+     * @param string $username
+     * @return static|null
+     */
+    public static function findByUsername($username)
+    {
+        return static::findOne(['username' => $username]);
+    }
+
+            /**
+     * Finds user by email
+     *
+     * @param string $email
+     * @return static|null
+     */
+
+
+    public static function findByUserEmail($email)
+    {
+        return static::findOne(['email' => $email]);
+    }
+   
+
+
+    
+    /**
+     * Validates password
+     *
+     * @param string $password password to validate
+     * @return bool if password provided is valid for current user
+  *//*
+    public function validatePassword($password)
+    {
+        return $this->password === $password;
+    }*/
+
+    public function validatePassword($password) 
+    {
+        return (Yii::$app->getSecurity()->validatePassword($password, $this->password)); 
+    }
+
+  /**
+     *
+     * Verificacion de usuarios
+     *
+     */
+
+    public function isUserAdmin()
+    {
+        return $this->getRole() === self::ROL_ADMIN;
+    }
+
+    public function isUserTechnical()
+    {
+        return $this->getRole() === self::ROL_TECHNICAL;
+    }
+
+    public function isUserManager()
+    {
+        return $this->getRole() === self::ROL_MANAGER;
+    }
+
+
+    /* Establecer pagina de inicio segun usuario */
+    public function getUserAdminPanel()
+    {
+        switch (Yii::$app->user->identity->role) {
+            case User::ROL_ADMIN:
+                    return "/administration/administration";
+                break;
+            case User::ROL_TECHNICAL :
+                    return "/administration/technical";
+                break;
+            case User::ROL_MANAGER :
+                    return "/administration/manager";
+                break;
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
 }

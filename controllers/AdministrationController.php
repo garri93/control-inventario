@@ -5,16 +5,13 @@ namespace app\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
-use app\models\User;
 
-class SiteController extends Controller
+
+class AdministrationController extends Controller
 {
 
-    public $layout = "front";
+    public $layout = "main";
     /**
      * {@inheritdoc}
      */
@@ -103,99 +100,26 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * Displays homepage.
+        /**
+     * Render areas
      *
-     * @return string
+     * 
      */
-    public function actionIndex()
+    public function actionAdministration()
     {
-        return $this->render('index');
+
+        return $this->render('administration');
     }
 
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
-    public function actionLogin()
+    public function actionTechnical()
     {
-        if (!Yii::$app->user->isGuest) {
-            switch (Yii::$app->user->identity->role) {
-                case User::ROL_ADMIN:
-                    return $this->redirect(["administration/administration"]);
-                break;
-            case User::ROL_TECHNICAL :
-                    return $this->redirect(["administration/technical"]);
-                break;
-            case User::ROL_MANAGER :
-                    return $this->redirect(["administration/manager"]);
-                break;
-            }
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-     
-            switch (Yii::$app->user->identity->role) {
-                case User::ROL_ADMIN:
-                        return $this->redirect(["administration/administration"]);
-                    break;
-                case User::ROL_TECHNICAL :
-                        return $this->redirect(["administration/technical"]);
-                    break;
-                case User::ROL_MANAGER :
-                        return $this->redirect(["administration/manager"]);
-                    break;
-            }
-        }
-
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
-        ]);
+        return $this->render('technical');
     }
 
-    /**
-     * Logout action.
-     *
-     * @return Response
-     */
-    public function actionLogout()
+    public function actionManager()
     {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
+        return $this->render('manager');
     }
-
-    /**
-     * Displays contact page.
-     *
-     * @return Response|string
-     */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
-
 
 
 }

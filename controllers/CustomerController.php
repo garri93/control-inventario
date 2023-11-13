@@ -7,6 +7,10 @@ use app\models\CustomerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\User;
+use yii\filters\AccessControl;
+use yii;
+use Yii as GlobalYii;
 
 /**
  * CustomerController implements the CRUD actions for Customer model.
@@ -18,19 +22,47 @@ class CustomerController extends Controller
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    // Acceso sólo para usuarios con rol administrador
+                    [
+                        'actions' => ['index', 'view', 'create', 'update','delete'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->isUserAdmin();
+                        },
                     ],
-                ],
-            ]
-        );
-    }
+                    [
+                        'actions' => ['index', 'view', 'create', 'update','delete'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->isUserTechnical();
+                        },
+                    ],
+                    [
+                        'actions' => ['index', 'view'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->isUserManager();
+                        },
+                    ],
 
+                ],
+            ],
+     //Controla el modo en que se accede a las acciones, en este ejemplo a la acción logout
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
+    }
     /**
      * Lists all Customer models.
      *
@@ -39,6 +71,7 @@ class CustomerController extends Controller
     public function actionIndex()
     {
         $searchModel = new CustomerSearch();
+        $searchModel->company_id = Yii::$app->user->identity->company_id;
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -68,6 +101,7 @@ class CustomerController extends Controller
     public function actionCreate()
     {
         $model = new Customer();
+        $model->company_id = Yii::$app->user->identity->company_id;
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -125,7 +159,7 @@ class CustomerController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Customer::findOne(['id' => $id])) !== null) {
+        if (($model = Customer::find()->where(['id' => $id])->deMiEmpesa()->one()) !== null) {
             return $model;
         }
 
