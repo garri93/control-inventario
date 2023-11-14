@@ -1,13 +1,14 @@
 <?php
 
 namespace app\controllers;
-
 use app\models\CustomerSearch;
 use app\models\Customer;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
+use app\models\officeSearch;
+use app\models\office;
 
 
 class AdministrationController extends Controller
@@ -114,6 +115,8 @@ class AdministrationController extends Controller
 
     public function actionTechnical()
     {
+        //$company_id = Yii::$app->user->identity->company_id;
+
         //$model = Customer::findOne($company_id);
         $searchModel = new CustomerSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
@@ -128,14 +131,20 @@ class AdministrationController extends Controller
 
     public function actionManager()
     {
-        return $this->render('manager');
+          //$model = Customer::findOne($company_id);
+          $searchModel = new officeSearch();
+          $dataProvider = $searchModel->search($this->request->queryParams);
+  
+          return $this->render('manager', [
+              'searchModel' => $searchModel,
+              'dataProvider' => $dataProvider,
+          ]);
+
+
+
+        
     }
     
 
-
-    public function actionIndex()
-    {
-       
-    }
 
 }
