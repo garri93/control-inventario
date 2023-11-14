@@ -2,6 +2,7 @@
 
 use app\models\User;
 use app\models\Company;
+use app\models\Customer;
 use app\models\UserSearch;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -23,25 +24,19 @@ use yii\grid\GridView;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'username',
-            'surname',
-            'email:email',
-            'dni',
-            'phone',
-            //'company_id',
-            'role',
-            //'password',
-            //'auth_key', 
-           //'accessToken', 
-           
+            'internal_code',
+            'name',
+            'cif',
+            'company_id',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, User $model, $key, $index, $column) {
+                'urlCreator' => function ($action, Customer $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],
         ],
     ]); ?>
+
 
 
 </section>
