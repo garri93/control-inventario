@@ -13,42 +13,28 @@ use yii\grid\GridView;
 
 <div><h1>Area de Administration</h1></div>
 
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-2 col-xl-3">
+                <h2>Acceso Directo</h2>
+                <p><i><?= Html::a("Ver Datos Empresa", '/company/view?id='); ?></i></p>
+                <p><i><?= Html::a("Panel de Tecnicos", '/administration/technical'); ?></i></p>
+  
+            </div>
+      
+            <div class="col-sm-6 col-md-2 col-xl-3">
+                <h2>Clientes</h2>
+                <p><i><?= Html::a("Listado de Clientes", '/customer/index'); ?></i></p>
+                <p><i><?= Html::a("Crear Usuario", '/user/index'); ?></i></p>
+            </div>
+        
+            <div class="col-sm-6 col-md-2 col-xl-3">
+                <h2>Usuarios</h2>
+                <p><i><?= Html::a("Listado Usuarios", '/user/index'); ?></i></p>
+                <p><i><?= Html::a("Crear Usuario", '/user/index'); ?></i></p>
+            </div>
+        </div>
 
-<?php
-$model = Company::findOne(Yii::$app->user->identity->company_id);
-$searchModel = new UserSearch();
-$searchModel->company_id = Yii::$app->user->identity->company_id;
-$dataProvider = $searchModel->search($this->request->queryParams);
-GridView::widget([
-    
-    'dataProvider' => $dataProvider,
-    'filterModel' => $searchModel,
-    'columns' => [
-        ['class' => 'yii\grid\SerialColumn'],
-
-        'id',
-        'username',
-        'surname',
-        'email:email',
-        'dni',
-        'phone',
-        //'company_id',
-        'role',
-        //'password',
-        //'auth_key', 
-       //'accessToken', 
-       
-        [
-            'class' => ActionColumn::className(),
-            'urlCreator' => function ($action, User $model, $key, $index, $column) {
-                return Url::toRoute([$action, 'id' => $model->id]);
-             }
-        ],
-    ],
-]);
-
-
-
-
-
-?>
+    </div>
+</section>

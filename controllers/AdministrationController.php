@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\CustomerSearch;
+use app\models\Customer;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -107,19 +109,33 @@ class AdministrationController extends Controller
      */
     public function actionAdministration()
     {
-
         return $this->render('administration');
     }
 
     public function actionTechnical()
     {
-        return $this->render('technical');
+        //$model = Customer::findOne($company_id);
+        $searchModel = new CustomerSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+
+        return $this->render('technical', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+
+
     }
 
     public function actionManager()
     {
         return $this->render('manager');
     }
+    
 
+
+    public function actionIndex()
+    {
+       
+    }
 
 }
