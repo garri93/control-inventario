@@ -50,14 +50,21 @@ AppAsset::register($this);
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
+
+            ['label' => 'Hola, '.Yii::$app->user->identity->username,
+                'items' => [
+                    ['label' => 'Panel administracion', 'url' => [Yii::$app->user->identity->getUserAdminPanel()]],
+                       
+                        '<div>'
+                        . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
+                        . Html::submitButton(
+                            'Cerrar Sesion',
+                            ['class' => 'btn btn-link logout']
+                        )
+                        . Html::endForm()
+                        . '</div>'  
+                ]
+            ]
             )
         ],
     ]);

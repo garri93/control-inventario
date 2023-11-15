@@ -25,6 +25,7 @@ class OfficeController extends Controller
                     'class' => VerbFilter::className(),
                     'actions' => [
                         'delete' => ['POST'],
+                        
                     ],
                 ],
             ]
