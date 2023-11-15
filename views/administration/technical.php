@@ -18,44 +18,26 @@ use yii\grid\GridView;
 
 <section>
     <div class="container">
-     <div>  
         <div class="row">
-            
-            <div class="col-sm-6 col-md-6 col-xl-6">
-            <h2>Clientes</h2>
-                <?= GridView::widget([
-                    'dataProvider' => $dataProvider,
-                    'filterModel' => $searchModel,
-                    'columns' => [
-                        'name',
-                        [
-                           
-
-                        ],
-                        [
-                            'class' => ActionColumn::className(),
-                            'urlCreator' => function ($action, Customer $model, $key, $index, $column) {
-                                return Url::toRoute([$action, 'id' => $model->id]);
-                            }
-                        ],
-                    ],
-                ]); ?>
-
+            <div class="col-sm-6 col-md-2 col-xl-3">
+                <h2>Acceso Directo</h2>
+                <p><i><?= Html::a("Ver Datos Empresa", '/company/view?id='); ?></i></p>
+                <p><i><?= Html::a("Panel de Tecnicos", '/administration/technical'); ?></i></p>
+  
             </div>
       
-            <div class="col-sm-6 col-md-6 col-xl-6">
-                <h2>Acciones</h2>
-                <p><i><?= Html::a("Crear Cliente", '/customer/create'); ?></i></p>
-                <p><i><?= Html::a("Crear oficina", '/office/create'); ?></i></p>
-                <p><i><?= Html::a("Crear dispositivo", '/user/index'); ?></i></p>
-                <p><i><?= Html::a("Añadir Actuacion", '/user/index'); ?></i></p>
-                <p><i><?= Html::a("Añadir Configuracion", '/user/index'); ?></i></p>
-                
+            <div class="col-sm-6 col-md-2 col-xl-3">
+                <h2>Clientes</h2>
+                <p><i><?= Html::a("Listado de Clientes", '/customer/index'); ?></i></p>
+                <p><i><?= Html::a("Crear Usuario", '/user/index'); ?></i></p>
             </div>
         
+            <div class="col-sm-6 col-md-2 col-xl-3">
+                <h2>Usuarios</h2>
+                <p><i><?= Html::a("Listado Usuarios", '/user/index'); ?></i></p>
+                <p><i><?= Html::a("Crear Usuario", '/user/index'); ?></i></p>
+            </div>
         </div>
-        </div> 
+
     </div>
 </section>
-
-
