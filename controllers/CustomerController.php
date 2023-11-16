@@ -12,6 +12,9 @@ use yii\filters\AccessControl;
 use yii;
 use Yii as GlobalYii;
 
+use app\models\officeSearch;
+use app\models\office;
+
 /**
  * CustomerController implements the CRUD actions for Customer model.
  */
@@ -88,9 +91,18 @@ class CustomerController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+
+          //$model = office::findOne($customer_id);
+          $searchModel = new officeSearch();
+          $searchModel->customer_id = $this->findModel($id);
+          $dataProvider = $searchModel->search($this->request->queryParams);
+
+          return $this->render('view', [
+              'searchModel' => $searchModel,
+              'dataProvider' => $dataProvider,
+              'model' => $this->findModel($id),
+            ]);
+
     }
 
     /**
