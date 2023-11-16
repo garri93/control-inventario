@@ -30,25 +30,29 @@ $this->params['breadcrumbs'][] = $this->title;
     
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+    
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?php if(Yii::$app->user->identity->isUserAdmin()):?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+            
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
-        ]) ?>
+        ]) ?><?php endif; ?>
     </p>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            'internal_code',
             'name',
             'cif',
-            'phone',
+            
+            
+
             
         ],
     ]) ?>
@@ -61,16 +65,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
+                    //'showHeader'=> false,
                     'columns' => [
-                        'name',
-                        'customer_id',
-
                         [
-                            'class' => ActionColumn::className(),
-                            'urlCreator' => function ($action, Office $model, $key, $index, $column) {
-                                return Url::toRoute([$action, 'id' => $model->id]);
-                            }
-                        ],
+                            'attribute' => 'name',   
+                            'format' => 'raw',
+                            'value'=> function ($model) {
+                                         //return Url::to([$dataProvider['name'],'/office/view', 'id' => $dataProvider['id']]);
+                                         //return Html::a(Html::encode($dataProvider['name']),'/office/view','id' => $dataProvider['id']);
+                                         return Html::a($model->name, ['office/view', 'id' => $model->id]);
+                                     },
+                            ],
+
+                        
                     ],
                 ]); ?>
     </div>

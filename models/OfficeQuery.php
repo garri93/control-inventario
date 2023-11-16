@@ -31,4 +31,8 @@ class OfficeQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+    public function delCliente($id){
+        return $this->andFilterWhere(['customer_id' =>  $id]);
+    }
 }

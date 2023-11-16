@@ -49,8 +49,8 @@ class Customer extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'internal_code' => 'Internal Code',
-            'name' => 'Name',
+            'internal_code' => 'Codigo Interno',
+            'name' => 'Nombre',
             'cif' => 'Cif',
             'company_id' => 'Company ID',
         ];

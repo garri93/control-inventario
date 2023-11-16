@@ -39,7 +39,7 @@ class CustomerController extends Controller
                         },
                     ],
                     [
-                        'actions' => ['index', 'view', 'create', 'update','delete'],                       
+                        'actions' => ['index', 'view', 'create', 'update'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -92,15 +92,16 @@ class CustomerController extends Controller
     public function actionView($id)
     {
 
-          //$model = office::findOne($customer_id);
+          $model = $this->findModel($id);
+
           $searchModel = new officeSearch();
-          $searchModel->customer_id = $this->findModel($id);
+          $searchModel->customer_id = $id;
           $dataProvider = $searchModel->search($this->request->queryParams);
 
           return $this->render('view', [
               'searchModel' => $searchModel,
               'dataProvider' => $dataProvider,
-              'model' => $this->findModel($id),
+              'model' => $model,
             ]);
 
     }
@@ -178,3 +179,4 @@ class CustomerController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }
+ 
