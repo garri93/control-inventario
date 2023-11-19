@@ -12,6 +12,8 @@ use Yii;
  * @property string $name
  * @property string $cif
  * @property int $company_id
+ * @property int $phone 
+ * @property string|null $notes 
  *
  * @property Company $company
  * @property Office[] $offices
@@ -32,13 +34,12 @@ class Customer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['internal_code', 'name', 'cif', 'company_id'], 'required'],
-            [['company_id'], 'integer'],
+            [['internal_code', 'name', 'cif', 'company_id', 'phone'], 'required'],
+            [['company_id', 'phone'], 'integer'],
+            [['notes'], 'string'],
             [['internal_code'], 'string', 'max' => 45],
             [['name'], 'string', 'max' => 100],
             [['cif'], 'string', 'max' => 9],
-            [['cif'], 'unique'],
-            [['company_id'], 'exist', 'skipOnError' => true, 'targetClass' => Company::class, 'targetAttribute' => ['company_id' => 'id']],
         ];
     }
 
@@ -53,6 +54,8 @@ class Customer extends \yii\db\ActiveRecord
             'name' => 'Nombre',
             'cif' => 'Cif',
             'company_id' => 'Company ID',
+            'phone' => 'Telefono', 
+            'notes' => 'Anotaciones', 
         ];
     }
 

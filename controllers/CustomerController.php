@@ -97,10 +97,11 @@ class CustomerController extends Controller
           $searchModel = new officeSearch();
           $searchModel->customer_id = $id;
           $dataProvider = $searchModel->search($this->request->queryParams);
+          $dataOffice = $dataProvider->getModels();
 
           return $this->render('view', [
               'searchModel' => $searchModel,
-              'dataProvider' => $dataProvider,
+              'dataOffice' => $dataOffice,
               'model' => $model,
             ]);
 

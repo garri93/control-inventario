@@ -33,7 +33,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'internal_code',
             'name',
             'cif',
-            'company_id',
+            //'company_id',
+            'phone', 
+           //'notes:ntext', 
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Customer $model, $key, $index, $column) {
