@@ -2,7 +2,9 @@
 
 namespace app\models;
 
+
 use Yii;
+use arogachev\ManyToMany\behaviors\ManyToManyBehavior;
 
 /**
  * This is the model class for table "office".
@@ -21,6 +23,27 @@ use Yii;
  */
 class Office extends \yii\db\ActiveRecord
 {
+    public $assignmentUsers = [];
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    [
+                        'editableAttribute' => 'assignmentUsers', // Nombre de atributo editable
+                        'table' => 'office_assignment', // Nombre de la tabla de unión
+                        'ownAttribute' => 'office_id', // Nombre de la columna en la tabla de unión que representa el modelo actual
+                        'relatedModel' => User::className(), // Clase de modelo relacionada
+                        'relatedAttribute' => 'user_id', // Nombre de la columna en la tabla de unión que representa el modelo relacionado
+                    ],
+                ],
+            ],
+        ];
+    }
+
+
     /**
      * {@inheritdoc}
      */

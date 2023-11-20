@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Office;
 use app\models\OfficeSearch;
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -70,6 +71,7 @@ class OfficeController extends Controller
     {
         $model = new Office();
         $model->customer_id = $customer_id;
+        $model->assignmentUsers = [];
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -94,8 +96,10 @@ class OfficeController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            $model->assignmentUsers = [1,2,3];
+            
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
