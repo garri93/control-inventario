@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `control_inventario`.`customer` (
   `cif` VARCHAR(9) NOT NULL,
   `company_id` INT NOT NULL,
   `phone` INT(9) NOT NULL,
-  `notes` TEXT NULL,
+  `notes` LONGBLOB NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_empresa_cuenta1_idx` (`company_id` ASC)  ,
   UNIQUE INDEX `cif_UNIQUE` (`cif` ASC)  ,
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `control_inventario`.`office` (
   `phone` VARCHAR(9) NOT NULL,
   `customer_id` INT NOT NULL,
   `hours` TEXT NULL,
-  `notes` TEXT NULL,
+  `notes` LONGBLOB NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_oficina_empresa1_idx` (`customer_id` ASC)  ,
   CONSTRAINT `fk_oficina_empresa1`
