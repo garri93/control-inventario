@@ -66,10 +66,10 @@ class OfficeController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate($customer_id = '')
     {
         $model = new Office();
-
+        $model->customer_id = $customer_id;
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -80,6 +80,7 @@ class OfficeController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            
         ]);
     }
 
@@ -121,9 +122,19 @@ class OfficeController extends Controller
      * Finds the Office model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
+     * @param int $customer_id ID
      * @return Office the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
+    protected function findModelByCliente($id, $customer_id)
+    {
+        if (($model = Office::find()->where(['id' => $id])->delCliente($customer_id)->one()) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
     protected function findModel($id)
     {
         if (($model = Office::findOne(['id' => $id])) !== null) {
@@ -133,3 +144,5 @@ class OfficeController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }
+
+

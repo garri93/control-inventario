@@ -59,14 +59,18 @@ class OfficeSearch extends Office
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'customer_id' => $this->customer_id,
+            'customer_id' => $this->customer_id
+            
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'address', $this->address])
             ->andFilterWhere(['like', 'postal_code', $this->postal_code])
             ->andFilterWhere(['like', 'phone', $this->phone]);
+       
 
         return $dataProvider;
     }
+
 }
+ 

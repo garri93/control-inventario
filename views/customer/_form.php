@@ -1,7 +1,11 @@
 <?php
 
 use yii\helpers\Html;
+
 use yii\widgets\ActiveForm;
+
+use kartik\editors\Summernote;
+
 
 /** @var yii\web\View $this */
 /** @var app\models\Customer $model */
@@ -18,7 +22,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'cif')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'company_id')->textInput() ?>
+    
+
+    <?= $form->field($model, 'phone')->textInput() ?> 
+ 
+    <?= $form->field($model, 'notes')->widget(Summernote::class, [
+        'useKrajeePresets' => false,
+        'class' => 'form-control kv-editor-container'
+        
+    ]); ?>
+   
+
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
