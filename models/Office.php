@@ -23,6 +23,10 @@ use arogachev\ManyToMany\behaviors\ManyToManyBehavior;
  */
 class Office extends \yii\db\ActiveRecord
 {
+
+/**
+ * Extension Many to Many
+ *  */    
     public $assignmentUsers = [];
 
     public function behaviors()
@@ -43,6 +47,7 @@ class Office extends \yii\db\ActiveRecord
         ];
     }
 
+/*********** */
 
     /**
      * {@inheritdoc}
@@ -65,6 +70,7 @@ class Office extends \yii\db\ActiveRecord
             [['postal_code'], 'string', 'max' => 45],
             [['phone'], 'string', 'max' => 9],
             [['customer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::class, 'targetAttribute' => ['customer_id' => 'id']],
+            ['assignmentUsers', 'safe'],
         ];
     }
 

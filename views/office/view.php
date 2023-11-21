@@ -42,3 +42,6 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 
+<?php foreach ($model->users as $user): ?>
+    <p><?= $user->username ?></p>
+<?php endforeach; ?>
