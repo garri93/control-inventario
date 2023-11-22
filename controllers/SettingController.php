@@ -2,21 +2,16 @@
 
 namespace app\controllers;
 
-use app\models\Office;
-use app\models\OfficeSearch;
-use app\models\OfficeAssignment;
-
-use app\models\User;
-use app\models\UserSearch;
+use app\models\Setting;
+use app\models\SettingSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use Yii;
 
 /**
- * OfficeController implements the CRUD actions for Office model.
+ * SettingController implements the CRUD actions for Setting model.
  */
-class OfficeController extends Controller
+class SettingController extends Controller
 {
     /**
      * @inheritDoc
@@ -30,7 +25,6 @@ class OfficeController extends Controller
                     'class' => VerbFilter::className(),
                     'actions' => [
                         'delete' => ['POST'],
-                        
                     ],
                 ],
             ]
@@ -38,13 +32,13 @@ class OfficeController extends Controller
     }
 
     /**
-     * Lists all Office models.
+     * Lists all Setting models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new OfficeSearch();
+        $searchModel = new SettingSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -54,32 +48,29 @@ class OfficeController extends Controller
     }
 
     /**
-     * Displays a single Office model.
+     * Displays a single Setting model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
-        $model = $this->findModel($id);
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Creates a new Office model.
+     * Creates a new Setting model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate($customer_id = '')
+    public function actionCreate()
     {
-        $model = new Office();
-        $model->customer_id = $customer_id;
-        $model->assignmentUsers = [1,2,3];
+        $model = new Setting();
+
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -88,12 +79,11 @@ class OfficeController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-            
         ]);
-    } 
+    }
 
     /**
-     * Updates an existing Office model.
+     * Updates an existing Setting model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -102,6 +92,7 @@ class OfficeController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -112,7 +103,7 @@ class OfficeController extends Controller
     }
 
     /**
-     * Deletes an existing Office model.
+     * Deletes an existing Setting model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -126,51 +117,18 @@ class OfficeController extends Controller
     }
 
     /**
-     * Finds the Office model based on its primary key value.
+     * Finds the Setting model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @param int $customer_id ID
-     * @return Office the loaded model
+     * @return Setting the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModelByCliente($id, $customer_id)
-    {
-        if (($model = Office::find()->where(['id' => $id])->delCliente($customer_id)->one()) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
     protected function findModel($id)
     {
-        if (($model = Office::findOne(['id' => $id])) !== null) {
+        if (($model = Setting::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
-
-    /**
-     * Funcion para borrar las relaciones entre officina y usuarios
-     */
-
-    public function actionDeleteassignment($user_id,$office_id)
-    {
-        $model = new OfficeAssignment();
-        $model = OfficeAssignment::findOne($user_id,$office_id);
-        
-        if ($model) {
-            $model->delete();
-        }
-        
-        return $this->redirect(['office/view', 'id' => $office_id]);
-    }
-
-
-
-
 }
-
-

@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Device;
+use app\models\Setting;
 
 /**
- * DeviceSearch represents the model behind the search form of `app\models\Device`.
+ * SettingSearch represents the model behind the search form of `app\models\Setting`.
  */
-class DeviceSearch extends Device
+class SettingSearch extends Setting
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class DeviceSearch extends Device
     public function rules()
     {
         return [
-            [['id', 'parent_device', 'office_id', 'category_id'], 'integer'],
-            [['name'], 'safe'],
+            [['id', 'device_id'], 'integer'],
+            [['name', 'description', 'creation_date', 'edition_date'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class DeviceSearch extends Device
      */
     public function search($params)
     {
-        $query = Device::find();
+        $query = Setting::find();
 
         // add conditions that should always apply here
 
@@ -59,12 +59,13 @@ class DeviceSearch extends Device
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'parent_device' => $this->parent_device,
-            'office_id' => $this->office_id,
-            'category_id' => $this->category_id,
+            'device_id' => $this->device_id,
+            'creation_date' => $this->creation_date,
+            'edition_date' => $this->edition_date,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

@@ -9,13 +9,12 @@ use Yii;
  *
  * @property int $id
  * @property int|null $parent_device
- * @property string|null $description
- * @property int $device_name_id
+ * @property string $name
  * @property int $office_id
+ * @property int|null $category_id
  *
  * @property Attribute[] $attributes0
- * @property DeviceAttribute[] $deviceAttributes
- * @property DeviceName $deviceName
+ * @property Category $category
  * @property Office $office
  * @property Performance[] $performances
  * @property Setting[] $settings
@@ -36,10 +35,10 @@ class Device extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['parent_device', 'device_name_id', 'office_id'], 'integer'],
-            [['device_name_id', 'office_id'], 'required'],
-            [['description'], 'string', 'max' => 250],
-            [['device_name_id'], 'exist', 'skipOnError' => true, 'targetClass' => DeviceName::class, 'targetAttribute' => ['device_name_id' => 'id']],
+            [['parent_device', 'office_id', 'category_id'], 'integer'],
+            [['name', 'office_id'], 'required'],
+            [['name'], 'string', 'max' => 250],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['category_id' => 'id']],
             [['office_id'], 'exist', 'skipOnError' => true, 'targetClass' => Office::class, 'targetAttribute' => ['office_id' => 'id']],
         ];
     }
@@ -52,9 +51,9 @@ class Device extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'parent_device' => 'Parent Device',
-            'description' => 'Description',
-            'device_name_id' => 'Device Name ID',
+            'name' => 'Name',
             'office_id' => 'Office ID',
+            'category_id' => 'Category ID',
         ];
     }
 
@@ -65,27 +64,17 @@ class Device extends \yii\db\ActiveRecord
      */
     public function getAttributes0()
     {
-        return $this->hasMany(Attribute::class, ['id' => 'attribute_id'])->viaTable('device_attribute', ['device_id' => 'id']);
+        return $this->hasMany(Attribute::class, ['device_id' => 'id']);
     }
 
     /**
-     * Gets query for [[DeviceAttributes]].
+     * Gets query for [[Category]].
      *
-     * @return \yii\db\ActiveQuery|DeviceAttributeQuery
+     * @return \yii\db\ActiveQuery|CategoryQuery
      */
-    public function getDeviceAttributes()
+    public function getCategory()
     {
-        return $this->hasMany(DeviceAttribute::class, ['device_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[DeviceName]].
-     *
-     * @return \yii\db\ActiveQuery|DeviceNameQuery
-     */
-    public function getDeviceName()
-    {
-        return $this->hasOne(DeviceName::class, ['id' => 'device_name_id']);
+        return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
 
     /**

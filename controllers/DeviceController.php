@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\models\Device;
 use app\models\DeviceSearch;
+use app\models\SettingSearch;
+use app\models\Setting;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -55,9 +57,23 @@ class DeviceController extends Controller
      */
     public function actionView($id)
     {
+        /**/   $model = $this->findModel($id);
+         /**/  $searchModel = new SettingSearch();
+         /**/  $searchModel->device_id = $id;
+         /**/ $dataProvider = $searchModel->search($this->request->queryParams);
+
+         return $this->render('view', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'model' => $model,
+          ]);
+
+
+    
+/*
         return $this->render('view', [
             'model' => $this->findModel($id),
-        ]);
+        ]);*/
     }
 
     /**
