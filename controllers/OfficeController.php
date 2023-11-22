@@ -4,11 +4,14 @@ namespace app\controllers;
 
 use app\models\Office;
 use app\models\OfficeSearch;
+use app\models\OfficeAssignment;
+
 use app\models\User;
 use app\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use Yii;
 
 /**
  * OfficeController implements the CRUD actions for Office model.
@@ -147,6 +150,25 @@ class OfficeController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+/*
+    public function actionDeleteassignment($user_id, $office_id)
+    {
+        $result = Yii::$app->db->createCommand('DELETE FROM office_assignment WHERE office_assignment.user_id = '.$user_id.' AND office_assignment.office_id ='. $office_id)->queryAll();
+        return $result;
+    }
+*/
+
+public function actionDeleteassignment($user_id,$office_id)
+{
+    $model = new OfficeAssignment();
+    $model->find($user_id,$office_id)->delete();
+
+    return $this->redirect(['/office/view?id='.$office_id]);
+}
+
+
+
+
 }
 
 
