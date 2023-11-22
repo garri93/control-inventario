@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
+
+
 /** @var yii\web\View $this */
 /** @var app\models\Office $model */
 
@@ -39,3 +41,18 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
 </div>
+
+
+<?php foreach ($model->users as $user): ?>
+    <p><?= $user->username ?></p>
+    <p>
+    <?= 
+    Html::a('Delete', ['deleteassignment', 'user_id' => $user->id, 'office_id' => $model->id], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => 'Are you sure you want to delete this item?',
+                'method' => 'post',
+            ],
+        ]) ?>
+    </p>
+<?php endforeach; ?>

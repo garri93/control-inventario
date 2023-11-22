@@ -4,9 +4,14 @@ namespace app\controllers;
 
 use app\models\Office;
 use app\models\OfficeSearch;
+use app\models\OfficeAssignment;
+
+use app\models\User;
+use app\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use Yii;
 
 /**
  * OfficeController implements the CRUD actions for Office model.
@@ -56,6 +61,7 @@ class OfficeController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -70,8 +76,10 @@ class OfficeController extends Controller
     {
         $model = new Office();
         $model->customer_id = $customer_id;
+        $model->assignmentUsers = [1,2,3];
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
+                
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -82,7 +90,7 @@ class OfficeController extends Controller
             'model' => $model,
             
         ]);
-    }
+    } 
 
     /**
      * Updates an existing Office model.
@@ -94,7 +102,6 @@ class OfficeController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -143,6 +150,27 @@ class OfficeController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+
+/**
+ * Funcion para borrar las relaciones entre officina y usuarios
+ */
+
+public function actionDeleteassignment($user_id,$office_id)
+{
+    $model = new OfficeAssignment();
+    $model = OfficeAssignment::findOne($user_id,$office_id);
+    
+    if ($model) {
+        $model->delete();
+    }
+    
+    return $this->redirect(['office/view', 'id' => $office_id]);
+}
+
+
+
+
 }
 
 

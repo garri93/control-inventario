@@ -1,6 +1,7 @@
 <?php
 
 namespace app\models;
+use yii\helpers\ArrayHelper;
 
 use Yii;
 
@@ -284,6 +285,12 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     }
 
 
+    public static function getList()
+    {
+        $models = static::find()->where(['company_id' => Yii::$app->user->identity->company_id])->orderBy('username')->all();
+    
+        return ArrayHelper::map($models, 'id', 'username');
+    }
 
 
 
