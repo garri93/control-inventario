@@ -46,8 +46,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php foreach ($model->users as $user): ?>
     <p><?= $user->username ?></p>
     <p>
-    <?= OfficeAssignment::deleteassignment($user->id,$model->id)
-    Html::a('Delete', ['/OfficeAssignment/deleteassignment', 'user_id' => $user->id, 'office_id' => $model->id], [
+    <?= 
+    Html::a('Delete', ['deleteassignment', 'user_id' => $user->id, 'office_id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',

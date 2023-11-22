@@ -150,20 +150,22 @@ class OfficeController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-/*
-    public function actionDeleteassignment($user_id, $office_id)
-    {
-        $result = Yii::$app->db->createCommand('DELETE FROM office_assignment WHERE office_assignment.user_id = '.$user_id.' AND office_assignment.office_id ='. $office_id)->queryAll();
-        return $result;
-    }
-*/
+
+
+/**
+ * Funcion para borrar las relaciones entre officina y usuarios
+ */
 
 public function actionDeleteassignment($user_id,$office_id)
 {
     $model = new OfficeAssignment();
-    $model->find($user_id,$office_id)->delete();
-
-    return $this->redirect(['/office/view?id='.$office_id]);
+    $model = OfficeAssignment::findOne($user_id,$office_id);
+    
+    if ($model) {
+        $model->delete();
+    }
+    
+    return $this->redirect(['office/view', 'id' => $office_id]);
 }
 
 
