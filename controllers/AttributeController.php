@@ -2,21 +2,16 @@
 
 namespace app\controllers;
 
-use app\models\Device;
-use app\models\DeviceSearch;
-use app\models\SettingSearch;
-use app\models\performanceSearch;
+use app\models\Attribute;
 use app\models\AttributeSearch;
-use app\models\Performance;
-use app\models\Setting;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * DeviceController implements the CRUD actions for Device model.
+ * AttributeController implements the CRUD actions for Attribute model.
  */
-class DeviceController extends Controller
+class AttributeController extends Controller
 {
     /**
      * @inheritDoc
@@ -37,13 +32,13 @@ class DeviceController extends Controller
     }
 
     /**
-     * Lists all Device models.
+     * Lists all Attribute models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new DeviceSearch();
+        $searchModel = new AttributeSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -53,65 +48,31 @@ class DeviceController extends Controller
     }
 
     /**
-     * Displays a single Device model.
+     * Displays a single Attribute model.
      * @param int $id ID
+     * @param int $device_id Device ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($id, $device_id)
     {
-        /**/   $model = $this->findModel($id);
-
-                
-
-                /** Configuraciones */
-         /**/  $searchModelSetting = new SettingSearch();
-         /**/  $searchModelSetting->device_id = $id;
-         /**/  $dataProviderSetting = $searchModelSetting->search($this->request->queryParams);
-
-                /** Atributos */
-         /**/  $searchModelAttribute = new AttributeSearch();
-         /**/  $searchModelAttribute->device_id = $id;
-         /**/  $dataProviderAttribute = $searchModelAttribute->search($this->request->queryParams);
-
-                 /** Actuaciones */
-         /**/  $searchModelPerformance= new PerformanceSearch();
-         /**/  $searchModelPerformance->device_id = $id;
-         /**/  $dataProviderPerformance = $searchModelPerformance->search($this->request->queryParams);
-
-         return $this->render('view', [
-            'searchModelSetting' => $searchModelSetting,
-            'dataProviderSetting' => $dataProviderSetting,
-
-            'searchModelAttribute' => $searchModelAttribute,
-            'dataProviderAttribute' => $dataProviderAttribute,
-
-            'searchModelPerformance' => $searchModelPerformance,
-            'dataProviderPerformance' => $dataProviderPerformance,
-
-            'model' => $model,
-          ]);
-
-
-    
-/*
         return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);*/
+            'model' => $this->findModel($id, $device_id),
+        ]);
     }
 
     /**
-     * Creates a new Device model.
+     * Creates a new Attribute model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Device();
+        $model = new Attribute();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view', 'id' => $model->id, 'device_id' => $model->device_id]);
             }
         } else {
             $model->loadDefaultValues();
@@ -123,18 +84,19 @@ class DeviceController extends Controller
     }
 
     /**
-     * Updates an existing Device model.
+     * Updates an existing Attribute model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
+     * @param int $device_id Device ID
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $device_id)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($id, $device_id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id, 'device_id' => $model->device_id]);
         }
 
         return $this->render('update', [
@@ -143,35 +105,34 @@ class DeviceController extends Controller
     }
 
     /**
-     * Deletes an existing Device model.
+     * Deletes an existing Attribute model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
+     * @param int $device_id Device ID
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $device_id)
     {
-        $this->findModel($id)->delete();
+        $this->findModel($id, $device_id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Device model based on its primary key value.
+     * Finds the Attribute model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Device the loaded model
+     * @param int $device_id Device ID
+     * @return Attribute the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($id, $device_id)
     {
-        if (($model = Device::findOne(['id' => $id])) !== null) {
+        if (($model = Attribute::findOne(['id' => $id, 'device_id' => $device_id])) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
-
-
 }

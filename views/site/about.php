@@ -22,6 +22,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php var_dump(Yii::$app->user->identity->isUserAdmin());
                     var_dump(Yii::$app->user->identity->getrole());?>
                 <?php endif; ?>
+                <?php 
+                 for($i=0; $i<100; $i++){
+                    echo "</br> ";
+                    echo \Yii::$app->security->generateRandomString();
+                    
+                    echo "</br> ";
+                   
+                   }
+                
+                
+                ?>
             </h1>
     </p>
 

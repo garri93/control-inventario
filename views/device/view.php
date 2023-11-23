@@ -35,6 +35,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'office_id',
             'category_id',
+            // [
+            //     'label' => 'Atributos',
+            //     'value' => ,
+            //     'format' => 'html'
+            // ]
         ],
     ]) ?>
 
@@ -46,28 +51,29 @@ $this->params['breadcrumbs'][] = $this->title;
                 
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Oficinas</a>
-                    </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                        <a class="nav-link active" id="attributes-tab" data-toggle="tab" href="#attributes" role="tab" aria-controls="attributes" aria-selected="true">Atributos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-                    </li> -->
+                        <a class="nav-link" id="setting-tab" data-toggle="tab" href="#setting" role="tab" aria-controls="setting" aria-selected="false">Configuraciones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="deviceson-tab" data-toggle="tab" href="#deviceson" role="tab" aria-controls="deviceson" aria-selected="false">Perifericos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="performance-tab" data-toggle="tab" href="#performance" role="tab" aria-controls="performance" aria-selected="false">Actuaciones</a>
+                    </li> 
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="tab-pane fade show active" id="attributes" role="tabpanel" aria-labelledby="attributes-tab">
                     <div class="gridview-custom">
                     <?= GridView::widget([
-                                'dataProvider' => $dataProvider,
+                                'dataProvider' => $dataProviderAttribute,
                                 //'showHeader'=> false, //Ocultar todo el header paginacion, label, cuadro de busqueda.
-                                'filterModel' => $searchModel, //Mostrar cuadro de busqueda.
+                                'filterModel' => $searchModelAttribute, //Mostrar cuadro de busqueda.
                                 'summary' => '', //Ocultar texto paginacion superior
                                 
                                 'columns' => [
                                     [
-                                       
-
                                         'enableSorting' => false, // Desactivar la clasificacion ascendente y descendente
                                         'label' => 'Seleccionar Oficina', //Ocultar fila de label
                                         'attribute' => 'name',   
@@ -81,12 +87,72 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     </div>
 
-                    <!-- <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <p>hola</p> 
+                    <div class="tab-pane fade" id="setting" role="tabpanel" aria-labelledby="setting-tab">
+                    <div class="gridview-custom">
+                    <?= GridView::widget([
+                                'dataProvider' => $dataProviderSetting,
+                                //'showHeader'=> false, //Ocultar todo el header paginacion, label, cuadro de busqueda.
+                                'filterModel' => $searchModelSetting, //Mostrar cuadro de busqueda.
+                                'summary' => '', //Ocultar texto paginacion superior
+                                
+                                'columns' => [
+                                    [
+                                        'enableSorting' => false, // Desactivar la clasificacion ascendente y descendente
+                                        'label' => 'Seleccionar Oficina', //Ocultar fila de label
+                                        'attribute' => 'name',   
+                                        'format' => 'raw',
+                                        'value'=> function ($model) {
+                                                                return Html::a('<span>'.$model->name . '</span>' . Html::tag('i', '', ['class' => 'fa fa-arrow-right']), ['setting/view', 'id' => $model->id]);
+                                                    },
+                                    ],                
+                                ],
+                        ]); ?>
+                    </div>
+                        
+
                     </div>
 
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div> -->
+                    <div class="tab-pane fade" id="deviceson" role="tabpanel" aria-labelledby="deviceson-tab">
+                    <div class="gridview-custom">
+                    <?php
+                         
+
+                            foreach ($model->parent as $parent): ?>
+                                <p><?= $parent->name ?></p>
+                                <p>
+                                <?= 
+                                Html::a('Delete', ['deleteassignment', 'user_id' => $parent->id, 'office_id' => $model->id], [
+                                        'class' => 'btn btn-danger',
+                                        'data' => [
+                                            'confirm' => 'Are you sure you want to delete this item?',
+                                            'method' => 'post',
+                                        ],
+                                    ]) ?>
+                                </p>
+                            <?php endforeach; ?>
+                            </div>
+                    </div>
+                    <div class="tab-pane fade" id="performance" role="tabpanel" aria-labelledby="performance-tab">
+                    <div class="gridview-custom">
+                    <?= GridView::widget([
+                                'dataProvider' => $dataProviderPerformance,
+                                //'showHeader'=> false, //Ocultar todo el header paginacion, label, cuadro de busqueda.
+                                'filterModel' => $searchModelPerformance, //Mostrar cuadro de busqueda.
+                                'summary' => '', //Ocultar texto paginacion superior
+                                
+                                'columns' => [
+                                    [
+                                        'enableSorting' => false, // Desactivar la clasificacion ascendente y descendente
+                                        'label' => 'Seleccionar Oficina', //Ocultar fila de label
+                                        'attribute' => 'name',   
+                                        'format' => 'raw',
+                                        'value'=> function ($model) {
+                                                                return Html::a('<span>'.$model->description . '</span>' . Html::tag('i', '', ['class' => 'fa fa-arrow-right']), ['performance/view', 'id' => $model->id]);
+                                                    },
+                                    ],                
+                                ],
+                        ]); ?>
+                    </div>
+                    </div>
+                    </div>
                 </div>
-
-
-?>

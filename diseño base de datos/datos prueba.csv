@@ -1,0 +1,199 @@
+﻿pruebaadmin;Apellido 1;DNI1;612345678;1;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;jLhG5-tBubzu9lRsdfZKu5qLxagazdPF;NULL;pruebaadmin@1.com
+pruebatrabajdor;Apellido 2;DNI2;634567890;1;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;pruebatrabajador@1.com
+pruebacliente;Apellido 3;DNI3;656789012;1;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;INwhox5vPTuOCUyfCkwfKll6W_sLruPt;NULL;preubacliente@1.com
+Antonio;Garcia Gonzalez;17987172E;677890123;1;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;antonio.garcia@1.com
+Lorena;Barrera Rodríguez;76265457X;633543210;1;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;YuGKs8wefCiFtSdudxzt8wGzbM3T_iK8;NULL;lorena.barrera@1.com
+Jose;Rodriguez Fernandez;33541805P;699012345;1;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;jose.rodriguez@1.com
+Manuel;Lopez Martinez;58709775K;611223344;1;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;m2tE5fEIPbqHBAtK01IfkyH_7d3pEY1B;NULL;manuel.lopez@1.com
+Francisco;Sanchez Perez;62591068H;633445566;1;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;francisco.sanchez@1.com
+Juan;Gomez Martin;14333594V;655667788;1;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;pxZO6feoOk4mdJdIzsLjNALVq1V2arag;NULL;juan.gomez@1.com
+David;Jimenez Ruiz;32929978G;677889900;1;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;david.jimenez@1.com
+Jose Antonio;Hernandez Diaz;23122636T;699001122;2;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;8vNuVi5AWlGqn42pECjprXHKmj8tKLeC;NULL;joseantonio.hernandez@1.com
+Jose Luis;Moreno Alvarez;70058129Z;611122233;2;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;joseluis.moreno@1.com
+Javier;Muñoz Romero;37955306Q;633334444;2;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;RKGozHpWGhZgtQ2f-zPVqKKgOH11KkaS;NULL;javier.munoz@1.com
+Jesus;Alonso Gutierrez;76483453N;655555555;2;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;jesus.alonso@1.com
+Carlos;Navarro Torres;36753582L;677777777;2;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;TGELSP_-kop3yazy-LTFBkOVdEulVc9D;NULL;carlos.navarro@1.com
+Daniel;Dominguez Vazquez;16441139A;699999999;2;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;daniel.dominguez@1.com
+Miguel;Ramos Gil;94634491W;611112222;2;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;6iuZPUcuCBRrCh080efP8EPSUbF3X9nQ;NULL;miguel.ramos@1.com
+Rafael;Ramirez Serrano;24083136C;633221133;2;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;rafael.ramirez@1.com
+Jose Manuel;Blanco Suarez;95857467E;655443322;2;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;ua2yA3ucWMnXL3yiK3ExJ0HpBTAJXcLA;NULL;josemanuel.blanco@1.com
+Pedro;Molina Morales;45340260S;677788899;2;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;pedro.molina@1.com
+Alejandro;Ortega Delgado;90744214Z;699998877;3;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;JUNWlpNPichMCA4QO2SQDiuxymWGMMeQ;NULL;alejandro.ortega@1.com
+Angel;Castro Ortiz;26134394T;611334455;3;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;angel.castro@1.com
+Fernando;Rubio Marin;62349286N;633556677;3;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;uXdq2NGEgxVHtiMSA5Bmh_eIaFcC_qRU;NULL;fernando.rubio@1.com
+Luis;Sanz Nuñez;25134082G;655778899;3;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;luis.sanz@1.com
+Pablo;Iglesias Medina;78821731H;677123456;3;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;9ZaWIBpYFJoUunZ_h0Ou8O2rVEZAVEBW;NULL;pablo.iglesias@1.com
+Sergio;Garrido Santos;70365312D;699876543;3;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;sergio.garrido@1.com
+Jorge;Castillo Cortes;61010001V;611234567;3;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;8sI9wW9cjQHIxV7Hx6eYBLSLQ-2r3dzW;NULL;jorge.castillo@1.com
+Alberto;Lozano Guerrero;59909030X;633765432;3;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;alberto.lozano@1.com
+Juan Carlos;Cano Prieto;74989744S;655234567;3;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;s4t9MJ-_fWpNvORAViEcm1ZHdL_C4sqS;NULL;juancarlos.cano@1.com
+Juan Jose;Mendez Calvo;49782661N;677765432;3;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;juanjose.mendez@1.com
+Ramon;Cruz Gallego;91863062G;699876543;4;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;D_H1_1ad4lyNlEspXbR_gpT8GB_oClvQ;NULL;ramon.cruz@1.com
+Enrique;Vidal Leon;55556882Z;611987654;4;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;enrique.vidal@1.com
+Diego;Herrera Marquez;55060516B;633876543;4;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;P0Mdl1erbeL4mbXkqybMQONosjk8ICN_;NULL;diego.herrera@1.com
+Vicente;Peña Cabrera;74099811K;655765432;4;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;vicente.pena@1.com
+Alvaro;Flores Campos;72105735E;677234567;4;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;8dWRPBuctL6aJQ7DU1aW5iDrtjIcDZL7;NULL;alvaro.flores@1.com
+Raul;Vega Diez;34005395X;699543210;4;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;raul.vega@1.com
+Adrian;Fuentes Carrasco;99890208N;611345678;4;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;uOm3bHzwirgsS9cx21V32EDS3b8_dt78;NULL;adrian.fuentes@1.com
+Joaquin;Caballero Nieto;13222617D;633654321;4;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;joaquin.caballero@1.com
+Ivan;Reyes Aguilar;46200223P;655876543;4;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;E23jttA29UlVaZMAGRtWcKg3Z6eewWlg;NULL;ivan.reyes@1.com
+Andres;Pascual Herrero;59773788P;677345678;4;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;andres.pascual@1.com
+Oscar;Santana Lorenzo;06991207N;699654321;5;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;-ZOYmTNj0qkYDbNfj7oaWU8E1Uo-ANIS;NULL;oscar.santana@1.com
+Ruben;Hidalgo Montero;30437752N;611876543;5;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;ruben.hidalgo@1.com
+Santiago;Ibañez Gimenez;38231983A;633234567;5;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;Adu9hW2mpe6qQoywLJik_SFqQZXv25R-;NULL;santiago.ibanez@1.com
+Eduardo;Ferrer Duran;03761674R;655456789;5;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;eduardo.ferrer@1.com
+Victor;Vicente Benitez;03976158X;677654321;5;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;X3oKG99MTNq5-tC99a_VjzHxWlQwAWiF;NULL;victor.vicente@1.com
+Roberto;Mora Santiago;48206931N;699987654;5;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;roberto.mora@1.com
+Jaime;Arias Vargas;89560444P;611765432;5;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;uH5BHajV7x7dPLeVSvzN1IAvcQ2TpfY3;NULL;jaime.arias@1.com
+Ignacio;Carmona Crespo;27566371C;633543210;5;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;ignacio.carmona@1.com
+Alfonso;Roman Pastor;37125825F;655345678;5;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;-DXXrHki9EiL_xUPSxRKndEs37s7KIvo;NULL;alfonso.roman@1.com
+Salvador;Soto Saez;57611746N;677876543;5;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;salvador.soto@1.com
+Ricardo;Velasco Soler;70210796F;699234567;6;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;Zu58kfqs0NhP_jxU-IatvrFuQ8yCbzS6;NULL;ricardo.velasco@1.com
+Mario;Moya Esteban;48849408F;611654321;6;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;mario.moya@1.com
+Jordi;Parra Bravo;53515914C;633432109;6;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;26BELSjjKt9gvD3WrP_7GLJpAzAMdbKl;NULL;jordi.parra@1.com
+Emilio;Gallardo Rojas;69030872Y;655987654;6;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;emilio.gallardo@1.com
+Alejandra;Martínez Pérez;15593852J;612345678;6;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;Azn_l_XuszfYTNn24Fp6uqEPLMcI-P_N;NULL;alejandra.martinez@1.com
+Roberto;López García;92806595P;634567890;6;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;roberto.lopez@1.com
+Carmen;Sánchez Rodríguez;73323541R;656789012;6;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;je6Nqqmk3JNbixaFXxahO2lOOBDmEgJs;NULL;carmen.sanchez@1.com
+Francisco;Fernández González;72610174W;677890123;6;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;francisco.fernandez@1.com
+Marta;Gómez Sánchez;16799535J;699012345;6;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;-K3dg_TtO8KqmGACOZqduhHjIthmu1X8;NULL;marta.gomez@1.com
+Javier;Díaz Martínez;73571195Z;611223344;6;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;javier.diaz@1.com
+Laura;Pérez López;67137124D;633445566;7;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;99DS1rvnUjptpd0nh9k_Vmkn3hrXopgj;NULL;laura.perez@1.com
+Juan;Rodríguez Fernández;86948344H;655667788;7;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;juan.rodriguez@1.com
+Elena;García Gómez;99002475X;677889900;7;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;DP9Twmfpkjesaug-UhvnhxtKNC9Q-1_r;NULL;elena.garcia@1.com
+David;Ruiz Pérez;26442466X;699001122;7;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;david.ruiz@1.com
+Maria;Torres Martínez;18247134S;611122233;7;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;tuLdrb2gjIaaRrVcdPEU1DTLrk7BlC3A;NULL;maria.torres@1.com
+Andres;Ramírez López;08448606Q;633334444;7;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;andres.ramirez@1.com
+Lucia;Serrano Sánchez;87677465Q;655555555;7;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;pvtAEvxMz5KlzGixPIpME8w02A4SxxjK;NULL;lucia.serrano@1.com
+Sergio;Castillo Rodríguez;87586642C;677777777;7;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;sergio.castillo@1.com
+Isabel;Vargas Fernández;01082050S;699999999;7;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;yiVj2VZdKHroNcz6lW7rWTm6rTU3L6St;NULL;isabel.vargas@1.com
+Pablo;Mendoza Gómez;37582510G;611112222;7;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;pablo.mendoza@1.com
+Ana;Rosales Díaz;66654524H;633221133;8;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;28SND3pe6F1pXFN2iqX5C9owZcLbj3gZ;NULL;ana.rosales@1.com
+Carlos;Alvarado Pérez;01759085E;655443322;8;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;carlos.alvarado@1.com
+Paula;Cordero Rodríguez;13904625K;677788899;8;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;IFzlCGtk6HgOvu81-OXQzPv7Cf6rDc_k;NULL;paula.cordero@1.com
+Daniel;Guzmán García;45299474P;699998877;8;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;daniel.guzman@1.com
+Patricia;Silva Martínez;09101632A;611334455;8;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;ZZqRjHwu1r4Chjvkvk9kM8rXJHxsdifD;NULL;patricia.silva@1.com
+Alberto;Núñez López;49190033W;633556677;8;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;alberto.nunez@1.com
+Rosa;Salgado Fernández;70073555F;655778899;8;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;W9WbA7aUsl5AH-t2Qsep0JE8kb054G93;NULL;rosa.salgado@1.com
+Ignacio;Maldonado Gómez;60491839E;677123456;8;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;ignacio.maldonado@1.com
+Elena;Montes Pérez;03267647Z;699876543;8;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;LEz3XStQ2XS0h_4sQF13Firv3WiJAz4g;NULL;elena.montes@1.com
+Guillermo;León Rodríguez;19053264H;611234567;8;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;guillermo.leon@1.com
+Raquel;Cervantes García;10733200C;633765432;9;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;vawdUSln7EVPyn30dDJWKIVp1XlK9TIF;NULL;raquel.cervantes@1.com
+Manuel;Castro Martínez;05104281Y;655234567;9;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;manuel.castro@1.com
+Beatriz;Flores López;56187493B;677765432;9;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;kwKk4lnqCg0jZz7gGplrr8dKZ9l7dRhU;NULL;beatriz.flores@1.com
+Antonio;Mora Fernández;61817039P;699876543;9;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;antonio.mora@1.com
+Clara;Delgado Gómez;56038875L;611987654;9;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;G6Tr81Kg2fMXS9Fj9NedFwuCISL90_CM;NULL;clara.delgado@1.com
+Luis;Ríos Pérez;17447784F;633876543;9;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;luis.rios@1.com
+Sandra;Guerrero López;46745691P;655765432;9;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;X0YV5cn59Ph7B3pg5LLnFBXbiTECcBhV;NULL;sandra.guerrero@1.com
+Miguel;Cárdenas Rodríguez;84688097G;677234567;9;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;miguel.cardenas@1.com
+Monica;Ochoa Martínez;25778423T;699543210;9;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;LbZz1Q3k4WygaR0EYWbH59XDHnLj7bEm;NULL;monica.ochoa@1.com
+Jorge;Valencia López;36339971V;611345678;9;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;jorge.valencia@1.com
+Cristina;Rojas Fernández;44011729X;633654321;10;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;l1ODBLXvAAPGE3J8yri21Isq0ja8oWZJ;NULL;cristina.rojas@1.com
+Fernando;Paredes Gómez;28985886K;655876543;10;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;fernando.paredes@1.com
+Nuria;Robles Pérez;07531275V;677345678;10;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;iAHnNb9sRDnmz3EnM_x6rmsVDAaPWvBe;NULL;nuria.robles@1.com
+Adrian;Olivas Rodríguez;47674431P;699654321;10;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;adrian.olivas@1.com
+Natalia;Pacheco García;60300683L;611876543;10;1;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;tVw1ZyBXjlV3iwiX3l9we7Ei62HlHV8F;NULL;natalia.pacheco@1.com
+Oscar;Aranda Martínez;27158816W;633234567;10;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;oscar.aranda@1.com
+Silvia;Medina López;41178056Y;655456789;10;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;R0G8_cBUyNL51kk8gdo0CLHwoKVIFBBA;NULL;silvia.medina@1.com
+Victor;Alcázar Fernández;04525293C;677654321;10;2;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;victor.alcazar@1.com
+Raquel;Zamora Gómez;64446243J;699987654;10;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;AhFLh_BUhFovQFr7DWzQ-DDUKpSk5u_6;NULL;raquel.zamora@1.com
+Raul;Guerra Pérez;13891167H;611765432;10;3;$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW;;NULL;raul.guerra@1.com
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;

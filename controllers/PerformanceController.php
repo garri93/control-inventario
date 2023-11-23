@@ -2,21 +2,16 @@
 
 namespace app\controllers;
 
-use app\models\Device;
-use app\models\DeviceSearch;
-use app\models\SettingSearch;
-use app\models\performanceSearch;
-use app\models\AttributeSearch;
 use app\models\Performance;
-use app\models\Setting;
+use app\models\PerformanceSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * DeviceController implements the CRUD actions for Device model.
+ * PerformanceController implements the CRUD actions for Performance model.
  */
-class DeviceController extends Controller
+class PerformanceController extends Controller
 {
     /**
      * @inheritDoc
@@ -37,13 +32,13 @@ class DeviceController extends Controller
     }
 
     /**
-     * Lists all Device models.
+     * Lists all Performance models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new DeviceSearch();
+        $searchModel = new PerformanceSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -53,61 +48,26 @@ class DeviceController extends Controller
     }
 
     /**
-     * Displays a single Device model.
+     * Displays a single Performance model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
-        /**/   $model = $this->findModel($id);
-
-                
-
-                /** Configuraciones */
-         /**/  $searchModelSetting = new SettingSearch();
-         /**/  $searchModelSetting->device_id = $id;
-         /**/  $dataProviderSetting = $searchModelSetting->search($this->request->queryParams);
-
-                /** Atributos */
-         /**/  $searchModelAttribute = new AttributeSearch();
-         /**/  $searchModelAttribute->device_id = $id;
-         /**/  $dataProviderAttribute = $searchModelAttribute->search($this->request->queryParams);
-
-                 /** Actuaciones */
-         /**/  $searchModelPerformance= new PerformanceSearch();
-         /**/  $searchModelPerformance->device_id = $id;
-         /**/  $dataProviderPerformance = $searchModelPerformance->search($this->request->queryParams);
-
-         return $this->render('view', [
-            'searchModelSetting' => $searchModelSetting,
-            'dataProviderSetting' => $dataProviderSetting,
-
-            'searchModelAttribute' => $searchModelAttribute,
-            'dataProviderAttribute' => $dataProviderAttribute,
-
-            'searchModelPerformance' => $searchModelPerformance,
-            'dataProviderPerformance' => $dataProviderPerformance,
-
-            'model' => $model,
-          ]);
-
-
-    
-/*
         return $this->render('view', [
             'model' => $this->findModel($id),
-        ]);*/
+        ]);
     }
 
     /**
-     * Creates a new Device model.
+     * Creates a new Performance model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Device();
+        $model = new Performance();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -123,7 +83,7 @@ class DeviceController extends Controller
     }
 
     /**
-     * Updates an existing Device model.
+     * Updates an existing Performance model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -143,7 +103,7 @@ class DeviceController extends Controller
     }
 
     /**
-     * Deletes an existing Device model.
+     * Deletes an existing Performance model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -157,21 +117,18 @@ class DeviceController extends Controller
     }
 
     /**
-     * Finds the Device model based on its primary key value.
+     * Finds the Performance model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Device the loaded model
+     * @return Performance the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Device::findOne(['id' => $id])) !== null) {
+        if (($model = Performance::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
-
-
 }

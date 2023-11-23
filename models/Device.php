@@ -13,7 +13,7 @@ use Yii;
  * @property int $office_id
  * @property int|null $category_id
  *
- * @property Attribute[] $attributes0
+ * @property Attribute[] $deviceAttributes
  * @property Category $category
  * @property Office $office
  * @property Performance[] $performances
@@ -62,7 +62,7 @@ class Device extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery|AttributeQuery
      */
-    public function getAttributes0()
+    public function getDeviceAttributes()
     {
         return $this->hasMany(Attribute::class, ['device_id' => 'id']);
     }
@@ -115,4 +115,11 @@ class Device extends \yii\db\ActiveRecord
     {
         return new DeviceQuery(get_called_class());
     }
+
+    public function getParent()
+    {
+        return $this->hasMany(Device::class, ['parent_device' => 'id']);
+    }
+
+
 }
