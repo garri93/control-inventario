@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= Yii::$app->user->identity->accessToken?>
                     <?= Yii::$app->user->identity->username?>
                     <?= Yii::$app->user->identity->role?>
-                    <?php var_dump(Yii::$app->user->identity->isUserAdmin());
+                    <?php /*var_dump(Yii::$app->user->identity->isUserAdmin());
                     var_dump(Yii::$app->user->identity->getrole());?>
                 <?php endif; ?>
                 <?php 
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                    }
                 
                 
-                ?>
+                */?>
             </h1>
     </p>
 
