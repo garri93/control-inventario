@@ -1,3 +1,10 @@
+/* EMPRESAS */
+
+INSERT INTO company (id, email, name, cif) VALUES ('1', 'gerencia@goltratec99.com', 'Goltratec', 'R5270737I');
+INSERT INTO company (id, email, name, cif) VALUES ('2', 'gerencia@vegared99.com', 'VegaRed', 'F4115348G');
+INSERT INTO company (id, email, name, cif) VALUES ('3', 'gerencia@redmapa99.com', 'RedMapa', 'J1192985H');
+
+
 /********* Categorias *****/
 
 INSERT INTO category (name, company_id) VALUES ('Ordenadores', '1');
@@ -30,13 +37,6 @@ INSERT INTO category (name, company_id) VALUES ('Dispositivos de Red', '3');
 INSERT INTO category (name, company_id) VALUES ('Dispositivos de Almacenamiento', '3');
 INSERT INTO category (name, company_id) VALUES ('Dispositivos Móviles', '3');
 INSERT INTO category (name, company_id) VALUES ('Impresoras y Escáneres', '3');
-
-
-/* EMPRESAS */
-
-INSERT INTO company (id, email, name, cif) VALUES ('1', 'gerencia@goltratec99.com', 'Goltratec', 'R5270737I');
-INSERT INTO company (id, email, name, cif) VALUES ('2', 'gerencia@vegared99.com', 'VegaRed', 'F4115348G');
-INSERT INTO company (id, email, name, cif) VALUES ('3', 'gerencia@redmapa99.com', 'RedMapa', 'J1192985H');
 
 
 /* CLIENTES */
@@ -75,9 +75,9 @@ INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VA
 
 
 /* OFICNIAS */
-INSERT INTO office (name, address, postal_code, phone, customer_id) VALUES ('office 1', 'Calle 1', 'CP1', '111111111', 1);
+INSERT INTO office (id,name, address, postal_code, phone, customer_id,hours) VALUES 
 
-    ('1', 'Torre GreenScape', 'Calle187, Carretera de San Vicente del Raspeig', 'Comunidad Valenciana', '03690', '612345678', '1', '9:00 AM - 5:00 PM') VALUES
+    ('1', 'Torre GreenScape', 'Calle187, Carretera de San Vicente del Raspeig Comunidad Valenciana', '03690', '612345678', '1', '9:00 AM - 5:00 PM'),
 	('2', 'Centro de Innovaciones GreenScape', 'Calle120, Calle de la Salvia, Comunidad Valenciana', '03110', '655432198', '1', '9:15 AM - 5:15 PM'),
 	('3', 'Sede EcoGreenScape', 'Calle81, Calle del Alcornoque, Comunidad Valenciana, Ermita de San Jaime', '03690', '677894561', '1', '9:30 AM - 5:30 PM'),
 	('4', 'Hub GreenScape', 'Calle42, Camí dels Vivers, Comunidad Valenciana', '03114', '634567890', '1', '9:45 AM - 5:45 PM'),
@@ -94,37 +94,36 @@ INSERT INTO office (name, address, postal_code, phone, customer_id) VALUES ('off
 
 
 /*Usuarios las claves son 1234*/
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('pruebaadmin', 'Apellido 1', 'DNI1', '612345678', '1', '1', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'jLhG5-tBubzu9lRsdfZKu5qLxagazdPF', 'pruebaadmin@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('pruebatrabajdor', 'Apellido 2', 'DNI2', '634567890', '1', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'pruebatrabajador@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('pruebacliente', 'Apellido 3', 'DNI3', '656789012', '1', '3', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'INwhox5vPTuOCUyfCkwfKll6W_sLruPt', 'preubacliente@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Antonio', 'Garcia Gonzalez', '17987172E', '677890123', '1', '1', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'antonio.garcia@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Lorena', 'Barrera Rodríguez', '76265457X', '633543210', '1', '1', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'YuGKs8wefCiFtSdudxzt8wGzbM3T_iK8', 'lorena.barrera@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Jose', 'Rodriguez Fernandez', '33541805P', '699012345', '1', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'jose.rodriguez@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Manuel', 'Lopez Martinez', '58709775K', '611223344', '1', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'm2tE5fEIPbqHBAtK01IfkyH_7d3pEY1B', 'manuel.lopez@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Francisco', 'Sanchez Perez', '62591068H', '633445566', '1', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'francisco.sanchez@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Juan', 'Gomez Martin', '14333594V', '655667788', '1', '3', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'pxZO6feoOk4mdJdIzsLjNALVq1V2arag', 'juan.gomez@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('David', 'Jimenez Ruiz', '32929978G', '677889900', '1', '3', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'david.jimenez@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Jose Antonio', 'Hernandez Diaz', '23122636T', '699001122', '2', '1', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', '8vNuVi5AWlGqn42pECjprXHKmj8tKLeC', 'joseantonio.hernandez@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Jose Luis', 'Moreno Alvarez', '70058129Z', '611122233', '2', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'joseluis.moreno@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Javier', 'Muñoz Romero', '37955306Q', '633334444', '2', '3', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'RKGozHpWGhZgtQ2f-zPVqKKgOH11KkaS', 'javier.munoz@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Jesus', 'Alonso Gutierrez', '76483453N', '655555555', '2', '1', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'jesus.alonso@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Carlos', 'Navarro Torres', '36753582L', '677777777', '2', '1', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'TGELSP_-kop3yazy-LTFBkOVdEulVc9D', 'carlos.navarro@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Daniel', 'Dominguez Vazquez', '16441139A', '699999999', '2', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'daniel.dominguez@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Miguel', 'Ramos Gil', '94634491W', '611112222', '2', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', '6iuZPUcuCBRrCh080efP8EPSUbF3X9nQ', 'miguel.ramos@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Rafael', 'Ramirez Serrano', '24083136C', '633221133', '2', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'rafael.ramirez@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Jose Manuel', 'Blanco Suarez', '95857467E', '655443322', '2', '3', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'ua2yA3ucWMnXL3yiK3ExJ0HpBTAJXcLA', 'josemanuel.blanco@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Pedro', 'Molina Morales', '45340260S', '677788899', '2', '3', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'pedro.molina@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Alejandro', 'Ortega Delgado', '90744214Z', '699998877', '3', '1', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'JUNWlpNPichMCA4QO2SQDiuxymWGMMeQ', 'alejandro.ortega@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Angel', 'Castro Ortiz', '26134394T', '611334455', '3', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'angel.castro@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Fernando', 'Rubio Marin', '62349286N', '633556677', '3', '3', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'uXdq2NGEgxVHtiMSA5Bmh_eIaFcC_qRU', 'fernando.rubio@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Luis', 'Sanz Nuñez', '25134082G', '655778899', '3', '1', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'luis.sanz@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Pablo', 'Iglesias Medina', '78821731H', '677123456', '3', '1', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', '9ZaWIBpYFJoUunZ_h0Ou8O2rVEZAVEBW', 'pablo.iglesias@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Sergio', 'Garrido Santos', '70365312D', '699876543', '3', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'sergio.garrido@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Jorge', 'Castillo Cortes', '61010001V', '611234567', '3', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', '8sI9wW9cjQHIxV7Hx6eYBLSLQ-2r3dzW', 'jorge.castillo@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Alberto', 'Lozano Guerrero', '59909030X', '633765432', '3', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'alberto.lozano@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Juan Carlos', 'Cano Prieto', '74989744S', '655234567', '3', '3', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 's4t9MJ-_fWpNvORAViEcm1ZHdL_C4sqS', 'juancarlos.cano@1.com');
-INSERT INTO user (username, surname, dni, phone, company_id, role, password, authkey, email) VALUES ('Juan Jose', 'Mendez Calvo', '49782661N', '677765432', '3', '3', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'juanjose.mendez@1.com');
 
-
-
+INSERT INTO `user` (`username`, `surname`, `dni`, `phone`, `company_id`, `role`, `password`, `authkey`, `email`) VALUES
+	('carlos', 'Apellido 1', 'DNI1', '612345678', '1', '1', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', '_8qgDXiqY-SCmSvYzcnthsfU5BO0wU04', 'carlos@1.com'),
+	('pruebatrabajdor', 'Apellido 2', 'DNI2', '634567890', '1', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', '9VWxfl26_YR8Mw0c3DERVbd-VbwWcDt1', 'daniel@1.com'),
+	('pruebacliente', 'Apellido 3', 'DNI3', '656789012', '1', '3', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', '79AINscZsZXwr1drBPltHF6EIFC6Bja6', 'jose@1.com'),
+	('Antonio', 'Garcia Gonzalez', '17987172E', '677890123', '1', '1', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', '2ypjN1csYk6cHMGgqcR3rajlytBkpLgF', 'antonio.garcia@1.com'),
+	('Lorena', 'Barrera Rodríguez', '76265457X', '633543210', '1', '1', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'wI5yOlHqNVb1q4SD21UmB_YJuJx9WLWI', 'lorena.barrera@1.com'),
+	('Jose', 'Rodriguez Fernandez', '33541805P', '699012345', '1', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'GGrkSWuHjk9ZKCisXRlfTg_9S1z8Tr_j', 'jose.rodriguez@1.com'),
+	('Manuel', 'Lopez Martinez', '58709775K', '611223344', '1', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'wvCr24OCqckZiZWY47Wbfkv14Ilwmw1P', 'manuel.lopez@1.com'),
+	('Francisco', 'Sanchez Perez', '62591068H', '633445566', '1', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', '029TuyWiTV-WquX0pCM56uCr6xLYT6vx', 'francisco.sanchez@1.com'),
+	('Juan', 'Gomez Martin', '14333594V', '655667788', '1', '3', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'koCzocLzS-ZnSDgrSMLtIy-W-cepn7Y8', 'juan.gomez@1.com'),
+	('David', 'Jimenez Ruiz', '32929978G', '677889900', '1', '3', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'NqrgAYyoNBx-lcn5nliZxf-emmK-eJXF', 'david.jimenez@1.com'),
+	('Jose Antonio', 'Hernandez Diaz', '23122636T', '699001122', '2', '1', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'O0CfERb9jta71sEqMhyK_aT200eALaVk', 'joseantonio.hernandez@1.com'),
+	('Jose Luis', 'Moreno Alvarez', '70058129Z', '611122233', '2', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'ATrLEfhH2wGa28VWt5z8IK7BLuR7hOiK', 'joseluis.moreno@1.com'),
+	('Javier', 'Muñoz Romero', '37955306Q', '633334444', '2', '3', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'J2kQQT-g3wqhRvXOBC1EMivwkXOjbP8_', 'javier.munoz@1.com'),
+	('Jesus', 'Alonso Gutierrez', '76483453N', '655555555', '2', '1', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'dm-iYjCENdUHJ_A03zlLRkk7NiiuU5iR', 'jesus.alonso@1.com'),
+	('Carlos', 'Navarro Torres', '36753582L', '677777777', '2', '1', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'Ri4YeKrLSEm3eLZs_o_wzeDFiCzGqhCI', 'carlos.navarro@1.com'),
+	('Daniel', 'Dominguez Vazquez', '16441139A', '699999999', '2', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', '4OHVjGk9mbp9GPkPGvsvVPasePZicypr', 'daniel.dominguez@1.com'),
+	('Miguel', 'Ramos Gil', '94634491W', '611112222', '2', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'dqGh9l5aW1868QNGxfGwQLac2QmkY9t5', 'miguel.ramos@1.com'),
+	('Rafael', 'Ramirez Serrano', '24083136C', '633221133', '2', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'wp52kogJDUXX67tIMPnCy8VEqtBJc303', 'rafael.ramirez@1.com'),
+	('Jose Manuel', 'Blanco Suarez', '95857467E', '655443322', '2', '3', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'kGp2iAIkZYFGBp8Cv4rTD5cgFffMqdl9', 'josemanuel.blanco@1.com'),
+	('Pedro', 'Molina Morales', '45340260S', '677788899', '2', '3', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'yqRClnGEwKKoupwtaahSNERf5MJrWyEN', 'pedro.molina@1.com'),
+	('Alejandro', 'Ortega Delgado', '90744214Z', '699998877', '3', '1', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'zCeyQ2XqRx9K4vrxjvJTDKvKVsErhaCd', 'alejandro.ortega@1.com'),
+	('Angel', 'Castro Ortiz', '26134394T', '611334455', '3', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'ErnQZwq8Zp92qaOqJ_AGNfofZmm4rq_m', 'angel.castro@1.com'),
+	('Fernando', 'Rubio Marin', '62349286N', '633556677', '3', '3', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', '624RNsBkJlaLvx1_Jddl2JUAK3vBSD-K', 'fernando.rubio@1.com'),
+	('Luis', 'Sanz Nuñez', '25134082G', '655778899', '3', '1', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'T4FXGkZ7Y0EH2ZD0qsa_52oXRyhlak7g', 'luis.sanz@1.com'),
+	('Pablo', 'Iglesias Medina', '78821731H', '677123456', '3', '1', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'iqUb2pLTFYFF0ECXuNO6ztUoDzu1zdui', 'pablo.iglesias@1.com'),
+	('Sergio', 'Garrido Santos', '70365312D', '699876543', '3', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'MmNOLDvZbKinXXD-s4a-5NTxECAD0uDg', 'sergio.garrido@1.com'),
+	('Jorge', 'Castillo Cortes', '61010001V', '611234567', '3', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'jiz8CIRpEzhAsrfEUZGkzAjOHRePqc6Z', 'jorge.castillo@1.com'),
+	('Alberto', 'Lozano Guerrero', '59909030X', '633765432', '3', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'esywKHiVrzQE6YrxQYttlXlYNwy1Nbj8', 'alberto.lozano@1.com'),
+	('Juan Carlos', 'Cano Prieto', '74989744S', '655234567', '3', '3', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'pVa7qpEoUAGWGUZ2q_lJzTmbiTgYIJPC', 'juancarlos.cano@1.com'),
+	('Juan Jose', 'Mendez Calvo', '49782661N', '677765432', '3', '3', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', 'E4iaE1r8PSy4sTF-ptX84XiyWOu9qLZQ', 'juanjose.mendez@1.com');
 
