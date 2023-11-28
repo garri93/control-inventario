@@ -46,51 +46,96 @@ INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VA
 INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('3', 'ClientGoltra-3', 'Marinos OceanScape', 'G4800661C', '1', '666123456', 'Descubre el mundo marino a través de productos y experiencias únicas.');
 INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('4', 'ClientGoltra-4', 'Aprendizaje EduQuest', 'E09504531', '1', '655789012', 'Educación creativa y estimulante para todas las edades.');
 INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('5', 'ClientGoltra-5', 'Mascotas PetWise', 'G5998961F', '1', '688234567', 'Cuidado y productos para el bienestar de tus queridas mascotas.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('6', 'ClientGoltra-6', 'Construcciones EcoViviendas', 'F4998269G', '1', '677890123', 'Casas ecológicas diseñadas para un estilo de vida sostenible.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('7', 'ClientGoltra-7', 'Belleza Natural', 'P7457970G', '1', '699345678', 'Productos naturales que realzan tu belleza de manera saludable.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('8', 'ClientGoltra-8', 'Agricultura Sostenible', 'H65631152', '1', '644567890', 'Comprometidos con la producción agrícola respetuosa con el medio ambiente.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('9', 'ClientGoltra-9', 'Viajes Rurales', 'A59179887', '1', '622678901', 'Descubre la autenticidad de la vida rural en destinos encantadores.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('10', 'ClientGoltra-10', 'Moda Artesanal', 'S1915130G', '1', '677890123', 'Ropa única y hecha a mano que refleja tu estilo individual.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('11', 'ClientVega-1', 'Sabores del Campo', 'Q1900918B', '2', '655432109', 'Delicias culinarias con ingredientes frescos y de origen local.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('12', 'ClientVega-2', 'Muebles de Autor', 'P3102882B', '2', '633210987', 'Piezas de mobiliario diseñadas con creatividad y maestría.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('13', 'ClientVega-3', 'Arte en Madera', 'U9592214B', '2', '699876543', 'Creaciones artísticas talladas con pasión y destreza.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('14', 'ClientVega-4', 'Vinos y Tradición', 'C5406440G', '2', '677890123', 'Descubre la riqueza de los vinos con historias que perduran.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('15', 'ClientVega-5', 'Café del Valle', 'W8733332D', '2', '622345678', 'Disfruta de aromas y sabores únicos en nuestro rincón cafetero.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('16', 'ClientVega-6', 'Boutique Floral', 'C5430085J', '2', '655678901', 'Flores frescas y arreglos únicos para cada ocasión especial.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('17', 'ClientVega-7', 'Decoración Vintage', 'A59295162', '2', '644123456', 'Piezas encantadoras que añaden un toque retro a tu espacio.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('18', 'ClientVega-8', 'Librería del Barrio', 'W1221097G', '2', '611234567', 'Un refugio literario con historias que inspiran y cautivan.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('19', 'ClientVega-9', 'Alimentación Saludable', 'A50281716', '2', '688789012', 'Nutrición consciente para un estilo de vida equilibrado.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('20', 'ClientVega-10', 'Panadería Artesanal', 'B20423067', '2', '677345678', 'Panes y dulces elaborados con amor y tradición.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('21', 'ClientMapa-1', 'Jugos Naturales', 'E76216753', '3', '633987654', 'Bebidas refrescantes y saludables para revitalizar tu día.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('22', 'ClientMapa-2', 'Deportes Urbanos', 'B10749638', '3', '699567890', 'Equipo y accesorios para disfrutar de la actividad física en la ciudad.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('23', 'ClientMapa-3', 'Artesanía Textil', 'P2116673A', '3', '655678901', 'Piezas únicas tejidas con habilidad y pasión por el arte textil.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('24', 'ClientMapa-4', 'Pastelería Gourmet', 'P0641600B', '3', '688345678', 'Deliciosos postres que son una obra de arte para tu paladar.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('25', 'ClientMapa-5', 'Bicicletas del Valle', 'G4862483G', '3', '611234567', 'Explora el paisaje con nuestras bicicletas diseñadas para la aventura.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('26', 'ClientMapa-6', 'Reciclaje Creativo', 'S8714076J', '3', '633987654', 'Transformamos materiales reciclados en objetos únicos y funcionales.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('27', 'ClientMapa-7', 'Mercado del Arte', 'E51524460', '3', '655567890', 'Un espacio donde el arte local cobra vida y encuentra su hogar.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('28', 'ClientMapa-8', 'Rincón Gastronómico', 'Q0011901F', '3', '699678901', 'Sabores auténticos y platos deliciosos para satisfacer tu paladar.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('29', 'ClientMapa-9', 'Vestidos de Novia', 'U0757020C', '3', '677345678', 'Diseños exclusivos que hacen realidad el sueño de cada novia.');
-INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('30', 'ClientMapa-10', 'Flores y Detalles', 'W2976630J', '3', '688987654', 'Flores frescas y detalles encantadores para cada celebración.');
+
+INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('6', 'ClientVega-1', 'Sabores del Campo', 'Q1900918B', '2', '655432109', 'Delicias culinarias con ingredientes frescos y de origen local.');
+INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('7', 'ClientVega-2', 'Muebles de Autor', 'P3102882B', '2', '633210987', 'Piezas de mobiliario diseñadas con creatividad y maestría.');
+INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('8', 'ClientVega-3', 'Arte en Madera', 'U9592214B', '2', '699876543', 'Creaciones artísticas talladas con pasión y destreza.');
+INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('9', 'ClientVega-4', 'Vinos y Tradición', 'C5406440G', '2', '677890123', 'Descubre la riqueza de los vinos con historias que perduran.');
+INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('10', 'ClientVega-5', 'Café del Valle', 'W8733332D', '2', '622345678', 'Disfruta de aromas y sabores únicos en nuestro rincón cafetero.');
+
+INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('11', 'ClientMapa-1', 'Jugos Naturales', 'E76216753', '3', '633987654', 'Bebidas refrescantes y saludables para revitalizar tu día.');
+INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('12', 'ClientMapa-2', 'Deportes Urbanos', 'B10749638', '3', '699567890', 'Equipo y accesorios para disfrutar de la actividad física en la ciudad.');
+INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('13', 'ClientMapa-3', 'Artesanía Textil', 'P2116673A', '3', '655678901', 'Piezas únicas tejidas con habilidad y pasión por el arte textil.');
+INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VALUES ('14', 'ClientMapa-4', 'Pastelería Gourmet', 'P0641600B', '3', '688345678', 'Deliciosos postres que son una obra de arte para tu paladar.');
+
+
 
 
 
 /* OFICNIAS */
 INSERT INTO office (id,name, address, postal_code, phone, customer_id,hours) VALUES 
+	('Torre GreenScape', 'Calle187, Carretera de San Vicente del Raspeig, Comunidad Valenciana', '03690', '612345678', '1', '9:00 AM - 5:00 PM'),
+	('Centro de Innovaciones GreenScape', 'Calle120, Calle de la Salvia, Comunidad Valenciana', '03110', '655432198', '1', '9:15 AM - 5:15 PM'),
+	('Sede EcoGreenScape', 'Calle81, Calle del Alcornoque, Comunidad Valenciana, Ermita de San Jaime', '03690', '677894561', '1', '9:30 AM - 5:30 PM'),
+	('Hub GreenScape', 'Calle42, Camí dels Vivers, Comunidad Valenciana', '03114', '634567890', '1', '9:45 AM - 5:45 PM'),
+	('Plaza GreenScape', 'Calle17, Camino Finca la Caholla, Comunidad Valenciana', '03698', '689012345', '1', '10:00 AM - 6:00 PM'),
+	('Centro de Granjas AgroUrban', 'Calle47, Carretera de Agost, Comunidad Valenciana, El Moralet, Cases del Poll', '03698', '622345678', '2', '10:15 AM - 6:15 PM'),
+	('Hub de Cosechas AgroUrban', 'Calle109, Camino Fondo Piqueres, Comunidad Valenciana', '03007', '666789012', '2', '10:30 AM - 6:30 PM'),
+	('Oficina de Campos AgroUrban', 'Calle4, Carretera de San Vicente del Raspeig, Comunidad Valenciana, La Campaneta', '03113', '677654321', '2', '10:45 AM - 6:45 PM'),
+	('Sede AgroUrban Invernadero', 'Calle54, Calle Orégano, Comunidad Valenciana, Santa Faz', '03559', '655789012', '2', '11:00 AM - 7:00 PM'),
+	( 'Plaza de Agronomía AgroUrban', 'Calle33, Calle de Los Monegros, Polígon Industrial La Florida, Comunidad Valenciana, Mercalicante', '03007', '633456789', '2', '11:15 AM - 7:15 PM'),
+	('Centro Marino OceanScape', 'Calle187, Carretera de San Vicente del Raspeig, Comunidad Valenciana', '03690', '688901234', '3', '11:30 AM - 7:30 PM'),
+	('Hub Azul OceanScape', 'Calle120, Calle de la Salvia, Comunidad Valenciana', '03110', '611234567', '3', '11:45 AM - 7:45 PM'),
+	('Sede OceanScape Olas', 'Calle81, Calle del Alcornoque, Comunidad Valenciana, Ermita de San Jaime', '03690', '655789012', '3', '12:00 PM - 8:00 PM'),
+	('Oficina Costera OceanScape', 'Calle42, Camí dels Vivers, Comunidad Valenciana', '03114', '677654321', '3', '12:15 PM - 8:15 PM'),
+	('Plaza Náutica OceanScape', 'Calle17, Camino Finca la Caholla, Comunidad Valenciana', '03698', '644567890', '3', '12:30 PM - 8:30 PM'),
+	('Centro de Aprendizaje EduQuest', 'Calle47, Carretera de Agost, Comunidad Valenciana, El Moralet, Cases del Poll', '03698', '699012345', '4', '12:45 PM - 8:45 PM'),
+	('Hub de Conocimiento EduQuest', 'Calle109, Camino Fondo Piqueres, Comunidad Valenciana', '03007', '611234567', '4', '1:00 PM - 9:00 PM'),
+	('Sede de Sabiduría EduQuest', 'Calle4, Carretera de San Vicente del Raspeig, Comunidad Valenciana, La Campaneta', '03113', '677654321', '4', '1:15 PM - 9:15 PM'),
+	('Oficina de la Academia EduQuest', 'Calle54, Calle Orégano, Comunidad Valenciana, Santa Faz', '03559', '644567890', '4', '1:30 PM - 9:30 PM'),
+	('Plaza de la Perspicacia EduQuest', 'Calle33, Calle de Los Monegros, Polígon Industrial La Florida, Comunidad Valenciana, Mercalicante', '03007', '688901234', '4', '1:45 PM - 9:45 PM'),
+	('Sede Principal PetWise', 'Calle187, Carretera de San Vicente del Raspeig, Comunidad Valenciana', '03690', '611234567', '5', '2:00 PM - 10:00 PM'),
+	('Centro de Cuidado Animal PetWise', 'Calle120, Calle de la Salvia, Comunidad Valenciana', '03110', '655789012', '5', '2:15 PM - 10:15 PM'),
+	('Refugio PetWise', 'Calle81, Calle del Alcornoque, Comunidad Valenciana, Ermita de San Jaime', '03690', '677654321', '5', '2:30 PM - 10:30 PM'),
+	('Oficina de Patas PetWise', 'Calle42, Camí dels Vivers, Comunidad Valenciana', '03114', '644567890', '5', '2:45 PM - 10:45 PM'),
+	('Plaza de Compañía PetWise', 'Calle17, Camino Finca la Caholla, Comunidad Valenciana', '03698', '688901234', '5', '3:00 PM - 11:00 PM'),
+	('Sede de Sabores del Campo', 'Calle187, Carretera de San Vicente del Raspeig, Comunidad Valenciana', '03690', '611234567', '6', '9:30 PM - 5:30 AM'),
+	('Centro Culinario Sabores del Campo', 'Calle120, Calle de la Salvia, Comunidad Valenciana', '03110', '655789012', '6', '9:45 PM - 5:45 AM'),
+	('Plaza de Cocina Sabores del Campo', 'Calle81, Calle del Alcornoque, Comunidad Valenciana, Ermita de San Jaime', '03690', '677654321', '6', '10:00 PM - 6:00 AM'),
+	('Oficina Gourmet Sabores del Campo', 'Calle42, Camí dels Vivers, Comunidad Valenciana', '03114', '644567890', '6', '10:15 PM - 6:15 AM'),
+	('Hub de Delicias del Campo', 'Calle17, Camino Finca la Caholla, Comunidad Valenciana', '03698', '688901234', '6', '10:30 PM - 6:30 AM'),
+	('Estudio de Muebles de Autor', 'Calle47, Carretera de Agost, Comunidad Valenciana, El Moralet, Cases del Poll', '03698', '611234567', '7', '10:45 PM - 6:45 AM'),
+	('Centro de Diseño Muebles de Autor', 'Calle109, Camino Fondo Piqueres, Comunidad Valenciana', '03007', '655789012', '7', '11:00 PM - 7:00 AM'),
+	('Sede de Creaciones de Autor', 'Calle4, Carretera de San Vicente del Raspeig, Comunidad Valenciana, La Campaneta', '03113', '677654321', '7', '11:15 PM - 7:15 AM'),
+	('Oficina de Estilo de Autor', 'Calle54, Calle Orégano, Comunidad Valenciana, Santa Faz', '03559', '644567890', '7', '11:30 PM - 7:30 AM'),
+	('Plaza de Diseño Exclusivo', 'Calle33, Calle de Los Monegros, Polígon Industrial La Florida, Comunidad Valenciana, Mercalicante', '03007', '688901234', '7', '11:45 PM - 7:45 AM'),
+	('Taller de Arte en Madera', 'Calle187, Carretera de San Vicente del Raspeig, Comunidad Valenciana', '03690', '611234567', '8', '12:00 AM - 8:00 AM'),
+	('Centro de Esculturas en Madera', 'Calle120, Calle de la Salvia, Comunidad Valenciana', '03110', '655789012', '8', '12:15 AM - 8:15 AM'),
+	('Sede de Creaciones en Madera', 'Calle81, Calle del Alcornoque, Comunidad Valenciana, Ermita de San Jaime', '03690', '677654321', '8', '12:30 AM - 8:30 AM'),
+	('Oficina de Diseño en Madera', 'Calle42, Camí dels Vivers, Comunidad Valenciana', '03114', '644567890', '8', '12:45 AM - 8:45 AM'),
+	('Plaza de Arte Natural en Madera', 'Calle17, Camino Finca la Caholla, Comunidad Valenciana', '03698', '688901234', '8', '1:00 AM - 9:00 AM'),
+	('Sede de Vinos y Tradición', 'Calle47, Carretera de Agost, Comunidad Valenciana, El Moralet, Cases del Poll', '03698', '611234567', '9', '1:15 AM - 9:15 AM'),
+	('Centro de Catas y Tradición', 'Calle109, Camino Fondo Piqueres, Comunidad Valenciana', '03007', '655789012', '9', '1:30 AM - 9:30 AM'),
+	('Bodega de Tradición Vínica', 'Calle4, Carretera de San Vicente del Raspeig, Comunidad Valenciana, La Campaneta', '03113', '677654321', '9', '1:45 AM - 9:45 AM'),
+	('Oficina de Sabores Vínicos', 'Calle54, Calle Orégano, Comunidad Valenciana, Santa Faz', '03559', '644567890', '9', '2:00 AM - 10:00 AM'),
+	('Plaza de Tradición en Copas', 'Calle33, Calle de Los Monegros, Polígon Industrial La Florida, Comunidad Valenciana, Mercalicante', '03007', '688901234', '9', '2:15 AM - 10:15 AM'),
+	('Sede de Café del Valle', 'Calle187, Carretera de San Vicente del Raspeig, Comunidad Valenciana', '03690', '611234567', '10', '2:30 AM - 10:30 AM'),
+	('Centro Cafetero del Valle', 'Calle120, Calle de la Salvia, Comunidad Valenciana', '03110', '655789012', '10', '2:45 AM - 10:45 AM'),
+	('Plaza de Aromas del Valle', 'Calle81, Calle del Alcornoque, Comunidad Valenciana, Ermita de San Jaime', '03690', '677654321', '10', '3:00 AM - 11:00 AM'),
+	('Oficina de Cafés Especiales', 'Calle42, Camí dels Vivers, Comunidad Valenciana', '03114', '644567890', '10', '3:15 AM - 11:15 AM'),
+	('Hub de Sabores del Café', 'Calle17, Camino Finca la Caholla, Comunidad Valenciana', '03698', '688901234', '10', '3:30 AM - 11:30 AM'),
+	('Sede de Jugos Naturales', 'Calle187, Carretera de San Vicente del Raspeig, Comunidad Valenciana', '03690', '611234567', '11', '12:45 PM - 8:45 PM'),
+	('Centro de Extracción Natural', 'Calle120, Calle de la Salvia, Comunidad Valenciana', '03110', '655789012', '11', '1:00 PM - 9:00 PM'),
+	('Plaza de Sabores Naturales', 'Calle81, Calle del Alcornoque, Comunidad Valenciana, Ermita de San Jaime', '03690', '677654321', '11', '1:15 PM - 9:15 PM'),
+	('Oficina de Bebidas Frescas', 'Calle42, Camí dels Vivers, Comunidad Valenciana', '03114', '644567890', '11', '1:30 PM - 9:30 PM'),
+	('Hub de Jugos Refrescantes', 'Calle17, Camino Finca la Caholla, Comunidad Valenciana', '03698', '688901234', '11', '1:45 PM - 9:45 PM'),
+	('Centro de Deportes Urbanos', 'Calle47, Carretera de Agost, Comunidad Valenciana, El Moralet, Cases del Poll', '03698', '611234567', '12', '2:00 PM - 10:00 PM'),
+	('Sede de Actividades Urbanas', 'Calle109, Camino Fondo Piqueres, Comunidad Valenciana', '03007', '655789012', '12', '2:15 PM - 10:15 PM'),
+	('Plaza de Entrenamiento Urbano', 'Calle4, Carretera de San Vicente del Raspeig, Comunidad Valenciana, La Campaneta', '03113', '677654321', '12', '2:30 PM - 10:30 PM'),
+	('Oficina de Deportes en la Ciudad', 'Calle54, Calle Orégano, Comunidad Valenciana, Santa Faz', '03559', '644567890', '12', '2:45 PM - 10:45 PM'),
+	('Hub de Experiencias Urbanas', 'Calle33, Calle de Los Monegros, Polígon Industrial La Florida, Comunidad Valenciana, Mercalicante', '03007', '688901234', '12', '3:00 PM - 11:00 PM'),
+	('Taller de Artesanía Textil', 'Calle187, Carretera de San Vicente del Raspeig, Comunidad Valenciana', '03690', '611234567', '13', '3:15 PM - 11:15 PM'),
+	('Centro de Creaciones Textiles', 'Calle120, Calle de la Salvia, Comunidad Valenciana', '03110', '655789012', '13', '3:30 PM - 11:30 PM'),
+	('Sede de Tejidos Artesanales', 'Calle81, Calle del Alcornoque, Comunidad Valenciana, Ermita de San Jaime', '03690', '677654321', '13', '3:45 PM - 11:45 PM'),
+	('Oficina de Diseño Textil', 'Calle42, Camí dels Vivers, Comunidad Valenciana', '03114', '644567890', '13', '4:00 PM - 12:00 AM'),
+	('Plaza de Texturas Artesanales', 'Calle17, Camino Finca la Caholla, Comunidad Valenciana', '03698', '688901234', '13', '4:15 PM - 12:15 AM'),
+	('Sede de Pastelería Gourmet', 'Calle47, Carretera de Agost, Comunidad Valenciana, El Moralet, Cases del Poll', '03698', '611234567', '14', '4:30 PM - 12:30 AM'),
+	('Centro de Delicias Gourmet', 'Calle109, Camino Fondo Piqueres, Comunidad Valenciana', '03007', '655789012', '14', '4:45 PM - 12:45 AM'),
+	('Plaza de Sabores Exquisitos', 'Calle4, Carretera de San Vicente del Raspeig, Comunidad Valenciana, La Campaneta', '03113', '677654321', '14', '5:00 PM - 1:00 AM'),
+	('Oficina de Creaciones Dulces', 'Calle54, Calle Orégano, Comunidad Valenciana, Santa Faz', '03559', '644567890', '14', '5:15 PM - 1:15 AM'),
+	('Hub de Postres Gourmet', 'Calle33, Calle de Los Monegros, Polígon Industrial La Florida, Comunidad Valenciana, Mercalicante', '03007', '688901234', '14', '5:30 PM - 1:30 AM');
 
-    ('1', 'Torre GreenScape', 'Calle187, Carretera de San Vicente del Raspeig Comunidad Valenciana', '03690', '612345678', '1', '9:00 AM - 5:00 PM'),
-	('2', 'Centro de Innovaciones GreenScape', 'Calle120, Calle de la Salvia, Comunidad Valenciana', '03110', '655432198', '1', '9:15 AM - 5:15 PM'),
-	('3', 'Sede EcoGreenScape', 'Calle81, Calle del Alcornoque, Comunidad Valenciana, Ermita de San Jaime', '03690', '677894561', '1', '9:30 AM - 5:30 PM'),
-	('4', 'Hub GreenScape', 'Calle42, Camí dels Vivers, Comunidad Valenciana', '03114', '634567890', '1', '9:45 AM - 5:45 PM'),
-	('5', 'Plaza GreenScape', 'Calle17, Camino Finca la Caholla, Comunidad Valenciana', '03698', '689012345', '1', '10:00 AM - 6:00 PM'),
-	('6', 'Centro de Granjas AgroUrban', 'Calle47, Carretera de Agost, Comunidad Valenciana, El Moralet, Cases del Poll', '03698', '622345678', '2', '10:15 AM - 6:15 PM'),
-	('7', 'Hub de Cosechas AgroUrban', 'Calle109, Camino Fondo Piqueres, Comunidad Valenciana', '03007', '666789012', '2', '10:30 AM - 6:30 PM'),
-	('8', 'Oficina de Campos AgroUrban', 'Calle4, Carretera de San Vicente del Raspeig, Comunidad Valenciana, La Campaneta', '03113', '677654321', '2', '10:45 AM - 6:45 PM'),
-	('9', 'Sede AgroUrban Invernadero', 'Calle54, Calle Orégano, Comunidad Valenciana, Santa Faz', '03559', '655789012', '2', '11:00 AM - 7:00 PM'),
-	('10', 'Plaza de Agronomía AgroUrban', 'Calle33, Calle de Los Monegros, Polígon Industrial La Florida, Comunidad Valenciana, Mercalicante', '03007', '633456789', '2', '11:15 AM - 7:15 PM'),
-	('11', 'Centro Marino OceanScape', 'Calle187, Carretera de San Vicente del Raspeig, Comunidad Valenciana', '03690', '688901234', '3', '11:30 AM - 7:30 PM'),
-	('12', 'Hub Azul OceanScape', 'Calle120, Calle de la Salvia, Comunidad Valenciana', '03110', '611234567', '3', '11:45 AM - 7:45 PM'),
-	('13', 'Sede OceanScape Olas', 'Calle81, Calle del Alcornoque, Comunidad Valenciana, Ermita de San Jaime', '03690', '655789012', '3', '12:00 PM - 8:00 PM'),
-	('14', 'Oficina Costera OceanScape', 'Calle42, Camí dels Vivers, Comunidad Valenciana', '03114', '677654321', '3', '12:15 PM - 8:15 PM');
+
 
 
 /*Usuarios las claves son 1234*/

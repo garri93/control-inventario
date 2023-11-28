@@ -3,6 +3,9 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\grid\GridView;
+use app\models\Attribute;
+use yii\helpers\Url;
+use yii\grid\ActionColumn;
 
 /** @var yii\web\View $this */
 /** @var app\models\Device $model */
@@ -47,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
-<div class="col-sm-6 col-md-6 col-xl-6">
+<div class="col-sm-6 col-md-6 col-xl-12">
                 
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
@@ -65,23 +68,33 @@ $this->params['breadcrumbs'][] = $this->title;
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="attributes" role="tabpanel" aria-labelledby="attributes-tab">
-                    <div class="gridview-custom">
+                    <div class="gridview-custom text-justify text-center ">
                     <?= GridView::widget([
                                 'dataProvider' => $dataProviderAttribute,
-                                //'showHeader'=> false, //Ocultar todo el header paginacion, label, cuadro de busqueda.
+                                'showHeader'=> false, //Ocultar todo el header paginacion, label, cuadro de busqueda.
                                 'filterModel' => $searchModelAttribute, //Mostrar cuadro de busqueda.
                                 'summary' => '', //Ocultar texto paginacion superior
                                 
                                 'columns' => [
-                                    [
+                                    /*[
                                         'enableSorting' => false, // Desactivar la clasificacion ascendente y descendente
                                         'label' => 'Seleccionar Oficina', //Ocultar fila de label
                                         'attribute' => 'name',   
                                         'format' => 'raw',
                                         'value'=> function ($model) {
-                                                                return Html::a('<span>'.$model->name . '</span>' . Html::tag('i', '', ['class' => 'fa fa-arrow-right']), ['setting/view', 'id' => $model->id]);
+                                                                return Html::a('<span">'.$model->name . ': '.$model->description.'</span>' . Html::tag('i', '', ['class' => 'fa fa-arrow-right']), ['setting/view', 'id' => $model->id]);
                                                     },
-                                    ],                
+                                    ],*/     
+                                  
+                                    'name',
+                                    'description',
+                                    [
+                                        'class' => ActionColumn::className(),
+                                        'urlCreator' => function ($action, Attribute $model, $key, $index, $column) {
+                                            return Url::toRoute(['/attribute/'.$action, 'id' => $model->id, 'device_id' => $model->device_id]);
+                                         }
+                                    ],
+                                        
                                 ],
                         ]); ?>
                     </div>

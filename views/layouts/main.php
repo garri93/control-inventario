@@ -51,9 +51,9 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Inicio', 'url' => [Yii::$app->user->identity->getUserAdminPanel()]],
             ['label' => 'Usuarios', 'url' => ['/user/index'],'visible' => Yii::$app->user->identity->isUserAdmin()],
-            ['label' => 'Empresa', 'url' => ['/company/index'],'visible' => Yii::$app->user->identity->isUserAdmin()],
             ['label' => 'Clientes', 'url' => ['/customer/index'],'visible' => Yii::$app->user->identity->isUserAdmin()|| Yii::$app->user->identity->isUserTechnical()],
             ['label' => 'Oficinas', 'url' => ['/office/index']],
+            ['label' => 'Dispositivos', 'url' => ['/device/index'],'visible' => Yii::$app->user->identity->isUserAdmin()|| Yii::$app->user->identity->isUserTechnical() || Yii::$app->user->identity->isUserManager()],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
