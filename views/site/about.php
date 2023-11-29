@@ -16,13 +16,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <h1>
                 <?php if(!Yii::$app->user->isGuest): ?>
-                    <?= Yii::$app->user->identity->accessToken?>
-                    <?= Yii::$app->user->identity->username?>
-                    <?= Yii::$app->user->identity->role?>
+                    accessToken = <?= Yii::$app->user->identity->accessToken . "</br> "?>
+                    username = <?= Yii::$app->user->identity->username . "</br> "?>
+                    role = <?= Yii::$app->user->identity->role . "</br> "?>
+                    company_id = <?= Yii::$app->user->identity->company_id . "</br> "?>
                     <?php var_dump(Yii::$app->user->identity->isUserAdmin());
                     var_dump(Yii::$app->user->identity->getrole());?>
                 <?php endif; ?>
-                <?php 
+                <?php /*
                  for($i=0; $i<100; $i++){
                     echo "</br> ";
                     echo \Yii::$app->security->generateRandomString();
@@ -32,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                    }
                 
                 
-                ?>
+                */?>
             </h1>
     </p>
 

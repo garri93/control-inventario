@@ -12,6 +12,10 @@ use app\models\Setting;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\CategorySearch;
+use app\models\Category;
+use yii;
+
 
 /**
  * DeviceController implements the CRUD actions for Device model.
