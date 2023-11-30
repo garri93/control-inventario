@@ -9,6 +9,7 @@ use app\models\Category;
 use app\models\Office;
 use kartik\depdrop\DepDrop;
 use app\models\Customer;
+use yii\helpers\Url;
 
 /** @var yii\web\View $this */
 /** @var app\models\Device $model */
@@ -23,7 +24,6 @@ use app\models\Customer;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'office_id')->textInput() ?>
     <?php
 /*
     $data = ArrayHelper::map(Office::find()->orderBy('name')->where(['company_id' => Yii::$app->user->identity->company_id])->all(), 'id', 'name');
@@ -38,24 +38,22 @@ use app\models\Customer;
            ],
        ]);*/
         // Parent 
-
+        
         $customer = ArrayHelper::map(Customer::find()->orderBy('name')->where(['company_id' => Yii::$app->user->identity->company_id])->all(), 'id', 'name');
-    echo $form->field($model, 'customer')->dropDownList($customer, ['id' => 'id_customer']);
-    
+        echo $form->field($model, 'customer_id')->dropDownList($customer, ['id' => 'id_customer', 'prompt' => 'Seleccione un cliente...']);
+
     // Additional input fields passed as params to the child dropdown's pluginOptions
-    echo Html::hiddenInput('input-type-1', 'Additional value 1', ['id' => 'input-type-1']);
-    echo Html::hiddenInput('input-type-2', 'Additional value 2', ['id' => 'input-type-2']);
-    
+    //$data = ArrayHelper::map(Office::find()->orderBy('name')->where(['customer_id' => ])->all(), 'id', 'name');
     // Child # 1
-    echo $form->field($model, 'subcat1')->widget(DepDrop::classname(), [
-        'type' => DepDrop::TYPE_SELECT2,
-        'data' => [2 => 'Tablets'],
-        'options' => ['id' => 'subcat1-id', 'placeholder' => 'Select ...'],
-        'select2Options' => ['pluginOptions' => ['allowClear' => true]],
+    echo $form->field($model, 'office_id')->widget(DepDrop::classname(), [
+        'options' => ['id' => 'office_id'],
         'pluginOptions' => [
-            'depends' => ['cat1-id'],
-            'url' => Url::to(['/site/subcat1']),
-            'params' => ['input-type-1', 'input-type-2']
+            'depends' => ['id_customer'],
+            'placeholder' => 'Selecciona...',
+            'initialize' => !$model->isNewRecord ,
+            'url' => Url::to(['office-customer','id_customer' => $model->customer_id]),
+            
+
         ]
     ]);
 

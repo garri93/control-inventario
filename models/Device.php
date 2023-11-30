@@ -21,6 +21,8 @@ use Yii;
  */
 class Device extends \yii\db\ActiveRecord
 {
+    public $customer_id; 
+
     /**
      * {@inheritdoc}
      */

@@ -14,8 +14,11 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\CategorySearch;
 use app\models\Category;
+use app\models\CustomerSearch;
 use yii;
-
+use yii\helpers\ArrayHelper;
+use app\models\Office;
+use yii\web\Response;
 
 /**
  * DeviceController implements the CRUD actions for Device model.
@@ -34,6 +37,7 @@ class DeviceController extends Controller
                     'class' => VerbFilter::className(),
                     'actions' => [
                         'delete' => ['POST'],
+                        
                     ],
                 ],
             ]
@@ -113,6 +117,12 @@ class DeviceController extends Controller
     {
         $model = new Device();
 
+                /** Configuraciones */
+         /**/  $searchModelCustomer = new CustomerSearch();
+         /**/  $searchModelCustomer->company_id = Yii::$app->user->identity->company_id;
+         /**/  $customer = $searchModelCustomer->search($this->request->queryParams);
+
+
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -123,6 +133,8 @@ class DeviceController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            //'customer' => $customer,
+            
         ]);
     }
 
@@ -176,6 +188,37 @@ class DeviceController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
+/**
+ * Acción a la que llama el select de clientes para saber cuales son las oficinas hijas
+ * @param false $customer_id -> Para cuando queremos premarcar una oficina porque ya ha sido guardada (Ejem modificar oficina)
+ * @return array|string[]
+ */
+
+ /*
+  * customer_id >> Parámetro que se pasa cuando estamos editando para que preseleccione la primera ver
+  * depdrop_parents >> Es el valor elegido en el select padre del que hace la llamada $_POST 
+  */
+public function actionOfficeCustomer($customer_id = false)
+{
+    Yii::$app->response->format = Response::FORMAT_JSON;
+
+    if (isset($_POST['depdrop_parents'])) {
+        $parents = $_POST['depdrop_parents'];
+        if ($parents != null) {
+            $office = Office::find()->where(['customer_id' => $parents[0] ])->orderBy(['name' => SORT_DESC])->all();
+
+            $selected = '';
+
+            if($customer_id)
+                $selected = $customer_id;
+
+                return ['output' => $office, 'selected' => $selected];
+
+            
+        }
+    }
+    return ['output' => '', 'selected' => ''];
+}
 
 
 }
