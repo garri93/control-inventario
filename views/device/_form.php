@@ -40,7 +40,7 @@ use yii\helpers\Url;
         // Parent 
         
         $customer = ArrayHelper::map(Customer::find()->orderBy('name')->where(['company_id' => Yii::$app->user->identity->company_id])->all(), 'id', 'name');
-        echo $form->field($model, 'customer_id')->dropDownList($customer, ['id' => 'id_customer', 'prompt' => 'Seleccione un cliente...']);
+        echo $form->field($model, 'customer_id')->dropDownList($customer, ['id' => 'id_customer', 'prompt' => 'Seleccione un cliente...'])->label('Cliente');
 
     // Additional input fields passed as params to the child dropdown's pluginOptions
     //$data = ArrayHelper::map(Office::find()->orderBy('name')->where(['customer_id' => ])->all(), 'id', 'name');
@@ -50,31 +50,13 @@ use yii\helpers\Url;
         'pluginOptions' => [
             'depends' => ['id_customer'],
             'placeholder' => 'Selecciona...',
-            'initialize' => !$model->isNewRecord ,
+            //'initialize' => !$model->isNewRecord ,
+            'initialize' => $model->customer_id && $model->customer_id > 0 ,
             'url' => Url::to(['office-customer','id_customer' => $model->customer_id]),
             
 
         ]
-    ]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ])->label('Oficina');
 
     ?>
 
@@ -84,7 +66,8 @@ use yii\helpers\Url;
     echo $form->field($model, 'category_id')->widget(Select2::classname(), [
         'data' => $data,
         'size' => Select2::LARGE,
-        'options' => ['placeholder' => 'Selecciona Categoria ...',],
+        
+        'options' => ['placeholder' => 'Selecciona Categoria ...','prompt' => 'Seleccione un cliente...'],
         'pluginOptions' => [
             'allowClear' => true
         ],

@@ -63,7 +63,7 @@ INSERT INTO customer (id, internal_code, name, cif, company_id, phone, notes) VA
 
 
 /* OFICNIAS */
-INSERT INTO office (id,name, address, postal_code, phone, customer_id,hours) VALUES 
+INSERT INTO office (name, address, postal_code, phone, customer_id,hours) VALUES 
 	('Torre GreenScape', 'Calle187, Carretera de San Vicente del Raspeig, Comunidad Valenciana', '03690', '612345678', '1', '9:00 AM - 5:00 PM'),
 	('Centro de Innovaciones GreenScape', 'Calle120, Calle de la Salvia, Comunidad Valenciana', '03110', '655432198', '1', '9:15 AM - 5:15 PM'),
 	('Sede EcoGreenScape', 'Calle81, Calle del Alcornoque, Comunidad Valenciana, Ermita de San Jaime', '03690', '677894561', '1', '9:30 AM - 5:30 PM'),
@@ -140,7 +140,7 @@ INSERT INTO office (id,name, address, postal_code, phone, customer_id,hours) VAL
 
 /*Usuarios las claves son 1234*/
 
-INSERT INTO `user` (`username`, `surname`, `dni`, `phone`, `company_id`, `role`, `password`, `authkey`, `email`) VALUES
+INSERT INTO `user` (`username`, `surname`, `dni`, `phone`, `company_id`, `role`, `password`, `auth_key`, `email`) VALUES
 	('carlos', 'Apellido 1', 'DNI1', '612345678', '1', '1', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', '_8qgDXiqY-SCmSvYzcnthsfU5BO0wU04', 'carlos@1.com'),
 	('pruebatrabajdor', 'Apellido 2', 'DNI2', '634567890', '1', '2', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', '9VWxfl26_YR8Mw0c3DERVbd-VbwWcDt1', 'daniel@1.com'),
 	('pruebacliente', 'Apellido 3', 'DNI3', '656789012', '1', '3', '$2y$13$VlqY5H/MAJ1BSorFtTG29u42aO6pX0gBZ7e/i9OgfbYP2UWDgJLYW', '79AINscZsZXwr1drBPltHF6EIFC6Bja6', 'jose@1.com'),
