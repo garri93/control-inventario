@@ -148,6 +148,7 @@ class DeviceController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->customer_id = $model->office->customer_id;
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -209,8 +210,8 @@ public function actionOfficeCustomer($customer_id = false)
 
             $selected = '';
 
-            if($customer_id)
-                $selected = $customer_id;
+            if($parents)
+                $selected =  $parents;
 
                 return ['output' => $office, 'selected' => $selected];
 

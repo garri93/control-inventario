@@ -122,6 +122,4 @@ class Device extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Device::class, ['parent_device' => 'id']);
     }
-
-
 }

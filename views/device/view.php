@@ -90,6 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'description',
                                     [
                                         'class' => ActionColumn::className(),
+                                        'template' => '{update} {delete} ',
                                         'urlCreator' => function ($action, Attribute $model, $key, $index, $column) {
                                             return Url::toRoute(['/attribute/'.$action, 'id' => $model->id, 'device_id' => $model->device_id]);
                                          }

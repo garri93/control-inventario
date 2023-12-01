@@ -1,6 +1,7 @@
 <?php
 
 namespace app\models;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the ActiveQuery class for [[Office]].
@@ -35,4 +36,9 @@ class OfficeQuery extends \yii\db\ActiveQuery
     public function delCliente($id){
         return $this->andFilterWhere(['customer_id' =>  $id]);
     }
+
+   
+
+
+
 }
