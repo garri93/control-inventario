@@ -65,9 +65,12 @@ class PerformanceController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate($device_id, $office_id)
     {
         $model = new Performance();
+        $model->office_id = $office_id;
+        $model->device_id = $device_id;
+        
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {

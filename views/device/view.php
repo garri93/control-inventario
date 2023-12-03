@@ -147,6 +147,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                     </div>
                     <div class="tab-pane fade" id="performance" role="tabpanel" aria-labelledby="performance-tab">
+                    <p>
+                        <?= Html::a('Create Actuacion', ['performance/create','device_id' => $model->id, 'office_id'=> $model->office_id], ['class' => 'btn btn-success']) ?>
+                    </p>
                     <div class="gridview-custom">
                     <?= GridView::widget([
                                 'dataProvider' => $dataProviderPerformance,

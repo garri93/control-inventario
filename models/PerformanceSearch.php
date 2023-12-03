@@ -18,7 +18,7 @@ class PerformanceSearch extends Performance
     {
         return [
             [['id', 'device_id'], 'integer'],
-            [['description', 'date', 'name'], 'safe'],
+            [['name', 'description', 'date'], 'safe'],
         ];
     }
 
@@ -63,8 +63,8 @@ class PerformanceSearch extends Performance
             'date' => $this->date,
         ]);
 
-        $query->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

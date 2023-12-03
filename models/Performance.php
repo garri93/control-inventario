@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "performance".
  *
  * @property int $id
+ * @property string $name
  * @property string $description
  * @property int $device_id
  * @property string $date
@@ -18,6 +19,7 @@ use Yii;
  */
 class Performance extends \yii\db\ActiveRecord
 {
+    public $office_id;
     /**
      * {@inheritdoc}
      */
@@ -32,10 +34,11 @@ class Performance extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['description', 'device_id', 'date'], 'required'],
+            [['name', 'description', 'device_id', 'date'], 'required'],
             [['description'], 'string'],
             [['device_id'], 'integer'],
             [['date'], 'safe'],
+            [['name'], 'string', 'max' => 45],
             [['device_id'], 'exist', 'skipOnError' => true, 'targetClass' => Device::class, 'targetAttribute' => ['device_id' => 'id']],
         ];
     }
@@ -47,6 +50,7 @@ class Performance extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'name' => 'Name',
             'description' => 'Description',
             'device_id' => 'Device ID',
             'date' => 'Date',

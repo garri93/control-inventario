@@ -67,7 +67,7 @@ use yii\helpers\Url;
         'data' => $data,
         'size' => Select2::LARGE,
         
-        'options' => ['placeholder' => 'Selecciona Categoria ...','prompt' => 'Seleccione un cliente...'],
+        'options' => ['placeholder' => 'Selecciona Categoria ...','prompt' => 'Seleccione una Categoria...'],
         'pluginOptions' => [
             'allowClear' => true
         ],

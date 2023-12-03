@@ -2,4 +2,23 @@
   background: #a94442;
 }
 
-/*# sourceMappingURL=styles.css.map */
+.masonary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  -moz-column-gap: 4rem;
+       column-gap: 4rem;
+       
+}
+
+.masonary-grid > .masonary-grid-listview-summary {
+  grid-column: 1/-1;
+
+}
+
+.masonary-grid > .masonary-grid-listview-pager {
+  grid-column: 1/-1;
+}/*# sourceMappingURL=styles.css.map */
+
+.prueba {
+  background: #a94442;
+}

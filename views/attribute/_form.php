@@ -3,6 +3,9 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+use kartik\editors\Summernote;
+
+
 /** @var yii\web\View $this */
 /** @var app\models\Attribute $model */
 /** @var yii\widgets\ActiveForm $form */
@@ -16,7 +19,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'device_id')->textInput() ?>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'description')->widget(Summernote::class, [
+        'useKrajeePresets' => false,
+        'class' => 'form-control kv-editor-container'
+        
+    ]); ?>
+    
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

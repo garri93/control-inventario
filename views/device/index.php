@@ -10,7 +10,7 @@ use yii\grid\GridView;
 use kartik\select2\Select2;
 use app\models\OfficeQuery;
 use yii\helpers\ArrayHelper;
-
+use yii\widgets\ListView;
 
 /** @var yii\web\View $this */
 /** @var app\models\DeviceSearch $searchModel */
@@ -27,7 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Device', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+        <div class="table-responsive">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    
+
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -69,7 +72,53 @@ $this->params['breadcrumbs'][] = $this->title;
                  }
             ],
         ],
-    ]); ?>
+    ]); 
+  
+ 
+    
+
+    
+    
+    
+    ?>
+  </div>
+
+  <?php
+
+
+
+$summaryEnable = '';
+$pagerEnable = '';
+$listOptions=['class' => 'masonary-grid'];
+$itemOptions=['class' => 'masonary-grid-item'];
+$summaryOptions=['class' => 'masonary-grid-listview-summary text-right'];
+$pagerOptions= ['class' => 'masonary-grid-listview-pager'];
+$layout = sprintf('%s{items}%s', $summaryEnable ? '{summary}' : '', $pagerEnable ? '{pager}' : '');
+  
+  
+  echo ListView::widget([
+        'dataProvider' => $dataProvider,
+        'itemView' => function ($model, $key, $index, $widget) {
+            return Html::a(Html::encode($model->name), ['view', 'id' => $model->id]);
+        },
+        'layout' => $layout,
+        'options' => $listOptions,
+        'itemOptions' => $itemOptions,
+        'summaryOptions' => $summaryOptions,
+        'pager' => [
+            'firstPageLabel' => 'first',
+            'lastPageLabel' => 'last',
+            'prevPageLabel' => '<span class="fa fa-arrow-left"></span>',
+            'nextPageLabel' => '<span class="fa fa-arrow-right"></span>',
+            'maxButtonCount' => 8,
+            'options' => $pagerOptions
+        ],
+
+    ]) ?>
+
+
+
+
 
 
 </div>
