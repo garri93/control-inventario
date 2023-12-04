@@ -76,7 +76,7 @@ class OfficeController extends Controller
     {
         $model = new Office();
         $model->customer_id = $customer_id;
-        $model->assignmentUsers = [1,2,3];
+        
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
                 

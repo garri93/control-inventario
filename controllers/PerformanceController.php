@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Performance;
 use app\models\PerformanceSearch;
+use app\models\UserPerformance;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -134,4 +135,23 @@ class PerformanceController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    /**
+     * Funcion para borrar las relaciones entre officina y usuarios
+     */
+
+     public function actionDeleteassignment($user_id,$performance_id)
+     {
+         $model = new UserPerformance();
+         $model = UserPerformance::findOne($user_id,$performance_id);
+         
+         if ($model) {
+             $model->delete();
+         }
+         
+         return $this->redirect(['performance/view', 'id' => $performance_id]);
+     }
+
+
+
 }

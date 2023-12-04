@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 use app\models\Device;
 use kartik\select2\Select2;
 use kartik\date\DatePicker;
+use app\models\User;
 
 /** @var yii\web\View $this */
 /** @var app\models\Performance $model */
@@ -18,6 +19,21 @@ use kartik\date\DatePicker;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+
+
+
+
+
+    <?= $form->field($model, 'UserPerformance')->widget(Select2::classname(), [
+        'data' => User::getList(),
+        'size' => Select2::LARGE,
+        'options' => ['placeholder' => 'Selecciona Usuario ...','prompt' => 'Seleccione una Usuario...','multiple' => true],
+        'pluginOptions' => [
+            'allowClear' => true
+            
+        ],
+    ])->label('Categorias')
+    ?>
 
 
 

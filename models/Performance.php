@@ -1,7 +1,7 @@
 <?php
 
 namespace app\models;
-
+use arogachev\ManyToMany\behaviors\ManyToManyBehavior;
 use Yii;
 
 /**
@@ -19,6 +19,33 @@ use Yii;
  */
 class Performance extends \yii\db\ActiveRecord
 {
+
+    /**
+ * Extension Many to Many
+ *  */    
+public $UserPerformance = [];
+
+public function behaviors()
+{
+    return [
+        [
+            'class' => ManyToManyBehavior::className(),
+            'relations' => [
+                [
+                    'editableAttribute' => 'UserPerformance', // Nombre de atributo editable
+                    'table' => 'user_performance', // Nombre de la tabla de unión
+                    'ownAttribute' => 'performance_id', // Nombre de la columna en la tabla de unión que representa el modelo actual
+                    'relatedModel' => User::className(), // Clase de modelo relacionada
+                    'relatedAttribute' => 'user_id', // Nombre de la columna en la tabla de unión que representa el modelo relacionado
+                ],
+            ],
+        ],
+    ];
+}
+
+/*********** */
+
+
     public $office_id;
     /**
      * {@inheritdoc}
@@ -40,6 +67,7 @@ class Performance extends \yii\db\ActiveRecord
             [['date'], 'safe'],
             [['name'], 'string', 'max' => 45],
             [['device_id'], 'exist', 'skipOnError' => true, 'targetClass' => Device::class, 'targetAttribute' => ['device_id' => 'id']],
+            ['UserPerformance', 'safe'],
         ];
     }
 
