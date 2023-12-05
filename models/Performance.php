@@ -78,10 +78,10 @@ public function behaviors()
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'description' => 'Description',
-            'device_id' => 'Device ID',
-            'date' => 'Date',
+            'name' => 'Nombre',
+            'description' => 'Descripcion',
+            'device_id' => 'Dispositivo',
+            'date' => 'Fecha realizacion',
         ];
     }
 
