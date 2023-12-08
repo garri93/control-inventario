@@ -70,7 +70,11 @@ class DeviceController extends Controller
     {
         /**/   $model = $this->findModel($id);
 
-                
+         /** Configuraciones */
+         /**/  $searchModelDevice = new DeviceSearch();
+         /**/  $searchModelDevice->parent_device = $id;
+         /**/  $dataProviderDevice= $searchModelDevice->search($this->request->queryParams);
+       
 
                 /** Configuraciones */
          /**/  $searchModelSetting = new SettingSearch();
@@ -97,6 +101,9 @@ class DeviceController extends Controller
             'searchModelPerformance' => $searchModelPerformance,
             'dataProviderPerformance' => $dataProviderPerformance,
 
+            'searchModelDevice' => $searchModelDevice,
+            'dataProviderDevice' => $dataProviderDevice,
+
             'model' => $model,
           ]);
 
@@ -113,15 +120,9 @@ class DeviceController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate($parent_device = "", $office_id = "", $customer_id = "")
     {
         $model = new Device();
-
-                /** Configuraciones */
-         /**/  $searchModelCustomer = new CustomerSearch();
-         /**/  $searchModelCustomer->company_id = Yii::$app->user->identity->company_id;
-         /**/  $customer = $searchModelCustomer->search($this->request->queryParams);
-
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -129,11 +130,14 @@ class DeviceController extends Controller
             }
         } else {
             $model->loadDefaultValues();
+            $model->parent_device = $parent_device;
+            $model->office_id = $office_id;
+            $model->customer_id = $customer_id;
         }
 
         return $this->render('create', [
             'model' => $model,
-            //'customer' => $customer,
+
             
         ]);
     }

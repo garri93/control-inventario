@@ -5,10 +5,11 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\Attribute $model */
 
-$this->title = 'Update Attribute: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Attributes', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id, 'device_id' => $model->device_id]];
-$this->params['breadcrumbs'][] = 'Update';
+echo Html::a('<i class="fa fa-arrow-left"></i> Volver a '.$model->device->name, ['device/view', 'id' => $model->device_id], ['class' => 'btn btn-success']);
+$this->title = 'Editar atributo: ' . $model->name;
+//$this->params['breadcrumbs'][] = ['label' => 'Attributes', 'url' => ['index']];
+//$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id, 'device_id' => $model->device_id]];
+//$this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="attribute-update">
 

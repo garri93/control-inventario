@@ -18,6 +18,7 @@ use Yii;
  */
 class Setting extends \yii\db\ActiveRecord
 {
+    public $office_id;
     /**
      * {@inheritdoc}
      */
@@ -48,8 +49,8 @@ class Setting extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'description' => 'Description',
+            'name' => 'Nombre',
+            'description' => 'Descripcion',
             'device_id' => 'Device ID',
             'creation_date' => 'Creation Date',
             'edition_date' => 'Edition Date',

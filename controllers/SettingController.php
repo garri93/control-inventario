@@ -65,17 +65,24 @@ class SettingController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate($device_id = "", $office_id = "")
     {
         $model = new Setting();
 
         if ($this->request->isPost) {
+            $model->creation_date=date("y-m-d");
+            $model->edition_date=date("y-m-d");
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
             $model->loadDefaultValues();
+            $model->office_id = $office_id;
+            $model->device_id = $device_id;
+
         }
+
+
 
         return $this->render('create', [
             'model' => $model,
@@ -89,16 +96,18 @@ class SettingController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $device_id, $office_id = "")
     {
         $model = $this->findModel($id);
-
+        $model->edition_date=date("y-m-d");
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
-
+        $model->office_id = $office_id;
+        $model->device_id = $device_id;
         return $this->render('update', [
             'model' => $model,
+            
         ]);
     }
 

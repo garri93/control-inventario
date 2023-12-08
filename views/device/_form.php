@@ -10,6 +10,7 @@ use app\models\Office;
 use kartik\depdrop\DepDrop;
 use app\models\Customer;
 use yii\helpers\Url;
+use app\models\Device;
 
 /** @var yii\web\View $this */
 /** @var app\models\Device $model */
@@ -20,7 +21,20 @@ use yii\helpers\Url;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'parent_device')->textInput() ?>
+
+    <?php
+        $data = ArrayHelper::map(Device::find()->orderBy('name')->where(['office_id' => $model->office_id])->all(), 'id', 'name');
+
+    echo $form->field($model, 'parent_device')->widget(Select2::classname(), [
+        'data' => $data,
+        'size' => Select2::LARGE,
+        
+        'options' => ['placeholder' => 'Selecciona dispositivo ...','prompt' => 'Seleccione una dispositivo...'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ])->label('Dispositivo');
+?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

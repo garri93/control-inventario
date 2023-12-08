@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "device".
@@ -53,7 +54,7 @@ class Device extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'parent_device' => 'Parent Device',
-            'name' => 'Name',
+            'name' => 'Nombre',
             'office_id' => 'Office ID',
             'category_id' => 'Category ID',
         ];
@@ -122,4 +123,18 @@ class Device extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Device::class, ['parent_device' => 'id']);
     }
+
+    public function getDeviceparent()
+    {
+        $deviceparent = Device::find()->orderBy('name')->where(['id' => $this->parent_device])->one();
+    
+        // Verifica si se encontró un dispositivo antes de acceder a sus propiedades
+        if ($deviceparent !== null) {
+            return $deviceparent->name; // Devuelve solo el nombre del dispositivo
+        } else {
+            return null; // O devuelve lo que sea apropiado en caso de que no se encuentre el dispositivo
+        }
+    }
+
+
 }

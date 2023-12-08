@@ -16,6 +16,7 @@ use Yii;
  */
 class Attribute extends \yii\db\ActiveRecord
 {
+    public $office_id;
     /**
      * {@inheritdoc}
      */
@@ -45,9 +46,9 @@ class Attribute extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'device_id' => 'Device ID',
-            'description' => 'Description',
+            'name' => 'Nombre',
+            'device_id' => 'Dispositivo',
+            'description' => 'Descripcion',
         ];
     }
 

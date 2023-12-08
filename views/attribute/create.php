@@ -4,10 +4,10 @@ use yii\helpers\Html;
 
 /** @var yii\web\View $this */
 /** @var app\models\Attribute $model */
-
-$this->title = 'Create Attribute';
-$this->params['breadcrumbs'][] = ['label' => 'Attributes', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+echo Html::a('<i class="fa fa-arrow-left"></i> Volver a '.$model->device->name, ['device/view', 'id' => $model->device_id], ['class' => 'btn btn-success']);
+$this->title = 'Crear Atributo';
+//$this->params['breadcrumbs'][] = ['label' => 'Attributes', 'url' => ['index']];
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="attribute-create">
 

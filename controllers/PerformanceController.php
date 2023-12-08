@@ -74,6 +74,7 @@ class PerformanceController extends Controller
         
 
         if ($this->request->isPost) {
+            $model->date=date("y-m-d");
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
@@ -93,14 +94,14 @@ class PerformanceController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $office_id ="" )
     {
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
-
+        $model->office_id = $office_id;
         return $this->render('update', [
             'model' => $model,
         ]);

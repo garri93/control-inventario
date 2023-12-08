@@ -5,9 +5,11 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\Setting $model */
 
-$this->title = 'Create Setting';
-$this->params['breadcrumbs'][] = ['label' => 'Settings', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+echo Html::a('<i class="fa fa-arrow-left"></i> Volver al Dispositivo', ['device/view', 'id' => $model->device_id], ['class' => 'btn btn-success']);
+$this->title = 'Crear Configuracion';
+
+//$this->params['breadcrumbs'][] = ['label' => 'Settings', 'url' => ['index']];
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="setting-create">
 

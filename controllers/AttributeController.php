@@ -66,13 +66,14 @@ class AttributeController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate($device_id = "", $office_id="")
     {
         $model = new Attribute();
-
+        $model->device_id = $device_id;
+        $model->office_id = $office_id;
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id, 'device_id' => $model->device_id]);
+                return $this->redirect(['/device/view', 'id' => $model->device_id]);
             }
         } else {
             $model->loadDefaultValues();
@@ -91,12 +92,13 @@ class AttributeController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id, $device_id)
+    public function actionUpdate($id, $device_id, $office_id)
     {
         $model = $this->findModel($id, $device_id);
+        $model->office_id = $office_id;
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'device_id' => $model->device_id]);
+            return $this->redirect(['/device/view', 'id' => $model->device_id]);
         }
 
         return $this->render('update', [
