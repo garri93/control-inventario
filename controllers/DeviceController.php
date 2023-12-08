@@ -4,9 +4,21 @@ namespace app\controllers;
 
 use app\models\Device;
 use app\models\DeviceSearch;
+use app\models\SettingSearch;
+use app\models\performanceSearch;
+use app\models\AttributeSearch;
+use app\models\Performance;
+use app\models\Setting;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\CategorySearch;
+use app\models\Category;
+use app\models\CustomerSearch;
+use yii;
+use yii\helpers\ArrayHelper;
+use app\models\Office;
+use yii\web\Response;
 
 /**
  * DeviceController implements the CRUD actions for Device model.
@@ -25,6 +37,7 @@ class DeviceController extends Controller
                     'class' => VerbFilter::className(),
                     'actions' => [
                         'delete' => ['POST'],
+                        
                     ],
                 ],
             ]
@@ -55,9 +68,51 @@ class DeviceController extends Controller
      */
     public function actionView($id)
     {
+        /**/   $model = $this->findModel($id);
+
+         /** Configuraciones */
+         /**/  $searchModelDevice = new DeviceSearch();
+         /**/  $searchModelDevice->parent_device = $id;
+         /**/  $dataProviderDevice= $searchModelDevice->search($this->request->queryParams);
+       
+
+                /** Configuraciones */
+         /**/  $searchModelSetting = new SettingSearch();
+         /**/  $searchModelSetting->device_id = $id;
+         /**/  $dataProviderSetting = $searchModelSetting->search($this->request->queryParams);
+
+                /** Atributos */
+         /**/  $searchModelAttribute = new AttributeSearch();
+         /**/  $searchModelAttribute->device_id = $id;
+         /**/  $dataProviderAttribute = $searchModelAttribute->search($this->request->queryParams);
+
+                 /** Actuaciones */
+         /**/  $searchModelPerformance= new PerformanceSearch();
+         /**/  $searchModelPerformance->device_id = $id;
+         /**/  $dataProviderPerformance = $searchModelPerformance->search($this->request->queryParams);
+
+         return $this->render('view', [
+            'searchModelSetting' => $searchModelSetting,
+            'dataProviderSetting' => $dataProviderSetting,
+
+            'searchModelAttribute' => $searchModelAttribute,
+            'dataProviderAttribute' => $dataProviderAttribute,
+
+            'searchModelPerformance' => $searchModelPerformance,
+            'dataProviderPerformance' => $dataProviderPerformance,
+
+            'searchModelDevice' => $searchModelDevice,
+            'dataProviderDevice' => $dataProviderDevice,
+
+            'model' => $model,
+          ]);
+
+
+    
+/*
         return $this->render('view', [
             'model' => $this->findModel($id),
-        ]);
+        ]);*/
     }
 
     /**
@@ -65,7 +120,7 @@ class DeviceController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate($parent_device = "", $office_id = "", $customer_id = "")
     {
         $model = new Device();
 
@@ -75,10 +130,15 @@ class DeviceController extends Controller
             }
         } else {
             $model->loadDefaultValues();
+            $model->parent_device = $parent_device;
+            $model->office_id = $office_id;
+            $model->customer_id = $customer_id;
         }
 
         return $this->render('create', [
             'model' => $model,
+
+            
         ]);
     }
 
@@ -92,6 +152,7 @@ class DeviceController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->customer_id = $model->office->customer_id;
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -131,4 +192,38 @@ class DeviceController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+/**
+ * Acción a la que llama el select de clientes para saber cuales son las oficinas hijas
+ * @param false $customer_id -> Para cuando queremos premarcar una oficina porque ya ha sido guardada (Ejem modificar oficina)
+ * @return array|string[]
+ */
+
+ /*
+  * customer_id >> Parámetro que se pasa cuando estamos editando para que preseleccione la primera ver
+  * depdrop_parents >> Es el valor elegido en el select padre del que hace la llamada $_POST 
+  */
+public function actionOfficeCustomer($customer_id = false)
+{
+    Yii::$app->response->format = Response::FORMAT_JSON;
+
+    if (isset($_POST['depdrop_parents'])) {
+        $parents = $_POST['depdrop_parents'];
+        if ($parents != null) {
+            $office = Office::find()->where(['customer_id' => $parents[0] ])->orderBy(['name' => SORT_DESC])->all();
+
+            $selected = '';
+
+            if($parents)
+                $selected =  $parents;
+
+                return ['output' => $office, 'selected' => $selected];
+
+            
+        }
+    }
+    return ['output' => '', 'selected' => ''];
+}
+
+
 }

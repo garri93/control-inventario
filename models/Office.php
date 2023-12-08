@@ -5,6 +5,7 @@ namespace app\models;
 
 use Yii;
 use arogachev\ManyToMany\behaviors\ManyToManyBehavior;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "office".
@@ -118,7 +119,6 @@ class Office extends \yii\db\ActiveRecord
     {
         return $this->hasMany(OfficeAssignment::class, ['office_id' => 'id']);
     }
-
     /**
      * Gets query for [[Users]].
      *
@@ -138,6 +138,21 @@ class Office extends \yii\db\ActiveRecord
         return new OfficeQuery(get_called_class());
     }
 
+    static function toDropDown(){
+
+        return ArrayHelper::map(
+            Office::find()
+                ->joinWith(['customer'])
+                ->where([
+                    'customer.company_id' => Yii::$app->user->identity->company_id,
+                ])
+                ->orderBy(['name' => SORT_ASC])
+                ->all(),
+            'id',
+            'name'
+        );
+        
+    } 
 
 
 

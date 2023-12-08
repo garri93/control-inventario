@@ -76,7 +76,7 @@ class OfficeController extends Controller
     {
         $model = new Office();
         $model->customer_id = $customer_id;
-        $model->assignmentUsers = [1,2,3];
+        
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
                 
@@ -152,21 +152,21 @@ class OfficeController extends Controller
     }
 
 
-/**
- * Funcion para borrar las relaciones entre officina y usuarios
- */
+    /**
+     * Funcion para borrar las relaciones entre officina y usuarios
+     */
 
-public function actionDeleteassignment($user_id,$office_id)
-{
-    $model = new OfficeAssignment();
-    $model = OfficeAssignment::findOne($user_id,$office_id);
-    
-    if ($model) {
-        $model->delete();
+    public function actionDeleteassignment($user_id,$office_id)
+    {
+        $model = new OfficeAssignment();
+        $model = OfficeAssignment::findOne($user_id,$office_id);
+        
+        if ($model) {
+            $model->delete();
+        }
+        
+        return $this->redirect(['office/view', 'id' => $office_id]);
     }
-    
-    return $this->redirect(['office/view', 'id' => $office_id]);
-}
 
 
 
