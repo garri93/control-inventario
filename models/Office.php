@@ -25,6 +25,9 @@ use yii\helpers\ArrayHelper;
 class Office extends \yii\db\ActiveRecord
 {
 
+    public $category_id;
+    
+
 /**
  * Extension Many to Many
  *  */    
@@ -82,11 +85,11 @@ class Office extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'address' => 'Address',
-            'postal_code' => 'Postal Code',
-            'phone' => 'Phone',
-            'customer_id' => 'Customer ID',
+            'name' => 'Nombre',
+            'address' => 'Direccion',
+            'postal_code' => 'Codigo Postal',
+            'phone' => 'Telefono',
+            'customer_id' => 'Cliente',
         ];
     }
 

@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 <div class="office-search">
 
     <?php $form = ActiveForm::begin([
-        'action' => ['index'],
+        'action' => ['/office/view'],
         'method' => 'get',
     ]); ?>
 

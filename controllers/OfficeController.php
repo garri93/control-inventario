@@ -5,6 +5,8 @@ namespace app\controllers;
 use app\models\Office;
 use app\models\OfficeSearch;
 use app\models\OfficeAssignment;
+use app\models\Device;
+use app\models\DeviceSearch;
 
 use app\models\User;
 use app\models\UserSearch;
@@ -62,7 +64,19 @@ class OfficeController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+
+        /** Device */
+         /**/  $searchModelDevice = new DeviceSearch();
+         /**/  $searchModelDevice->office_id = $id;
+         /**/  $dataProviderDevice= $searchModelDevice->search($this->request->queryParams);
+       
+
+
         return $this->render('view', [
+
+            'searchModelDevice' => $searchModelDevice,
+            'dataProviderDevice' => $dataProviderDevice,
+
             'model' => $this->findModel($id),
         ]);
     }
