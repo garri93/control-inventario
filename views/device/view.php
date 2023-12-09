@@ -15,6 +15,7 @@ use yii\bootstrap4\Tabs;
 /** @var yii\web\View $this */
 /** @var app\models\Device $model */
 
+echo Html::a('<i class="fa fa-arrow-left"></i> Ir a '.$model->office->name, ['office/view', 'id' => $model->office_id], ['class' => 'btn btn-success']);
 $this->title = $model->name;
 //$this->params['breadcrumbs'][] = ['label' => 'Devices', 'url' => ['index']];
 //$this->params['breadcrumbs'][] = $this->title;

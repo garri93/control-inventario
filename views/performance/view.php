@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\User;
 
 /** @var yii\web\View $this */
 /** @var app\models\Performance $model */
@@ -60,21 +61,28 @@ $this->title = $model->name;
             </div>
 
             <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users-tab">
-            <table class="table table-striped ">
+            <table class="table table-striped text-center ">
                 <tbody>
+                <thead class="thead-dark">
+                            <th>Nombre</th>
+                            <th>Rol</th>
+                            <th>Acciones</th>
+                        </thead>
             <?php foreach ($model->users as $user): ?>
                 
                         <tr>
                         <td><?= $user->username ?></td>
-                        <td class="text-right"><?= 
-                             Html::a('Quitar', ['deleteassignment', 'user_id' => $user->id, 'office_id' => $model->id], [
-                            'class' => 'btn btn-danger',
-                            'data' => [
-                                'confirm' => 'Seguro que quieres desvincular al usuario de esta Actuacion?',
-                                'method' => 'post',
-                            ],
-                        ]) ?></td>
-                        </tr>
+                        <td><?= isset(User::$rolOptions[$user->role]) ? User::$rolOptions[$user->role] : 'Desconocido' ?></td>
+                        <td>
+                            <?= Html::a('Ver', ['user/view', 'id' => $user->id], ['class' => 'btn btn-success']); ?>
+                            <?= Html::a('Quitar', ['deleteassignment', 'user_id' => $user->id, 'office_id' => $model->id], [
+                                'class' => 'btn btn-danger',
+                                'data' => [
+                                    'confirm' => 'Seguro que quieres desvincular al usuario de esta Actuacion?',
+                                    'method' => 'post',
+                                ],
+                            ]) ?></td>
+                            </tr>
             
             <?php endforeach; ?>
             </tbody>
