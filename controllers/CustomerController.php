@@ -94,14 +94,20 @@ class CustomerController extends Controller
 
           $model = $this->findModel($id);
 
-          $searchModel = new officeSearch();
-          $searchModel->customer_id = $id;
-          $dataProvider = $searchModel->search($this->request->queryParams);
-          $dataOffice = $dataProvider->getModels();
+
+                   /** Configuraciones */
+         /**/  $searchModeloffice = new officeSearch();
+         /**/  $searchModeloffice->customer_id = $id;
+         /**/  $dataProvideroffice= $searchModeloffice->search($this->request->queryParams);
+
+        //   $searchModel = new officeSearch();
+        //   $searchModel->customer_id = $id;
+        //   $dataProvider = $searchModel->search($this->request->queryParams);
+        //   $dataOffice = $dataProvider->getModels();
 
           return $this->render('view', [
-              'searchModel' => $searchModel,
-              'dataOffice' => $dataOffice,
+              'searchModeloffice' => $searchModeloffice,
+              'dataProvideroffice' => $dataProvideroffice,
               'model' => $model,
             ]);
 
