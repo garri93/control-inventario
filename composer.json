@@ -22,7 +22,8 @@
         "arogachev/yii2-many-to-many": "^0.3.0",
         "kartik-v/yii2-widget-select2": "dev-master",
         "kartik-v/yii2-widget-depdrop": "dev-master",
-        "kartik-v/yii2-widget-datepicker": "dev-master"
+        "kartik-v/yii2-widget-datepicker": "dev-master",
+        "kartik-v/yii2-widget-sidenav": "dev-master"
 
         
     },
