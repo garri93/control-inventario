@@ -2,6 +2,7 @@
 
 namespace app\models;
 use yii\helpers\ArrayHelper;
+use arogachev\ManyToMany\behaviors\ManyToManyBehavior;
 
 use Yii;
 
@@ -36,6 +37,27 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         self::ROL_TECHNICAL => 'Tecnico',
         self::ROL_MANAGER => 'Encargado'
  ];
+
+
+ public $assignmentOffice = [];
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    [
+                        'editableAttribute' => 'assignmentOffice', // Nombre de atributo editable
+                        'table' => 'office_assignment', // Nombre de la tabla de unión
+                        'ownAttribute' => 'user_id', // Nombre de la columna en la tabla de unión que representa el modelo actual
+                        'relatedModel' => Office::className(), // Clase de modelo relacionada
+                        'relatedAttribute' => 'office_id', // Nombre de la columna en la tabla de unión que representa el modelo relacionado
+                    ],
+                ],
+            ],
+        ];
+    }
 
 
     public function getRolToString(){
@@ -73,6 +95,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             [['company_id'], 'exist', 'skipOnError' => true, 'targetClass' => Company::class, 'targetAttribute' => ['company_id' => 'id']],
             [['auth_key'], 'string'],
             [['accessToken'], 'string'],
+            ['assignmentOffice', 'safe'],
         ];
     }
 
@@ -294,6 +317,21 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
 
 
+    static function toDropDown(){
+
+        return ArrayHelper::map(
+            Office::find()
+                ->joinWith(['customer'])
+                ->where([
+                    'customer.company_id' => Yii::$app->user->identity->company_id,
+                ])
+                ->orderBy(['name' => SORT_ASC])
+                ->all(),
+            'id',
+            'name'
+        );
+        
+    } 
 
 
 

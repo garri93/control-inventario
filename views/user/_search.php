@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\select2\Select2;
+
+use app\models\User;
 
 /** @var yii\web\View $this */
 /** @var app\models\UserSearch $model */
@@ -15,8 +18,6 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
-
     <?= $form->field($model, 'username') ?>
 
     <?= $form->field($model, 'surname') ?>
@@ -24,17 +25,20 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'dni') ?>
 
     <?= $form->field($model, 'phone') ?>
-    <?php // echo $form->field($model, 'email') ?> 
 
-    <?php // echo $form->field($model, 'company_id') ?>
+    <?php echo $form->field($model, 'email') ?> 
 
-    <?php // echo $form->field($model, 'role') ?>
 
-    <?php // echo $form->field($model, 'password') ?>
+    <?= $form->field($model, 'role')->widget(Select2::classname(), [
+        'data' => User::$rolOptions,
+        'options' => ['placeholder' => 'Seleccionar rol'],
+        'pluginOptions' => [
+            'allowClear' => true,
+        ],
+    ]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
