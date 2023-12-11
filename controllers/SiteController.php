@@ -123,13 +123,13 @@ class SiteController extends Controller
         if (!Yii::$app->user->isGuest) {
             switch (Yii::$app->user->identity->role) {
                 case User::ROL_ADMIN:
-                    return $this->redirect(["administration/administration"]);
+                    return $this->redirect(["customer/index"]);
                 break;
             case User::ROL_TECHNICAL :
-                    return $this->redirect(["administration/technical"]);
+                    return $this->redirect(["customer/index"]);
                 break;
             case User::ROL_MANAGER :
-                    return $this->redirect(["administration/manager"]);
+                    return $this->redirect(["customer/index"]);
                 break;
             }
         }
@@ -139,13 +139,13 @@ class SiteController extends Controller
      
             switch (Yii::$app->user->identity->role) {
                 case User::ROL_ADMIN:
-                        return $this->redirect(["administration/administration"]);
+                        return $this->redirect(["customer/index"]);
                     break;
                 case User::ROL_TECHNICAL :
-                        return $this->redirect(["administration/technical"]);
+                        return $this->redirect(["customer/index"]);
                     break;
                 case User::ROL_MANAGER :
-                        return $this->redirect(["administration/manager"]);
+                        return $this->redirect(["customer/index"]);
                     break;
             }
         }

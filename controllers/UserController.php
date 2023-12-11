@@ -53,6 +53,7 @@ class UserController extends Controller
     public function actionIndex()
     {
         $searchModel = new UserSearch();
+        $searchModel->company_id = Yii::$app->user->identity->company_id;
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -84,6 +85,7 @@ class UserController extends Controller
         $model = new User();
 
         if ($this->request->isPost) {
+            $model->company_id= Yii::$app->user->identity->company_id;
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
@@ -145,4 +147,25 @@ class UserController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+        /**
+     * Funcion para borrar las relaciones entre officina y usuarios
+     */
+
+     public function actionDeleteassignment($user_id,$office_id)
+     {
+         $model = new OfficeAssignment();
+         $model = OfficeAssignment::findOne($user_id,$office_id);
+         
+         if ($model) {
+             $model->delete();
+         }
+         
+         return $this->redirect(['user/view', 'id' => $user_id]);
+     }
+ 
+ 
+
 }
+
+

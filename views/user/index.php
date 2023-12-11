@@ -10,33 +10,47 @@ use yii\grid\GridView;
 /** @var app\models\UserSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Users';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Usuarios';
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Usuario', ['create'], ['class' => 'btn btn-success']) ?>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Mostrar Filtros</button>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+        <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+        </div>   
+    </div>
+    <div class='gridview-custom'>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
+        'summary' => '', //Ocultar texto paginacion superior
+        'rowOptions' => function ($model, $key, $index, $grid) {
+            return ['class' => 'user_grid'];
+        },
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'username',
             'surname',
             'email:email',
             'dni',
             'phone',
             //'company_id',
-            'role',
+            [
+                'attribute' => 'role',
+                'value' => function ($data) {
+                    return isset(User::$rolOptions[$data->role]) ? User::$rolOptions[$data->role] : 'Desconocido';
+                },
+            ],
+
             //'password',
             //'auth_key', 
            //'accessToken', 
@@ -50,5 +64,5 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-
+    </div>
 </div>
