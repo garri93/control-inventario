@@ -7,6 +7,7 @@ use app\models\CategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii;
 
 /**
  * CategoryController implements the CRUD actions for Category model.
@@ -39,6 +40,7 @@ class CategoryController extends Controller
     public function actionIndex()
     {
         $searchModel = new CategorySearch();
+        $searchModel->company_id = Yii::$app->user->identity->company_id;
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -50,13 +52,14 @@ class CategoryController extends Controller
     /**
      * Displays a single Category model.
      * @param int $id ID
+     * @param int $company_id
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($id, $company_id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($id, $company_id),
         ]);
     }
 
@@ -70,8 +73,9 @@ class CategoryController extends Controller
         $model = new Category();
 
         if ($this->request->isPost) {
+
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             }
         } else {
             $model->loadDefaultValues();
@@ -86,15 +90,16 @@ class CategoryController extends Controller
      * Updates an existing Category model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
+     * @param int $company_id
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $company_id)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($id, $company_id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
@@ -106,12 +111,13 @@ class CategoryController extends Controller
      * Deletes an existing Category model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
+     * @param int $company_id
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $company_id)
     {
-        $this->findModel($id)->delete();
+        $this->findModel($id, $company_id)->delete();
 
         return $this->redirect(['index']);
     }
@@ -120,12 +126,13 @@ class CategoryController extends Controller
      * Finds the Category model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
+     * @param int $company_id
      * @return Category the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($id, $company_id)
     {
-        if (($model = Category::findOne(['id' => $id])) !== null) {
+        if (($model = Category::findOne(['id' => $id, 'company_id' => $company_id])) !== null) {
             return $model;
         }
 
