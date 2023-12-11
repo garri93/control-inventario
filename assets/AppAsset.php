@@ -21,7 +21,10 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
-        'css/styles.css'
+        'css/styles.css',
+        'css/magnific-popup.css',
+        'css/stylesfront.css',
+        'css/swiper.css',
     ];
     public $js = [
         'js/activetabs.js',
