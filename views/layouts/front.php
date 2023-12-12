@@ -76,15 +76,15 @@ AppAsset::register($this);
                 <div class="row">
                     <div class="col-lg-6 col-xl-5">
                         <div class="text-container">
-                            <h1>SaaS App HTML Landing Page</h1>
-                            <p class="p-large">Use Tivo to automate your marketing actions in order to reach a much larger audience</p>
-                            <a class="btn-solid-lg page-scroll" href="sign-up.html">SIGN UP</a>
+                            <h1>Control de Inventario </h1>
+                            <p class="p-large">Optimiza la gestión de tus activos y servicios informáticos con nuestra plataforma de inventario especializada.</p>
+                            <a class="btn-solid-lg page-scroll" href="">Iniciar Sesion</a>
                         </div> <!-- end of text-container -->
                     </div> <!-- end of col -->
                     <div class="col-lg-6 col-xl-7">
                         <div class="image-container">
                             <div class="img-wrapper">
-                                <img class="img-fluid" src="images/header-software-app.png" alt="alternative">
+                                <img class="img-fluid" src="img/header-software-app.png" alt="alternative">
                             </div> <!-- end of img-wrapper -->
                         </div> <!-- end of image-container -->
                     </div> <!-- end of col -->
