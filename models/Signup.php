@@ -11,11 +11,10 @@ use yii\base\Model;
  * @property-read User|null $user
  *
  */
-class LoginForm extends Model
+class Signup extends Model
 {
     public $email;
     public $password;
-    public $rememberMe = true;
 
     private $_user = false;
 
