@@ -229,9 +229,9 @@ class SiteController extends Controller
                 $user->role = 1;
 
                 if($user->save()){
-                    $transaction->commit();
-                    $transaction->end();
-                    return $this->redirect(['customer\view']);
+
+                    return $this->redirect(["site/login"]);
+
                 }
                 else
                     $transaction->rollBack();

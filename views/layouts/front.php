@@ -36,6 +36,11 @@ AppAsset::register($this);
     </div>
 </main>
 
+<footer class="footer mt-auto py-3 text-muted">
+    <div class="container">
+
+    </div>
+</footer>
 
 <?php $this->endBody() ?>
 </body>

@@ -1584,10 +1584,11 @@ a:hover.back-to-top {
 /*     18. Sign Up and Log In Pages     */
 /****************************************/
 .ex-2-header {
-	padding-top: 9rem;
 	background-color: #5f4dee;
+}
+
+.ex-2-header h1, h3 {
 	text-align: center;
-	min-height: 100vh;
 }
 
 .ex-2-header h1,
@@ -1618,7 +1619,7 @@ a:hover.back-to-top {
 
 
 .ex-3-header .form-container {
-	max-width: 30rem;
+	max-width: 80rem;
 }
 
 /*****************************/
@@ -1713,7 +1714,8 @@ a:hover.back-to-top {
 
 	/* Sign Up And Log In Pages */
 	.ex-2-header {
-		padding-top: 11rem;
+		height: 110h;
+		padding-top: 4rem;
 	}
 
 	.ex-2-header .form-container {

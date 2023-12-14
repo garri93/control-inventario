@@ -19,7 +19,7 @@ use yii\bootstrap4\Html;
             'template' => "{label}\n{input}\n{error}",
             'labelOptions' => ['class' => 'col-lg-4 col-form-label'],
             'inputOptions' => ['class' => 'col-lg-8 form-control'],
-            'errorOptions' => ['class' => 'col-lg-11 invalid-feedback'],
+            'errorOptions' => ['class' => 'col-lg-11 invalid-feedback text-end'],
         ],
     ]); ?>
             <!-- Header -->
@@ -63,9 +63,11 @@ use yii\bootstrap4\Html;
                             <?= $form->field($model, 'repeatpassword')->passwordInput() ?>
                             </div>
 
-                            <div class="form-group">
-                                <?= Html::submitButton('Registrarse', ['class' => 'form-control-submit-button', 'name' => 'register-button']) ?>
-                                <?= Html::submitButton('Iniciar Sesion', ['class' => 'form-control-submit-button', 'name' => 'login-button']) ?>
+                            <div class="form-group text-center">
+                                <div class="row">
+                                <?= Html::submitButton('Registrarse', ['class' => 'form-control-submit-button col-6', 'name' => 'register-button']) ?>
+                                <?= Html::a('Iniciar Sesion', ['/site/login'], ['class' => 'btn-solid-lg page-scroll col-6'])?>
+                                </div>
                             </div>
                             <div class="form-message">
                                 <div id="lmsgSubmit" class="h3 text-center hidden"></div>

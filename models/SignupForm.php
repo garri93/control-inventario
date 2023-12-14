@@ -59,11 +59,16 @@ class SignupForm extends Model
     {
         return [
 
-            'name' => 'Nombre',
+            'namecompany' => 'Nombre Empresa',
             'address' => 'Direccion',
             'postal_code' => 'Codigo Postal',
             'phone' => 'Telefono',
             'customer_id' => 'Cliente',
+            'cifcompany' => 'Cif',
+            'password' => 'Contraseña',
+            'repeatpassword' => 'Repite Contraseña',
+            'username' => 'Nombre Usuario',
+            'surname' => 'Apellidos',
         ];
     }
 
