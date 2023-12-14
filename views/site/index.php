@@ -101,16 +101,16 @@ use yii\helpers\Html;
                     <!-- Tabs Links -->
                     <ul class="nav nav-tabs" id="argoTabs" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link show active" id="nav-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true"><i class="fas fa-list"></i>Clientes y oficinas</a>
+                            <a class="nav-link active" id="nav-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true"><i class="fas fa-list"></i>Clientes y oficinas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link show " id="nav-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false"><i class="fas fa-envelope-open-text"></i>Usuarios</a>
+                            <a class="nav-link" id="nav-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false"><i class="fas fa-envelope-open-text"></i>Usuarios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link show" id="nav-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false"><i class="fas fa-chart-bar"></i>Categorias</a>
+                            <a class="nav-link" id="nav-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false"><i class="fas fa-chart-bar"></i>Categorias</a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link show" id="nav-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false"><i class="fas fa-chart-bar"></i>Dispositivos</a>
+                            <a class="nav-link" id="nav-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false"><i class="fas fa-chart-bar"></i>Dispositivos</a>
                         </li>
                     </ul>
                     <!-- end of tabs links -->
@@ -137,7 +137,7 @@ use yii\helpers\Html;
                         <!-- end of tab -->
 
                         <!-- Tab -->
-                        <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
+                        <div class="tab-pane fade show" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="image-container">
@@ -203,10 +203,8 @@ use yii\helpers\Html;
                         </div> <!-- end of tab-pane -->
                         <!-- end of tab -->
                         <!-- end of tab -->
-                        
                     </div> <!-- end of tab content -->
                     <!-- end of tabs content -->
-
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
         </div> <!-- end of container -->

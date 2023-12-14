@@ -782,7 +782,7 @@ input[type='checkbox'] {
 /*    04. Header     */
 /*********************/
 .header {
-	background-color: #7E30E1 !important;
+	background-color: #7E30E1;
 }
 
 .header .header-content {
@@ -1405,7 +1405,7 @@ input[type='checkbox'] {
 .footer {
 	padding-top: 3rem;
 	padding-bottom: 0.5rem;
-	background-color: #5f4dee;
+	background-color: #7E30E1;
 }
 
 .footer .footer-col {
@@ -1584,7 +1584,13 @@ a:hover.back-to-top {
 /*     18. Sign Up and Log In Pages     */
 /****************************************/
 .ex-2-header {
-	background-color: #5f4dee;
+	background-color: #7E30E1;
+	height:100vh;
+}
+
+.ex-2-header2 {
+	background-color: #7E30E1;
+	height:100%;
 }
 
 .ex-2-header h1, h3 {

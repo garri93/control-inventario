@@ -23,7 +23,7 @@ use yii\bootstrap4\Html;
         ],
     ]); ?>
             <!-- Header -->
-    <header id="header" class="ex-2-header">
+    <header id="header" class="ex-2-header ex-2-header2">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -64,10 +64,12 @@ use yii\bootstrap4\Html;
                             </div>
 
                             <div class="form-group text-center">
-                                <div class="row">
+                             
                                 <?= Html::submitButton('Registrarse', ['class' => 'form-control-submit-button col-6', 'name' => 'register-button']) ?>
-                                <?= Html::a('Iniciar Sesion', ['/site/login'], ['class' => 'btn-solid-lg page-scroll col-6'])?>
-                                </div>
+
+                            </div>
+                            <div class= "text-center">
+                            <?= "¿Ya tienes Cuenta? " . Html::a('Iniciar Sesion', ['/site/login'])?>
                             </div>
                             <div class="form-message">
                                 <div id="lmsgSubmit" class="h3 text-center hidden"></div>

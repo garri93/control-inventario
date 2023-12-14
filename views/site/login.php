@@ -46,6 +46,10 @@ use yii\bootstrap4\Html;
 
                             <div class="form-group">
                                 <?= Html::submitButton('Iniciar Sesion', ['class' => 'form-control-submit-button', 'name' => 'login-button']) ?>
+                               
+                            </div>
+                            <div class= "text-center">
+                            <?= "¿No tienes Cuenta?  " . Html::a('Registrate', ['/site/signup'])?>
                             </div>
                             <div class="form-message">
                                 <div id="lmsgSubmit" class="h3 text-center hidden"></div>
