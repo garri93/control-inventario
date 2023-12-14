@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Company;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -10,6 +11,8 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\User;
+use app\models\SignupForm;
+use yii\db\Transaction;
 
 class SiteController extends Controller
 {
@@ -196,6 +199,54 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
+    /*
+    REgistro empresa y usuario
+    */
+
+    public function actionSignup()
+    {
+        $model = new SignupForm();
+
+        $transaction = Yii::$app->db->beginTransaction();
+
+        if ($model->load($this->request->post()) && $model->validate()) {
+            $company = new Company();
+            $company->cif = $model->cifcompany;
+            $company->email = $model->email;
+            $company->name = $model->namecompany;
+            
+            if($company->save()){
+                $transaction->commit();
+
+                $user = new User();
+                $user->dni = $model->dni;
+                $user->company_id = $company->id;
+                $user->surname = $model->surname;
+                $user->phone = $model->phone;
+                $user->email = $model->email;
+                $user->username = $model->username;
+                $user->password = $model->password;
+                $user->role = 1;
+
+                if($user->save()){
+
+                    return $this->redirect(["site/login"]);
+
+                }
+                else
+                    $transaction->rollBack();
+                    
+            }
+            else
+                $transaction->rollBack();
+            
+        }
+        
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
+    }
 
 
 }
