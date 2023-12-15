@@ -15,6 +15,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use Yii;
 use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
 
 /**
  * OfficeController implements the CRUD actions for Office model.
@@ -30,22 +31,24 @@ class OfficeController extends Controller
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
-                    // Acceso sólo para usuarios con rol administrador
                     [
-                        'actions' => ['view', 'create', 'update','delete'],                       
+                        'actions' => ['create'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->isUserAdmin();
+                            return Yii::$app->user->identity->isUserTechnical() || Yii::$app->user->identity->isUserAdmin();
                         },
                     ],
+        
                     [
-                        'actions' => ['view', 'create', 'update'],                       
+                        'actions' => ['update','delete'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->isUserTechnical();
-
+                            $office = Office::findOne(Yii::$app->request->get('id'));
+                            if($office === null) 
+                                return false;
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($office->office_id) && !Yii::$app->user->identity->isUserManager();
                         },
                     ],
                     [
@@ -53,9 +56,10 @@ class OfficeController extends Controller
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            $model = new Office;
-                            return Yii::$app->user->identity->isUserManager() && $model->validateCompanyAccess();
-
+                            $office = Office::findOne(Yii::$app->request->get('id'));
+                            if($office === null) 
+                                return false;
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($office->id);
                         },
                     ],
 
@@ -96,8 +100,9 @@ class OfficeController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        $if ($model->validateCompanyAccess($model->id)) {
-            echo 'hola'} else {};
+
+            
+         
 
         /** Device */
          /**/  $searchModelDevice = new DeviceSearch();

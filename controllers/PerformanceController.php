@@ -25,21 +25,24 @@ class PerformanceController extends Controller
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
-                    // Acceso sólo para usuarios con rol administrador
                     [
-                        'actions' => ['index', 'view', 'create', 'update','delete'],                       
+                        'actions' => ['create'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->isUserAdmin();
+                            return Yii::$app->user->identity->isUserTechnical() || Yii::$app->user->identity->isUserAdmin();
                         },
                     ],
+        
                     [
-                        'actions' => ['index', 'view', 'create', 'update','delete'],                       
+                        'actions' => ['update','delete'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->isUserTechnical();
+                            $performance = Performance::findOne(Yii::$app->request->get('id'));
+                            if($performance === null) 
+                                return false;
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($performance->device->office_id) && !Yii::$app->user->identity->isUserManager();
                         },
                     ],
                     [
@@ -47,7 +50,10 @@ class PerformanceController extends Controller
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->isUserManager();
+                            $performance = Performance::findOne(Yii::$app->request->get('id'));
+                            if($performance === null) 
+                                return false;
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($performance->device->office_id);
                         },
                     ],
 

@@ -3,12 +3,16 @@
 namespace app\controllers;
 
 use app\models\Attribute;
+use app\models\Device;
+use app\models\User;
 use app\models\AttributeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use Yii;
+
+
 
 /**
  * AttributeController implements the CRUD actions for Attribute model.
@@ -24,29 +28,35 @@ class AttributeController extends Controller
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
-                    // Acceso sólo para usuarios con rol administrador
                     [
-                        'actions' => ['index', 'view', 'create', 'update','delete'],                       
+                        'actions' => ['create'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->isUserAdmin();
+                            return Yii::$app->user->identity->isUserTechnical() || Yii::$app->user->identity->isUserAdmin();
+                        },
+                    ],
+        
+                    [
+                        'actions' => ['update','delete'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            $attribute = Attribute::findOne(Yii::$app->request->get('id'));
+                            if($attribute === null) 
+                                return false;
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($attribute->device->office_id) && !Yii::$app->user->identity->isUserManager();
                         },
                     ],
                     [
-                        'actions' => ['index', 'view', 'create', 'update','delete'],                       
+                        'actions' => ['view'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->isUserTechnical();
-                        },
-                    ],
-                    [
-                        'actions' => ['index', 'view'],                       
-                        'allow' => true,                      
-                        'roles' => ['@'],
-                        'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->isUserManager();
+                            $attribute = Attribute::findOne(Yii::$app->request->get('id'));
+                            if($attribute === null) 
+                                return false;
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($attribute->device->office_id);
                         },
                     ],
 

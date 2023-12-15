@@ -35,21 +35,24 @@ class DeviceController extends Controller
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
-                    // Acceso sólo para usuarios con rol administrador
                     [
-                        'actions' => ['view', 'create', 'update','delete'],                       
+                        'actions' => ['create'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->isUserAdmin();
+                            return Yii::$app->user->identity->isUserTechnical() || Yii::$app->user->identity->isUserAdmin();
                         },
                     ],
+        
                     [
-                        'actions' => ['view', 'create', 'update','delete'],                       
+                        'actions' => ['update','delete'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->isUserTechnical();
+                            $device = Device::findOne(Yii::$app->request->get('id'));
+                            if($device === null) 
+                                return false;
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($device->office_id) && !Yii::$app->user->identity->isUserManager();
                         },
                     ],
                     [
@@ -57,7 +60,10 @@ class DeviceController extends Controller
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->isUserManager();
+                            $device = Device::findOne(Yii::$app->request->get('id'));
+                            if($device === null) 
+                                return false;
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($device->office_id);
                         },
                     ],
 

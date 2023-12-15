@@ -24,21 +24,24 @@ class SettingController extends Controller
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
-                    // Acceso sólo para usuarios con rol administrador
                     [
-                        'actions' => ['view', 'create', 'update','delete'],                       
+                        'actions' => ['create'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->isUserAdmin();
+                            return Yii::$app->user->identity->isUserTechnical() || Yii::$app->user->identity->isUserAdmin();
                         },
                     ],
+        
                     [
-                        'actions' => ['view', 'create', 'update','delete'],                       
+                        'actions' => ['update','delete'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->isUserTechnical();
+                            $setting = Setting::findOne(Yii::$app->request->get('id'));
+                            if($setting === null) 
+                                return false;
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($setting->device->office_id) && !Yii::$app->user->identity->isUserManager();
                         },
                     ],
                     [
@@ -46,7 +49,10 @@ class SettingController extends Controller
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->isUserManager();
+                            $setting = Setting::findOne(Yii::$app->request->get('id'));
+                            if($setting === null) 
+                                return false;
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($setting->device->office_id);
                         },
                     ],
 

@@ -334,6 +334,33 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     } 
 
 
+/** Esta funcion es para validar el acceso del usuario cundo se le envia una oficina
+ * va a tener en cuenta las oficinas asignadas que tenga ese usuario
+ */
+public function canAccessByAssignedOffice($id_office):bool
+{ 
+    return in_array($id_office, $this->assignmentOffice); 
+}
+
+/** Esta funcion es para validar el acceso del usuario cundo se le envia una oficina
+ * va a tener en cuenta las oficinas asignadas que tenga ese usuario
+ */
+
+public function canAccessBycompany($id_company):bool
+{ 
+    return in_array($id_company, $this->user); 
+}
+
+public function canAccessBycategory($id_company):bool
+{ 
+    return in_array($id_company, $this->category); 
+}
+
+public function canAccessBycustomer($id_customer):bool
+{ 
+    return in_array($id_customer, $this->customer); 
+}
+
 
 
 

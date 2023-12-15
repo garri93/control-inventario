@@ -158,20 +158,6 @@ class Office extends \yii\db\ActiveRecord
     } 
 
 
-public static function validateCompanyAccess2()
-{
-    // Obtén el objeto del cliente relacionado con la oficina
-    $customer = $this->getCustomer()->one();
-
-    // Verifica si el cliente existe y tiene una propiedad company_id
-    return $customer !== null && Yii::$app->user->identity->company_id == $customer->company_id;
-}
-
-
-public static function validateCompanyAccess($idoffice)
-{ 
-    return in_array($idoffice, Yii::$app->user->identity->assignmentOffice);
-}
 
 
 
