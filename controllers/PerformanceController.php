@@ -8,6 +8,8 @@ use app\models\UserPerformance;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use Yii;
 
 /**
  * PerformanceController implements the CRUD actions for Performance model.
@@ -19,17 +21,46 @@ class PerformanceController extends Controller
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    // Acceso sólo para usuarios con rol administrador
+                    [
+                        'actions' => ['index', 'view', 'create', 'update','delete'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->isUserAdmin();
+                        },
                     ],
+                    [
+                        'actions' => ['index', 'view', 'create', 'update','delete'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->isUserTechnical();
+                        },
+                    ],
+                    [
+                        'actions' => ['view'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->isUserManager();
+                        },
+                    ],
+
                 ],
-            ]
-        );
+            ],
+     //Controla el modo en que se accede a las acciones, en este ejemplo a la acción logout
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
     }
 
     /**

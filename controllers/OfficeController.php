@@ -14,6 +14,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use Yii;
+use yii\filters\AccessControl;
 
 /**
  * OfficeController implements the CRUD actions for Office model.
@@ -25,18 +26,49 @@ class OfficeController extends Controller
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
-                        
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    // Acceso sólo para usuarios con rol administrador
+                    [
+                        'actions' => ['view', 'create', 'update','delete'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->isUserAdmin();
+                        },
                     ],
+                    [
+                        'actions' => ['view', 'create', 'update'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->isUserTechnical();
+
+                        },
+                    ],
+                    [
+                        'actions' => ['view'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            $model = new Office;
+                            return Yii::$app->user->identity->isUserManager() && $model->validateCompanyAccess();
+
+                        },
+                    ],
+
                 ],
-            ]
-        );
+            ],
+     //Controla el modo en que se accede a las acciones, en este ejemplo a la acción logout
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
     }
 
     /**
@@ -64,6 +96,8 @@ class OfficeController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+        $if ($model->validateCompanyAccess($model->id)) {
+            echo 'hola'} else {};
 
         /** Device */
          /**/  $searchModelDevice = new DeviceSearch();

@@ -19,6 +19,7 @@ use yii;
 use yii\helpers\ArrayHelper;
 use app\models\Office;
 use yii\web\Response;
+use yii\filters\AccessControl;
 
 /**
  * DeviceController implements the CRUD actions for Device model.
@@ -30,18 +31,46 @@ class DeviceController extends Controller
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
-                        
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    // Acceso sólo para usuarios con rol administrador
+                    [
+                        'actions' => ['view', 'create', 'update','delete'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->isUserAdmin();
+                        },
                     ],
+                    [
+                        'actions' => ['view', 'create', 'update','delete'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->isUserTechnical();
+                        },
+                    ],
+                    [
+                        'actions' => ['view'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->isUserManager();
+                        },
+                    ],
+
                 ],
-            ]
-        );
+            ],
+     //Controla el modo en que se accede a las acciones, en este ejemplo a la acción logout
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
     }
 
     /**

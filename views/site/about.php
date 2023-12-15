@@ -21,7 +21,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     role = <?= Yii::$app->user->identity->role . "</br> "?>
                     company_id = <?= Yii::$app->user->identity->company_id . "</br> "?>
                     <?php var_dump(Yii::$app->user->identity->isUserAdmin());
-                    var_dump(Yii::$app->user->identity->getrole());?>
+                    echo '<pre>';
+                    var_dump(Yii::$app->user->identity);
+                    echo '</pre>'
+                    ?>
                 <?php endif; ?>
                 <?php /*
                  for($i=0; $i<100; $i++){
