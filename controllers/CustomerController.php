@@ -31,29 +31,48 @@ class CustomerController extends Controller
                 'rules' => [
                     // Acceso sólo para usuarios con rol administrador
                     [
-                        'actions' => ['index', 'view', 'create', 'update','delete'],                       
+                        'actions' => ['create'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->isUserAdmin();
+                            return Yii::$app->user->identity->isUserAdmin() || Yii::$app->user->identity->isUserTechnical();
+                            
                         },
                     ],
                     [
-                        'actions' => ['index', 'view', 'create', 'update'],                       
+                        'actions' => ['index'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['view'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->isUserTechnical();
+                            return Yii::$app->user->identity->canAccessBycustomer(Yii::$app->request->get('id'));
                         },
                     ],
                     [
-                        'actions' => ['index', 'view'],                       
+                        'actions' => ['update',],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->isUserManager();
+                            return (Yii::$app->user->identity->isUserAdmin() || 
+                                        Yii::$app->user->identity->isUserTechnical()) && 
+                                            Yii::$app->user->identity->canAccessBycustomer(Yii::$app->request->get('id'));
+                            
                         },
                     ],
+                    [
+                        'actions' => ['delete'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->isUserAdmin() && Yii::$app->user->identity->canAccessBycustomer(Yii::$app->request->get('id'));
+                            
+                        },
+                    ],
+                    
 
                 ],
             ],
@@ -183,7 +202,7 @@ class CustomerController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('Esta pagina no existe');
     }
 }
  

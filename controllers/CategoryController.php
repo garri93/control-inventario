@@ -24,32 +24,36 @@ class CategoryController extends Controller
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
-                    // Acceso sólo para usuarios con rol administrador
                     [
-                        'actions' => ['index', 'view', 'create', 'update','delete'],                       
+                        'actions' => ['index','create',],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->isUserAdmin();
+                            return Yii::$app->user->identity->isUserAdmin() || Yii::$app->user->identity->isUserTechnical();
                         },
                     ],
                     [
-                        'actions' => ['index', 'view', 'create', 'update'],                       
+                        'actions' => ['view','update','delete'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->isUserTechnical();
+                            $category = Category::findOne(Yii::$app->request->get('id'));
+                            if($category === null) 
+                                return false;
+                            return Yii::$app->user->identity->isUserAdmin() && Yii::$app->user->identity->canAccessBycategory($category->id);
                         },
                     ],
                     [
-                        'actions' => ['view'],                       
+                        'actions' => ['view','update'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->isUserManager();
+                            $category = Category::findOne(Yii::$app->request->get('id'));
+                            if($category === null) 
+                                return false;
+                            return Yii::$app->user->identity->isUserTechnical() && Yii::$app->user->identity->canAccessBycategory($category->id);
                         },
                     ],
-
                 ],
             ],
      //Controla el modo en que se accede a las acciones, en este ejemplo a la acción logout
@@ -166,6 +170,6 @@ class CategoryController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('Esta pagina no existe');
     }
 }

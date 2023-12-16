@@ -9,6 +9,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use Yii;
+use app\models\User;
 
 /**
  * CompanyController implements the CRUD actions for Company model.
@@ -30,9 +31,13 @@ class CompanyController extends Controller
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->isUserAdmin();
+                            return Yii::$app->user->identity->isUserAdmin() && Yii::$app->user->identity->canAccessBycompany(Yii::$app->request->get('id'));
+                            
                         },
                     ],
+                    
+                   
+
 
                 ],
             ],
@@ -45,6 +50,7 @@ class CompanyController extends Controller
             ],
         ];
     }
+
 
     /**
      * Lists all Company models.
@@ -144,6 +150,6 @@ class CompanyController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('Esta pagina no existe');
     }
 }

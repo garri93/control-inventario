@@ -48,7 +48,7 @@ class OfficeController extends Controller
                             $office = Office::findOne(Yii::$app->request->get('id'));
                             if($office === null) 
                                 return false;
-                            return Yii::$app->user->identity->canAccessByAssignedOffice($office->office_id) && !Yii::$app->user->identity->isUserManager();
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($office->id) && !Yii::$app->user->identity->isUserManager();
                         },
                     ],
                     [
@@ -201,7 +201,7 @@ class OfficeController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('Esta pagina no existe');
     }
 
 

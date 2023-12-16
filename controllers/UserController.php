@@ -25,13 +25,29 @@ class UserController extends Controller
                 'rules' => [
                     // Acceso sólo para usuarios con rol administrador
                     [
-                        'actions' => ['index', 'view', 'create', 'update','delete'],                       
+                        'actions' => ['index', 'create'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
                             return Yii::$app->user->identity->isUserAdmin();
+                            
                         },
                     ],
+                    [
+                        'actions' => [ 'view','update','delete'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            $user = User::findOne(Yii::$app->request->get('id'));
+                            if($user === null) 
+                                return false;
+                            return Yii::$app->user->identity->isUserAdmin() && Yii::$app->user->identity->canAccessByuser($user->id);
+                            
+                        },
+                    ],
+                    
+                   
+
 
                 ],
             ],
@@ -145,7 +161,7 @@ class UserController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('Esta pagina no existe');
     }
 
         /**

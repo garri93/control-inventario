@@ -36,16 +36,17 @@ class DeviceController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create'],                       
+                        'actions' => ['create', 'office-customer'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
                             return Yii::$app->user->identity->isUserTechnical() || Yii::$app->user->identity->isUserAdmin();
                         },
                     ],
+                    
         
                     [
-                        'actions' => ['update','delete'],                       
+                        'actions' => ['update','delete', 'office-customer'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -225,7 +226,7 @@ class DeviceController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('Esta pagina no existe');
     }
 
 /**
