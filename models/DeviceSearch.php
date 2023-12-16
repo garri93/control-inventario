@@ -62,6 +62,7 @@ class DeviceSearch extends Device
             'parent_device' => $this->parent_device,
             'office_id' => $this->office_id,
             'category_id' => $this->category_id,
+            'activo' => $this->activo,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);

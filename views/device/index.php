@@ -64,6 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'office_id',
                 'value' => 'office.name',
             ],
+            'activo',
             //'category_id',
             [
                 'class' => ActionColumn::className(),

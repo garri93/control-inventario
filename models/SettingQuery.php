@@ -35,6 +35,6 @@ class SettingQuery extends \yii\db\ActiveQuery
     }
 
     public function activo(){
-        return $this->andFilterWhere(['activo' => Setting::ACTIVO_SI])
+        return $this->andFilterWhere(['activo' => Setting::ACTIVO_SI]);
     }
 }

@@ -52,6 +52,7 @@ class DeviceController extends Controller
     public function actionIndex()
     {
         $searchModel = new DeviceSearch();
+        $searchModel->activo = Device::ACTIVO_SI;
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -186,7 +187,7 @@ class DeviceController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Device::findOne(['id' => $id])) !== null) {
+        if (($model = Device::findOne(['id' => $id])) !== null)->activo() {
             return $model;
         }
 

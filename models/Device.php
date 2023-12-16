@@ -22,6 +22,10 @@ use yii\helpers\ArrayHelper;
  */
 class Device extends \yii\db\ActiveRecord
 {
+
+    const ACTIVO_SI = 1;
+    const ACTIVO_NO = 0;
+
     public $customer_id; 
 
     /**
@@ -38,7 +42,7 @@ class Device extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['parent_device', 'office_id', 'category_id'], 'integer'],
+            [['parent_device', 'office_id', 'category_id', 'activo'], 'integer'],
             [['name', 'office_id'], 'required'],
             [['name'], 'string', 'max' => 250],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['category_id' => 'id']],
@@ -57,6 +61,7 @@ class Device extends \yii\db\ActiveRecord
             'name' => 'Nombre',
             'office_id' => 'Office ID',
             'category_id' => 'Category ID',
+            'activo' => 'Activo',
         ];
     }
 
@@ -136,5 +141,45 @@ class Device extends \yii\db\ActiveRecord
         }
     }
 
+    public function beforeSave(){
+
+        if (parent::beforeSave()) {
+
+            if ($this->isNewRecord)
+                $this->activo = self::ACTIVO_SI;
+            
+            return true;
+        }
+    }
+
+    public function delete(){
+
+        if (count($this->settings) > 0) {
+            foreach ($this->settings as $setting) {
+                $setting->delete();
+            }
+        }
+
+        if (count($this->performance) > 0) {
+            foreach ($this->performance as $performance) {
+                $performance->delete();
+            }
+        }
+
+        if ($this->parent_device === null) {
+            $childs = Device::find()->where(['parent_device' => $this->id])->activo()->deMiEmpresa()->all();
+
+            if (count($childs) > 0) {
+                foreach ($childs as $child) {
+                    $child->delete();
+                }
+            }
+        }
+
+
+        $this->activo = self::ACTIVO_NO;
+
+        $this->save();
+    }
 
 }
