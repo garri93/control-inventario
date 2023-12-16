@@ -334,6 +334,89 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     } 
 
 
+/** Esta funcion es para validar el acceso del usuario cundo se le envia una oficina
+ * va a tener en cuenta las oficinas asignadas que tenga ese usuario
+ */
+public function canAccessByAssignedOffice($id_office):bool
+{ 
+    return in_array($id_office, $this->assignmentOffice); 
+}
+
+/** Esta funcion es para validar el acceso del usuario admin a los usarios de su empresa
+ */
+
+ public function canAccessByUser($id_user): bool
+ { 
+    $users = User::find()
+    ->where(['company_id' => Yii::$app->user->identity->company_id])
+    ->all();
+
+    if (count($users) == 0) return false; 
+
+    $user_ids = [];
+
+    foreach ($users as $user) {
+        $user_ids[] = $user->id;
+    }
+
+    return in_array($id_user, $user_ids); 
+
+ }
+
+
+/** Esta funcion es para validar el acceso a las categorias de la empresa
+ */
+
+public function canAccessBycategory($id_category):bool
+{ 
+    $categories = Category::find()
+    ->where(['company_id' => Yii::$app->user->identity->company_id])
+    ->all();
+
+    if (count($categories) == 0) return false; 
+
+    $category_ids = [];
+
+    foreach ($categories as $category) {
+        $category_ids[] = $category->id;
+    }
+
+    return in_array($id_category, $category_ids); 
+}
+
+
+/** Esta funcion es para validar el acceso a las Clientes de la empresa
+ */
+
+public function canAccessBycustomer($id_customer):bool
+{ 
+  
+    $customers = Customer::find()
+    ->where(['company_id' => Yii::$app->user->identity->company_id])
+    ->all();
+
+    if (count($customers) == 0) return false; 
+
+    $customer_ids = [];
+
+    foreach ($customers as $customer) {
+        $customer_ids[] = $customer->id;
+    }
+   
+
+    return in_array($id_customer, $customer_ids); 
+}
+
+/** Esta funcion es para validar el acceso a los  datos de empresa de la empresa
+ */
+
+public function canAccessBycompany($id_company):bool
+{ 
+    $company = Company::findOne(Yii::$app->user->identity->company_id);
+    
+    return $company !== null && $company->id == $id_company;
+}
+
 
 
 

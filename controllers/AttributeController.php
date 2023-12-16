@@ -3,10 +3,16 @@
 namespace app\controllers;
 
 use app\models\Attribute;
+use app\models\Device;
+use app\models\User;
 use app\models\AttributeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use Yii;
+
+
 
 /**
  * AttributeController implements the CRUD actions for Attribute model.
@@ -18,17 +24,52 @@ class AttributeController extends Controller
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['create'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->isUserTechnical() || Yii::$app->user->identity->isUserAdmin();
+                        },
                     ],
+        
+                    [
+                        'actions' => ['update','delete'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            $attribute = Attribute::findOne(Yii::$app->request->get('id'));
+                            if($attribute === null) 
+                                return false;
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($attribute->device->office_id) && !Yii::$app->user->identity->isUserManager();
+                        },
+                    ],
+                    [
+                        'actions' => ['view'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            $attribute = Attribute::findOne(Yii::$app->request->get('id'));
+                            if($attribute === null) 
+                                return false;
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($attribute->device->office_id);
+                        },
+                    ],
+
                 ],
-            ]
-        );
+            ],
+     //Controla el modo en que se accede a las acciones, en este ejemplo a la acción logout
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
     }
 
     /**
@@ -135,6 +176,6 @@ class AttributeController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('Esta pagina no existe');
     }
 }

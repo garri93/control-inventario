@@ -8,6 +8,8 @@ use app\models\UserPerformance;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use Yii;
 
 /**
  * PerformanceController implements the CRUD actions for Performance model.
@@ -19,17 +21,52 @@ class PerformanceController extends Controller
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['create'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->isUserTechnical() || Yii::$app->user->identity->isUserAdmin();
+                        },
                     ],
+        
+                    [
+                        'actions' => ['update','delete'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            $performance = Performance::findOne(Yii::$app->request->get('id'));
+                            if($performance === null) 
+                                return false;
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($performance->device->office_id) && !Yii::$app->user->identity->isUserManager();
+                        },
+                    ],
+                    [
+                        'actions' => ['view'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            $performance = Performance::findOne(Yii::$app->request->get('id'));
+                            if($performance === null) 
+                                return false;
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($performance->device->office_id);
+                        },
+                    ],
+
                 ],
-            ]
-        );
+            ],
+     //Controla el modo en que se accede a las acciones, en este ejemplo a la acción logout
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
     }
 
     /**
@@ -134,7 +171,7 @@ class PerformanceController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('Esta pagina no existe');
     }
 
     /**
