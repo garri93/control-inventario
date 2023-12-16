@@ -19,6 +19,7 @@ use yii;
 use yii\helpers\ArrayHelper;
 use app\models\Office;
 use yii\web\Response;
+use yii\filters\AccessControl;
 
 /**
  * DeviceController implements the CRUD actions for Device model.
@@ -30,18 +31,53 @@ class DeviceController extends Controller
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
-                        
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['create', 'office-customer'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->isUserTechnical() || Yii::$app->user->identity->isUserAdmin();
+                        },
                     ],
+                    
+        
+                    [
+                        'actions' => ['update','delete', 'office-customer'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            $device = Device::findOne(Yii::$app->request->get('id'));
+                            if($device === null) 
+                                return false;
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($device->office_id) && !Yii::$app->user->identity->isUserManager();
+                        },
+                    ],
+                    [
+                        'actions' => ['view'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            $device = Device::findOne(Yii::$app->request->get('id'));
+                            if($device === null) 
+                                return false;
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($device->office_id);
+                        },
+                    ],
+
                 ],
-            ]
-        );
+            ],
+     //Controla el modo en que se accede a las acciones, en este ejemplo a la acción logout
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
     }
 
     /**
@@ -191,7 +227,7 @@ class DeviceController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('Esta pagina no existe');
     }
 
 /**

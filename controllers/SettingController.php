@@ -7,6 +7,8 @@ use app\models\SettingSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use Yii;
 
 /**
  * SettingController implements the CRUD actions for Setting model.
@@ -18,17 +20,52 @@ class SettingController extends Controller
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['create'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->isUserTechnical() || Yii::$app->user->identity->isUserAdmin();
+                        },
                     ],
+        
+                    [
+                        'actions' => ['update','delete'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            $setting = Setting::findOne(Yii::$app->request->get('id'));
+                            if($setting === null) 
+                                return false;
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($setting->device->office_id) && !Yii::$app->user->identity->isUserManager();
+                        },
+                    ],
+                    [
+                        'actions' => ['view'],                       
+                        'allow' => true,                      
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            $setting = Setting::findOne(Yii::$app->request->get('id'));
+                            if($setting === null) 
+                                return false;
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($setting->device->office_id);
+                        },
+                    ],
+
                 ],
-            ]
-        );
+            ],
+     //Controla el modo en que se accede a las acciones, en este ejemplo a la acción logout
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
     }
 
     /**
@@ -139,6 +176,6 @@ class SettingController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('Esta pagina no existe');
     }
 }
