@@ -59,7 +59,7 @@ class Company extends \yii\db\ActiveRecord
      */
     public function getCustomers()
     {
-        return $this->hasMany(Customer::class, ['company_id' => 'id']);
+        return $this->hasMany(Customer::class, ['company_id' => 'id'])->activo();
     }
 
     /**
@@ -69,7 +69,7 @@ class Company extends \yii\db\ActiveRecord
      */
     public function getUsers()
     {
-        return $this->hasMany(User::class, ['company_id' => 'id']);
+        return $this->hasMany(User::class, ['company_id' => 'id'])->activo();
     }
 
     /**
@@ -79,5 +79,33 @@ class Company extends \yii\db\ActiveRecord
     public static function find()
     {
         return new CompanyQuery(get_called_class());
+    }
+
+    ublic function beforeSave(){
+
+        if (parent::beforeSave()) {
+
+            if ($this->isNewRecord)
+                $this->activo = self::ACTIVO_SI;
+            
+            return true;
+        }
+    }
+
+    public function delete(){
+        if (count($this->users) > 0) {
+            foreach ($this->users as $user) {
+                $user->delete();
+            }
+        }
+
+        if (count($this->customers) > 0) {
+            foreach ($this->customers as $customer) {
+                $customer->delete();
+            }
+        }
+
+        $this->activo = self::ACTIVO_NO;
+        $this->save();
     }
 }

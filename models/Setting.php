@@ -70,7 +70,7 @@ class Setting extends \yii\db\ActiveRecord
      */
     public function getDevice()
     {
-        return $this->hasOne(Device::class, ['id' => 'device_id']);
+        return $this->hasOne(Device::class, ['id' => 'device_id'])->activo();
     }
 
     /**

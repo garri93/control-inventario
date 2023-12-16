@@ -72,7 +72,7 @@ class Device extends \yii\db\ActiveRecord
      */
     public function getDeviceAttributes()
     {
-        return $this->hasMany(Attribute::class, ['device_id' => 'id']);
+        return $this->hasMany(Attribute::class, ['device_id' => 'id'])->activo();
     }
 
     /**
@@ -82,7 +82,7 @@ class Device extends \yii\db\ActiveRecord
      */
     public function getCategory()
     {
-        return $this->hasOne(Category::class, ['id' => 'category_id']);
+        return $this->hasOne(Category::class, ['id' => 'category_id'])->activo();
     }
 
     /**
@@ -92,7 +92,7 @@ class Device extends \yii\db\ActiveRecord
      */
     public function getOffice()
     {
-        return $this->hasOne(Office::class, ['id' => 'office_id']);
+        return $this->hasOne(Office::class, ['id' => 'office_id'])->activo();
     }
 
     /**
@@ -160,8 +160,8 @@ class Device extends \yii\db\ActiveRecord
             }
         }
 
-        if (count($this->performance) > 0) {
-            foreach ($this->performance as $performance) {
+        if (count($this->performances) > 0) {
+            foreach ($this->performances as $performance) {
                 $performance->delete();
             }
         }
