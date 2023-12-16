@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use app\models\Setting;
+
 /**
  * This is the ActiveQuery class for [[Setting]].
  *
@@ -30,5 +32,9 @@ class SettingQuery extends \yii\db\ActiveQuery
     public function one($db = null)
     {
         return parent::one($db);
+    }
+
+    public function activo(){
+        return $this->andFilterWhere(['activo' => Setting::ACTIVO_SI])
     }
 }

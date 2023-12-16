@@ -11,6 +11,7 @@ use Yii;
  * @property string $name
  * @property string $description
  * @property int $device_id
+ * @property int $activo
  * @property string $creation_date
  * @property string|null $edition_date
  *
@@ -18,6 +19,10 @@ use Yii;
  */
 class Setting extends \yii\db\ActiveRecord
 {
+    const ACTIVO_SI = 1;
+    const ACTIVO_NO = 0;
+
+
     public $office_id;
     /**
      * {@inheritdoc}
@@ -33,7 +38,7 @@ class Setting extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description', 'device_id', 'creation_date'], 'required'],
+            [['name', 'description', 'device_id', 'creation_date', 'activo'], 'required'],
             [['description'], 'string'],
             [['device_id'], 'integer'],
             [['creation_date', 'edition_date'], 'safe'],
@@ -54,6 +59,7 @@ class Setting extends \yii\db\ActiveRecord
             'device_id' => 'Device ID',
             'creation_date' => 'Creation Date',
             'edition_date' => 'Edition Date',
+            'activo' => 'Activo'
         ];
     }
 
@@ -74,5 +80,21 @@ class Setting extends \yii\db\ActiveRecord
     public static function find()
     {
         return new SettingQuery(get_called_class());
+    }
+
+    public function beforeSave(){
+
+        if (parent::beforeSave()) {
+
+            if ($this->isNewRecord)
+                $this->activo = self::ACTIVO_SI;
+            
+            return true;
+        }
+    }
+
+    public function delete(){
+        $this->activo = self::ACTIVO_NO;
+        $this->save();
     }
 }

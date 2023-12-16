@@ -39,6 +39,7 @@ class SettingController extends Controller
     public function actionIndex()
     {
         $searchModel = new SettingSearch();
+        $searchModel->activo = Setting::ACTIVO_SI;
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -134,7 +135,7 @@ class SettingController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Setting::findOne(['id' => $id])) !== null) {
+        if (($model = Setting::findOne(['id' => $id]))->activo() !== null) {
             return $model;
         }
 
