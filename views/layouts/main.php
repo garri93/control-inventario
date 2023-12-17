@@ -39,8 +39,8 @@ AppAsset::register($this);
 <header>
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->user->identity->getUserAdminPanel(),
+        'brandLabel' => "Control de inventario",
+        'brandUrl' => '/customer/index',
         'options' => [
             'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
         ],
@@ -49,19 +49,16 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
-            ['label' => 'Inicio', 'url' => [Yii::$app->user->identity->getUserAdminPanel()]],
+           
             ['label' => 'Usuarios', 'url' => ['/user/index'],'visible' => Yii::$app->user->identity->isUserAdmin()],
             ['label' => 'Clientes', 'url' => ['/customer/index'],'visible' => Yii::$app->user->identity->isUserAdmin()|| Yii::$app->user->identity->isUserTechnical()],
-            ['label' => 'Oficinas', 'url' => ['/office/index']],
-            ['label' => 'Dispositivos', 'url' => ['/device/index'],'visible' => Yii::$app->user->identity->isUserAdmin()|| Yii::$app->user->identity->isUserTechnical() || Yii::$app->user->identity->isUserManager()],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
 
             ['label' => 'Hola, '.Yii::$app->user->identity->username,
                 'items' => [
-                    ['label' => 'Panel administracion', 'url' => [Yii::$app->user->identity->getUserAdminPanel()]],
-                       
+                      
                         '<div>'
                         . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
                         . Html::submitButton(
@@ -89,12 +86,6 @@ AppAsset::register($this);
     </div>
 </main>
 
-<footer class="footer mt-auto py-3 text-muted">
-    <div class="container">
-        <p class="float-left">&copy; My Company <?= date('Y') ?></p>
-        <p class="float-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
 
 <?php $this->endBody() ?>
 </body>

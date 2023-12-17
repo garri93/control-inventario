@@ -37,7 +37,7 @@ class DeviceController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create', 'office-customer'],                       
+                        'actions' => ['create', 'office-customer', 'actionOfficeCustomer'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -47,7 +47,7 @@ class DeviceController extends Controller
                     
         
                     [
-                        'actions' => ['update','delete', 'office-customer'],                       
+                        'actions' => ['update','delete', 'office-customer', 'actionOfficeCustomer'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {

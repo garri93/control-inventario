@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Attribute;
 use app\models\Device;
 use app\models\User;
+use app\models\Office;
 use app\models\AttributeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -42,10 +43,10 @@ class AttributeController extends Controller
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            $attribute = Attribute::findOne(Yii::$app->request->get('id'));
-                            if($attribute === null) 
+                            $device = Device::findOne(Yii::$app->request->get('device_id'));
+                            if($device === null) 
                                 return false;
-                            return Yii::$app->user->identity->canAccessByAssignedOffice($attribute->device->office_id) && !Yii::$app->user->identity->isUserManager();
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($device->office_id) && !Yii::$app->user->identity->isUserManager();
                         },
                     ],
                     [
@@ -53,10 +54,10 @@ class AttributeController extends Controller
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            $attribute = Attribute::findOne(Yii::$app->request->get('id'));
-                            if($attribute === null) 
+                            $device = Device::findOne(Yii::$app->request->get('device_id'));
+                            if($device === null) 
                                 return false;
-                            return Yii::$app->user->identity->canAccessByAssignedOffice($attribute->device->office_id);
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($device->office_id);
                         },
                     ],
 

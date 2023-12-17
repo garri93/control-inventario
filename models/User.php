@@ -115,7 +115,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'phone' => 'Telefono',
             'company_id' => 'Empresa',
             'role' => 'Rol',
-            'password' => 'Password',
+            'password' => 'Contraseña',
             'email' => 'email',
             'activo' => 'Activo'
         ];

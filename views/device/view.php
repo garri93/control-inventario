@@ -6,7 +6,6 @@ use yii\grid\GridView;
 use app\models\Attribute;
 use app\models\Setting;
 use app\models\Performance;
-use app\models\Office;
 use app\models\Device;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -114,7 +113,7 @@ $this->title = $model->name;
                                         'class' => ActionColumn::className(),
                                         'template' => '{update} {delete} ',
                                         'urlCreator' => function ($action, Attribute $model, $key, $index, $column) {
-                                            return Url::toRoute(['/attribute/'.$action, 'id' => $model->id, 'device_id' => $model->device_id, 'office_id' => $model->device->office_id]);
+                                            return Url::toRoute(['/attribute/'.$action, 'id' => $model->id, 'device_id' => $model->device_id, 'office_id' => $model->office_id]);
                                          }
                                     ],
                                         
@@ -154,7 +153,7 @@ $this->title = $model->name;
                                         'class' => ActionColumn::className(),
                                         'template' => '{view} {update} {delete} ',
                                         'urlCreator' => function ($action, Setting $model, $key, $index, $column) {
-                                            return Url::toRoute(['/setting/'.$action, 'id' => $model->id, 'device_id' => $model->device_id, 'office_id' => $model->device->office_id]);
+                                            return Url::toRoute(['/setting/'.$action, 'id' => $model->id, 'device_id' => $model->device_id, 'office_id' => $model->office_id]);
                                          }
                                     ],              
                                 ],

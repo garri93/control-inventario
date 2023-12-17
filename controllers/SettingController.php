@@ -1,7 +1,7 @@
 <?php
 
 namespace app\controllers;
-
+use app\models\Device;
 use app\models\Setting;
 use app\models\SettingSearch;
 use yii\web\Controller;
@@ -38,10 +38,10 @@ class SettingController extends Controller
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            $setting = Setting::findOne(Yii::$app->request->get('id'));
-                            if($setting === null) 
+                            $device = Device::findOne(Yii::$app->request->get('device_id'));
+                            if($device === null) 
                                 return false;
-                            return Yii::$app->user->identity->canAccessByAssignedOffice($setting->device->office_id) && !Yii::$app->user->identity->isUserManager();
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($device->office_id) && !Yii::$app->user->identity->isUserManager();
                         },
                     ],
                     [
@@ -49,10 +49,10 @@ class SettingController extends Controller
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            $setting = Setting::findOne(Yii::$app->request->get('id'));
-                            if($setting === null) 
+                            $device = Device::findOne(Yii::$app->request->get('device_id'));
+                            if($device === null) 
                                 return false;
-                            return Yii::$app->user->identity->canAccessByAssignedOffice($setting->device->office_id);
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($device->office_id);
                         },
                     ],
 
@@ -93,6 +93,7 @@ class SettingController extends Controller
      */
     public function actionView($id)
     {
+        
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);

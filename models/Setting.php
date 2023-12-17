@@ -24,6 +24,7 @@ class Setting extends \yii\db\ActiveRecord
 
 
     public $office_id;
+    
     /**
      * {@inheritdoc}
      */
@@ -70,7 +71,7 @@ class Setting extends \yii\db\ActiveRecord
      */
     public function getDevice()
     {
-        return $this->hasOne(Device::class, ['id' => 'device_id'])->activo();
+        return $this->hasOne(Device::class, ['id' => 'device_id']);
     }
 
     /**
