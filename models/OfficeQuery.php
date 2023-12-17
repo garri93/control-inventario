@@ -37,6 +37,11 @@ class OfficeQuery extends \yii\db\ActiveQuery
         return $this->andFilterWhere(['customer_id' =>  $id]);
     }
 
+    public function activo(){
+        return $this->andFilterWhere(['activo' => Office::ACTIVO_SI]);
+    }
+    
+
    
 
 

@@ -17,7 +17,7 @@ class AttributeSearch extends Attribute
     public function rules()
     {
         return [
-            [['id', 'device_id'], 'integer'],
+            [['id', 'device_id','activo'], 'integer'],
             [['name', 'description'], 'safe'],
         ];
     }
@@ -60,6 +60,7 @@ class AttributeSearch extends Attribute
         $query->andFilterWhere([
             'id' => $this->id,
             'device_id' => $this->device_id,
+            'activo' => $this->activo,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

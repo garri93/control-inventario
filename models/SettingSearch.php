@@ -17,7 +17,7 @@ class SettingSearch extends Setting
     public function rules()
     {
         return [
-            [['id', 'device_id'], 'integer'],
+            [['id', 'device_id', 'activo'], 'integer'],
             [['name', 'description', 'creation_date', 'edition_date'], 'safe'],
         ];
     }
@@ -62,6 +62,7 @@ class SettingSearch extends Setting
             'device_id' => $this->device_id,
             'creation_date' => $this->creation_date,
             'edition_date' => $this->edition_date,
+            'activo' => $this->activo,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

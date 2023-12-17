@@ -17,7 +17,7 @@ class PerformanceSearch extends Performance
     public function rules()
     {
         return [
-            [['id', 'device_id'], 'integer'],
+            [['id', 'device_id', 'activo'], 'integer'],
             [['name', 'description', 'date'], 'safe'],
         ];
     }
@@ -61,6 +61,7 @@ class PerformanceSearch extends Performance
             'id' => $this->id,
             'device_id' => $this->device_id,
             'date' => $this->date,
+            'activo' => $this->activo,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

@@ -16,6 +16,10 @@ use Yii;
  */
 class Attribute extends \yii\db\ActiveRecord
 {
+
+    const ACTIVO_SI = 1;
+    const ACTIVO_NO = 0;
+
     public $office_id;
     /**
      * {@inheritdoc}
@@ -32,7 +36,7 @@ class Attribute extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'device_id'], 'required'],
-            [['device_id'], 'integer'],
+            [['device_id', 'activo'], 'integer'],
             [['description'], 'string'],
             [['name'], 'string', 'max' => 100],
             [['device_id'], 'exist', 'skipOnError' => true, 'targetClass' => Device::class, 'targetAttribute' => ['device_id' => 'id']],
@@ -49,6 +53,7 @@ class Attribute extends \yii\db\ActiveRecord
             'name' => 'Nombre',
             'device_id' => 'Dispositivo',
             'description' => 'Descripcion',
+            'activo' => 'Activo'
         ];
     }
 
@@ -59,7 +64,7 @@ class Attribute extends \yii\db\ActiveRecord
      */
     public function getDevice()
     {
-        return $this->hasOne(Device::class, ['id' => 'device_id']);
+        return $this->hasOne(Device::class, ['id' => 'device_id'])->activo();
     }
 
     /**
@@ -69,5 +74,21 @@ class Attribute extends \yii\db\ActiveRecord
     public static function find()
     {
         return new AttributeQuery(get_called_class());
+    }
+
+    public function beforeSave($insert){
+
+        if (parent::beforeSave($insert)) {
+
+            if ($this->isNewRecord)
+                $this->activo = self::ACTIVO_SI;
+            
+            return true;
+        }
+    }
+
+    public function delete(){
+        $this->activo = self::ACTIVO_NO;
+        $this->save();
     }
 }

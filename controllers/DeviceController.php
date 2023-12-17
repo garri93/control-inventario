@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Device;
 use app\models\DeviceSearch;
+use app\models\DeviceQuery;
 use app\models\SettingSearch;
 use app\models\performanceSearch;
 use app\models\AttributeSearch;
@@ -88,6 +89,7 @@ class DeviceController extends Controller
     public function actionIndex()
     {
         $searchModel = new DeviceSearch();
+        $searchModel->activo = Device::ACTIVO_SI;
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [

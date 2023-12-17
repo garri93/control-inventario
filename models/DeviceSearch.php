@@ -17,7 +17,7 @@ class DeviceSearch extends Device
     public function rules()
     {
         return [
-            [['id', 'parent_device', 'office_id', 'category_id'], 'integer'],
+            [['id', 'parent_device', 'office_id', 'category_id', 'activo'], 'integer'],
             [['name'], 'safe'],
         ];
     }
@@ -62,9 +62,11 @@ class DeviceSearch extends Device
             'parent_device' => $this->parent_device,
             'office_id' => $this->office_id,
             'category_id' => $this->category_id,
+            'activo' => $this->activo,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+                ->andFilterWhere(['like', 'activo', $this->activo]);
 
         return $dataProvider;
     }

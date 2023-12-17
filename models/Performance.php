@@ -11,6 +11,7 @@ use Yii;
  * @property string $name
  * @property string $description
  * @property int $device_id
+ * @property int $activo
  * @property string $date
  *
  * @property Device $device
@@ -19,6 +20,9 @@ use Yii;
  */
 class Performance extends \yii\db\ActiveRecord
 {
+
+    const ACTIVO_SI = 1;
+    const ACTIVO_NO = 0;
 
     /**
  * Extension Many to Many
@@ -63,7 +67,7 @@ public function behaviors()
         return [
             [['name', 'description', 'device_id', 'date'], 'required'],
             [['description'], 'string'],
-            [['device_id'], 'integer'],
+            [['device_id', 'activo'], 'integer'],
             [['date'], 'safe'],
             [['name'], 'string', 'max' => 45],
             [['device_id'], 'exist', 'skipOnError' => true, 'targetClass' => Device::class, 'targetAttribute' => ['device_id' => 'id']],
@@ -82,6 +86,7 @@ public function behaviors()
             'description' => 'Descripcion',
             'device_id' => 'Dispositivo',
             'date' => 'Fecha realizacion',
+            'activo' => 'Activo',
         ];
     }
 
@@ -122,5 +127,30 @@ public function behaviors()
     public static function find()
     {
         return new PerformanceQuery(get_called_class());
+    }
+
+    public function beforeSave($insert){
+
+        if (parent::beforeSave($insert)) {
+
+            if ($this->isNewRecord)
+                $this->activo = self::ACTIVO_SI;
+            
+            return true;
+        }
+    }
+
+    public function delete(){
+
+        // no hay relaciones por debajo no hago nada
+
+
+        // la quitamos de la n:m, borrar elemento de un array por valor
+        if (($key = array_search($this->id, $this->UserPerformance)) !== false) {
+            unset($this->UserPerformance[$key]);
+        }
+
+        $this->activo = self::ACTIVO_NO;
+        $this->save();
     }
 }

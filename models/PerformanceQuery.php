@@ -31,4 +31,8 @@ class PerformanceQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+    public function activo(){
+        return $this->andFilterWhere(['activo' => Performance::ACTIVO_SI]);
+    }
 }

@@ -76,6 +76,7 @@ class SettingController extends Controller
     public function actionIndex()
     {
         $searchModel = new SettingSearch();
+        $searchModel->activo = Setting::ACTIVO_SI;
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [

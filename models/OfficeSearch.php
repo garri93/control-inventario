@@ -17,7 +17,7 @@ class OfficeSearch extends Office
     public function rules()
     {
         return [
-            [['id', 'customer_id'], 'integer'],
+            [['id', 'customer_id', 'activo'], 'integer'],
             [['name', 'address', 'postal_code', 'phone'], 'safe'],
         ];
     }
@@ -59,14 +59,16 @@ class OfficeSearch extends Office
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'customer_id' => $this->customer_id
+            'customer_id' => $this->customer_id,
+            'activo' => $this->activo,
             
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'address', $this->address])
             ->andFilterWhere(['like', 'postal_code', $this->postal_code])
-            ->andFilterWhere(['like', 'phone', $this->phone]);
+            ->andFilterWhere(['like', 'phone', $this->phone])
+            ->andFilterWhere(['like', 'activo', $this->activo]);
        
 
         return $dataProvider;

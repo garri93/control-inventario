@@ -20,6 +20,11 @@ use Yii;
  */
 class Customer extends \yii\db\ActiveRecord
 {
+
+    const ACTIVO_SI = 1;
+    const ACTIVO_NO = 0;
+    
+
     /**
      * {@inheritdoc}
      */
@@ -35,7 +40,7 @@ class Customer extends \yii\db\ActiveRecord
     {
         return [
             [['internal_code', 'name', 'cif', 'company_id', 'phone'], 'required'],
-            [['company_id', 'phone'], 'integer'],
+            [['company_id', 'phone', 'activo'], 'integer'],
             [['notes'], 'string'],
             [['internal_code'], 'string', 'max' => 45],
             [['name'], 'string', 'max' => 100],
@@ -56,6 +61,7 @@ class Customer extends \yii\db\ActiveRecord
             'company_id' => 'Company ID',
             'phone' => 'Telefono', 
             'notes' => 'Anotaciones', 
+            'activo' => 'Activo'
         ];
     }
 
@@ -87,4 +93,27 @@ class Customer extends \yii\db\ActiveRecord
     {
         return new CustomerQuery(get_called_class());
     }
+
+    public function beforeSave($insert){
+
+        if (parent::beforeSave($insert)) {
+
+            if ($this->isNewRecord)
+                $this->activo = self::ACTIVO_SI;
+            
+            return true;
+        }
+    }
+
+    public function delete(){
+        if (count($this->offices) > 0) {
+            foreach ($this->offices as $office) {
+                $office->delete();
+            }
+        }
+
+        $this->activo = self::ACTIVO_NO;
+        $this->save();
+    }
+    
 }

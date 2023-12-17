@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'description:ntext',
             'device_id',
             'creation_date',
+            'activo',
             //'edition_date',
             [
                 'class' => ActionColumn::className(),
