@@ -38,9 +38,9 @@ class Setting extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description', 'device_id', 'creation_date', 'activo'], 'required'],
+            [['name', 'description', 'device_id', 'creation_date'], 'required'],
             [['description'], 'string'],
-            [['device_id'], 'integer'],
+            [['device_id', 'activo'], 'integer'],
             [['creation_date', 'edition_date'], 'safe'],
             [['name'], 'string', 'max' => 100],
             [['device_id'], 'exist', 'skipOnError' => true, 'targetClass' => Device::class, 'targetAttribute' => ['device_id' => 'id']],
@@ -82,9 +82,9 @@ class Setting extends \yii\db\ActiveRecord
         return new SettingQuery(get_called_class());
     }
 
-    public function beforeSave(){
+    public function beforeSave($insert){
 
-        if (parent::beforeSave()) {
+        if (parent::beforeSave($insert)) {
 
             if ($this->isNewRecord)
                 $this->activo = self::ACTIVO_SI;

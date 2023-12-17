@@ -6,6 +6,7 @@ use yii\grid\GridView;
 use app\models\Attribute;
 use app\models\Setting;
 use app\models\Performance;
+use app\models\Office;
 use app\models\Device;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;

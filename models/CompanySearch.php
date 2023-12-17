@@ -17,7 +17,7 @@ class CompanySearch extends Company
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id', 'activo'], 'integer'],
             [['email', 'name', 'cif'], 'safe'],
         ];
     }
@@ -59,6 +59,7 @@ class CompanySearch extends Company
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'activo' => $this->activo,
         ]);
 
         $query->andFilterWhere(['like', 'email', $this->email])

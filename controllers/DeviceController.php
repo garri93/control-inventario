@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Device;
 use app\models\DeviceSearch;
+use app\models\DeviceQuery;
 use app\models\SettingSearch;
 use app\models\performanceSearch;
 use app\models\AttributeSearch;
@@ -223,7 +224,7 @@ class DeviceController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Device::findOne(['id' => $id])) !== null)->activo() {
+        if (($model = Device::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

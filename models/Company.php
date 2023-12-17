@@ -17,6 +17,10 @@ use Yii;
  */
 class Company extends \yii\db\ActiveRecord
 {
+
+    const ACTIVO_SI = 1;
+    const ACTIVO_NO = 0;
+
     /**
      * {@inheritdoc}
      */
@@ -36,6 +40,7 @@ class Company extends \yii\db\ActiveRecord
             [['cif'], 'string', 'max' => 9],
             [['email'], 'unique'],
             [['cif'], 'unique'],
+            [['activo'], 'integer'],
         ];
     }
 
@@ -81,9 +86,9 @@ class Company extends \yii\db\ActiveRecord
         return new CompanyQuery(get_called_class());
     }
 
-    ublic function beforeSave(){
+    public function beforeSave($insert){
 
-        if (parent::beforeSave()) {
+        if (parent::beforeSave($insert)) {
 
             if ($this->isNewRecord)
                 $this->activo = self::ACTIVO_SI;

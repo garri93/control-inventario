@@ -28,6 +28,9 @@ use Yii;
  */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
+    const ACTIVO_SI = 1;
+    const ACTIVO_NO = 0;
+
     const ROL_ADMIN = 1;
     const ROL_TECHNICAL = 2;
     const ROL_MANAGER = 3;
@@ -85,7 +88,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
             [['username', 'surname', 'phone', 'company_id', 'role', 'password'], 'required'],
-            [['phone', 'company_id'], 'integer'],
+            [['phone', 'company_id', 'activo'], 'integer'],
             [['username', 'surname', 'password'], 'string', 'max' => 100],
             [['dni'], 'string', 'max' => 9],
             [['email'], 'string', 'max' => 50],
@@ -114,6 +117,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'role' => 'Rol',
             'password' => 'Password',
             'email' => 'email',
+            'activo' => 'Activo'
         ];
     }
 
@@ -219,6 +223,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             if ($this->isNewRecord) {
                 $this->auth_key = \Yii::$app->security->generateRandomString();
                 $this->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
+                $this->activo = self::ACTIVO_SI; 
+
             }
             return true;
         }
@@ -419,5 +425,15 @@ public function canAccessBycompany($id_company):bool
 
 
 
+public function delete(){
+
+     // la quitamos de la n:m, borrar elemento de un array por valor
+     if (($key = array_search($this->id, $this->assignmentOffice)) !== false) {
+        unset($this->assignmentOffice[$key]);
+    }
+
+    $this->activo = self::ACTIVO_NO;
+    $this->save();
+}
 
 }

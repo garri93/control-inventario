@@ -16,6 +16,7 @@ use yii\helpers\ArrayHelper;
  * @property string $postal_code
  * @property string $phone
  * @property int $customer_id
+ * @property int $activo
  *
  * @property Customer $customer
  * @property Device[] $devices
@@ -24,6 +25,8 @@ use yii\helpers\ArrayHelper;
  */
 class Office extends \yii\db\ActiveRecord
 {
+    const ACTIVO_SI = 1;
+    const ACTIVO_NO = 0;
 
     public $category_id;
     
@@ -68,7 +71,7 @@ class Office extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'address', 'postal_code', 'phone', 'customer_id'], 'required'],
-            [['customer_id'], 'integer'],
+            [['customer_id','activo'], 'integer'],
             [['name'], 'string', 'max' => 100],
             [['address'], 'string', 'max' => 250],
             [['postal_code'], 'string', 'max' => 45],
@@ -90,6 +93,7 @@ class Office extends \yii\db\ActiveRecord
             'postal_code' => 'Codigo Postal',
             'phone' => 'Telefono',
             'customer_id' => 'Cliente',
+            'activo' => 'Activo',
         ];
     }
 
@@ -156,6 +160,33 @@ class Office extends \yii\db\ActiveRecord
         );
         
     } 
+
+    public function beforeSave($insert){
+
+        if (parent::beforeSave($insert)) {
+
+            if ($this->isNewRecord)
+                $this->activo = self::ACTIVO_SI;
+            
+            return true;
+        }
+    }
+
+    public function delete(){
+        if (count($this->devices) > 0) {
+            foreach ($this->devices as $device) {
+                $device->delete();
+            }
+        }
+
+         // la quitamos de la n:m, borrar elemento de un array por valor
+         if (($key = array_search($this->id, $this->assignmentUsers)) !== false) {
+            unset($this->assignmentUsers[$key]);
+        }
+
+        $this->activo = self::ACTIVO_NO;
+        $this->save();
+    }
 
 
 

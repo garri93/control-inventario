@@ -31,4 +31,8 @@ class UserQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+    public function activo(){
+        return $this->andFilterWhere(['activo' => User::ACTIVO_SI]);
+    }
 }

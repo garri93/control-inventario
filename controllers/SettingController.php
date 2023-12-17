@@ -172,7 +172,7 @@ class SettingController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Setting::findOne(['id' => $id]))->activo() !== null) {
+        if (($model = Setting::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

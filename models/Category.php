@@ -15,6 +15,9 @@ use Yii;
  */
 class Category extends \yii\db\ActiveRecord
 {
+    const ACTIVO_SI = 1;
+    const ACTIVO_NO = 0;
+
     /**
      * {@inheritdoc}
      */
@@ -31,6 +34,7 @@ class Category extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['name'], 'string', 'max' => 100],
+            [['activo'], 'integer'],
         ];
     }
 
@@ -72,5 +76,27 @@ class Category extends \yii\db\ActiveRecord
     public static function find()
     {
         return new CategoryQuery(get_called_class());
+    }
+
+    public function beforeSave($insert){
+
+        if (parent::beforeSave($insert)) {
+
+            if ($this->isNewRecord)
+                $this->activo = self::ACTIVO_SI;
+            
+            return true;
+        }
+    }
+
+    public function delete(){
+        if (count($this->devices) > 0) {
+            foreach ($this->devices as $device) {
+                $device->delete();
+            }
+        }
+
+        $this->activo = self::ACTIVO_NO;
+        $this->save();
     }
 }

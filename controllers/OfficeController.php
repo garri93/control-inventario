@@ -197,7 +197,7 @@ class OfficeController extends Controller
 
     protected function findModel($id)
     {
-        if (($model = Office::findOne(['id' => $id])) !== null) {
+        if (($model = Office::findOne(['id' => $id]))  !== null) {
             return $model;
         }
 

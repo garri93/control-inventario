@@ -129,9 +129,9 @@ public function behaviors()
         return new PerformanceQuery(get_called_class());
     }
 
-    ublic function beforeSave(){
+    public function beforeSave($insert){
 
-        if (parent::beforeSave()) {
+        if (parent::beforeSave($insert)) {
 
             if ($this->isNewRecord)
                 $this->activo = self::ACTIVO_SI;

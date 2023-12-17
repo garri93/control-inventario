@@ -39,6 +39,10 @@ class CustomerQuery extends \yii\db\ActiveQuery
     public function dropDownCustomer(){
         return ArrayHelper::map(Customer::find()->orderBy('name')->where(['company_id' => Yii::$app->user->identity->company_id])->all(), 'id', 'name');
     } 
+
+    public function activo(){
+        return $this->andFilterWhere(['activo' => Customer::ACTIVO_SI]);
+    }
     
 
 }

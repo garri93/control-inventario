@@ -13,6 +13,7 @@ use yii\helpers\ArrayHelper;
  * @property string $name
  * @property int $office_id
  * @property int|null $category_id
+ * @property int|null $activo
  *
  * @property Attribute[] $deviceAttributes
  * @property Category $category
@@ -72,7 +73,7 @@ class Device extends \yii\db\ActiveRecord
      */
     public function getDeviceAttributes()
     {
-        return $this->hasMany(Attribute::class, ['device_id' => 'id'])->activo();
+        return $this->hasMany(Attribute::class, ['device_id' => 'id']);
     }
 
     /**
@@ -82,7 +83,7 @@ class Device extends \yii\db\ActiveRecord
      */
     public function getCategory()
     {
-        return $this->hasOne(Category::class, ['id' => 'category_id'])->activo();
+        return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
 
     /**
@@ -92,7 +93,7 @@ class Device extends \yii\db\ActiveRecord
      */
     public function getOffice()
     {
-        return $this->hasOne(Office::class, ['id' => 'office_id'])->activo();
+        return $this->hasOne(Office::class, ['id' => 'office_id']);
     }
 
     /**
@@ -141,9 +142,9 @@ class Device extends \yii\db\ActiveRecord
         }
     }
 
-    public function beforeSave(){
+    public function beforeSave($insert){
 
-        if (parent::beforeSave()) {
+        if (parent::beforeSave($insert)) {
 
             if ($this->isNewRecord)
                 $this->activo = self::ACTIVO_SI;
@@ -167,7 +168,7 @@ class Device extends \yii\db\ActiveRecord
         }
 
         if ($this->parent_device === null) {
-            $childs = Device::find()->where(['parent_device' => $this->id])->activo()->deMiEmpresa()->all();
+            $childs = Device::find()->where(['parent_device' => $this->id])->all();
 
             if (count($childs) > 0) {
                 foreach ($childs as $child) {

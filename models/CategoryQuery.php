@@ -31,4 +31,8 @@ class CategoryQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+    public function activo(){
+        return $this->andFilterWhere(['activo' => Setting::ACTIVO_SI]);
+    }
 }
