@@ -60,7 +60,7 @@ class AttributeSearch extends Attribute
         $query->andFilterWhere([
             'id' => $this->id,
             'device_id' => $this->device_id,
-            'activo' => $this->activo,
+            'activo' => Attribute::ACTIVO_SI,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

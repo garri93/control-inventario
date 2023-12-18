@@ -167,7 +167,7 @@ class PerformanceController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Performance::findOne(['id' => $id])) !== null) {
+        if (($model = Performance::find(['id' => $id])->activo()->one()) !== null) {
             return $model;
         }
 
@@ -180,7 +180,6 @@ class PerformanceController extends Controller
 
      public function actionDeleteassignment($user_id,$performance_id)
      {
-         $model = new UserPerformance();
          $model = UserPerformance::findOne($user_id,$performance_id);
          
          if ($model) {

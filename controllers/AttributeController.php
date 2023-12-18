@@ -173,7 +173,7 @@ class AttributeController extends Controller
      */
     protected function findModel($id, $device_id)
     {
-        if (($model = Attribute::findOne(['id' => $id, 'device_id' => $device_id])->activo()) !== null) {
+        if (($model = Attribute::find(['id' => $id, 'device_id' => $device_id])->activo()->one()) !== null) {
             return $model;
         }
 

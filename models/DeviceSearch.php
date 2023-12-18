@@ -40,7 +40,7 @@ class DeviceSearch extends Device
      */
     public function search($params)
     {
-        $query = Device::find();
+        $query = Device::find()->activo();
 
         // add conditions that should always apply here
 
@@ -62,7 +62,6 @@ class DeviceSearch extends Device
             'parent_device' => $this->parent_device,
             'office_id' => $this->office_id,
             'category_id' => $this->category_id,
-            'activo' => $this->activo,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

@@ -59,6 +59,7 @@ class OfficeController extends Controller
                             $office = Office::findOne(Yii::$app->request->get('id'));
                             if($office === null) 
                                 return false;
+
                             return Yii::$app->user->identity->canAccessByAssignedOffice($office->id);
                         },
                     ],

@@ -60,7 +60,7 @@ class OfficeSearch extends Office
         $query->andFilterWhere([
             'id' => $this->id,
             'customer_id' => $this->customer_id,
-            'activo' => $this->activo,
+            'activo' => Office::ACTIVO_SI,
             
         ]);
 

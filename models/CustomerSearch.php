@@ -61,7 +61,7 @@ class CustomerSearch extends Customer
             'id' => $this->id,
             'company_id' => $this->company_id,
             'phone' => $this->phone, 
-            'activo' => $this->activo,
+            'activo' => Customer::ACTIVO_SI,
         ]);
 
         $query->andFilterWhere(['like', 'internal_code', $this->internal_code])

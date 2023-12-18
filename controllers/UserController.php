@@ -157,7 +157,7 @@ class UserController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = User::findOne(['id' => $id])) !== null) {
+        if (($model = User::find(['id' => $id])->activo()->one()) !== null) {
             return $model;
         }
 

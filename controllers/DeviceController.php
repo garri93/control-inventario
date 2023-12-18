@@ -224,7 +224,7 @@ class DeviceController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Device::findOne(['id' => $id])) !== null) {
+        if (($model = Device::find(['id' => $id])->activo()->one()) !== null) {
             return $model;
         }
 
@@ -248,7 +248,7 @@ public function actionOfficeCustomer($customer_id = false)
     if (isset($_POST['depdrop_parents'])) {
         $parents = $_POST['depdrop_parents'];
         if ($parents != null) {
-            $office = Office::find()->where(['customer_id' => $parents[0] ])->orderBy(['name' => SORT_DESC])->all();
+            $office = Office::find()->where(['customer_id' => $parents[0] ])->activo()->orderBy(['name' => SORT_DESC])->all();
 
             $selected = '';
 

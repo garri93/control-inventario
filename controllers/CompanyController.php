@@ -146,7 +146,7 @@ class CompanyController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Company::findOne(['id' => $id])) !== null) {
+        if (($model = Company::find(['id' => $id])->active()->one()) !== null) {
             return $model;
         }
 
