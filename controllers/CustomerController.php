@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Customer;
 use app\models\CustomerSearch;
 use yii\web\Controller;
+
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\User;
@@ -198,7 +199,7 @@ class CustomerController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Customer::find()->where(['id' => $id])->deMiEmpesa()->one()) !== null) {
+        if (($model = Customer::find()->where(['id' => $id])->deMiEmpesa()->activo()->one()) !== null) {
             return $model;
         }
 

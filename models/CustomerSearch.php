@@ -40,7 +40,7 @@ class CustomerSearch extends Customer
      */
     public function search($params)
     {
-        $query = Customer::find();
+        $query = Customer::find()->activo();
 
         // add conditions that should always apply here
 
@@ -61,7 +61,7 @@ class CustomerSearch extends Customer
             'id' => $this->id,
             'company_id' => $this->company_id,
             'phone' => $this->phone, 
-            'activo' => $this->activo,
+            'activo' => Customer::ACTIVO_SI,
         ]);
 
         $query->andFilterWhere(['like', 'internal_code', $this->internal_code])

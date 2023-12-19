@@ -37,7 +37,7 @@ class DeviceController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create', 'office-customer'],                       
+                        'actions' => ['create', 'office-customer', 'actionOfficeCustomer'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -47,14 +47,14 @@ class DeviceController extends Controller
                     
         
                     [
-                        'actions' => ['update','delete', 'office-customer'],                       
+                        'actions' => ['update','delete', 'office-customer', 'actionOfficeCustomer'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            $device = Device::findOne(Yii::$app->request->get('id'));
-                            if($device === null) 
+                            $devicerule = Device::findOne(Yii::$app->request->get('id'));
+                            if($devicerule === null) 
                                 return false;
-                            return Yii::$app->user->identity->canAccessByAssignedOffice($device->office_id) && !Yii::$app->user->identity->isUserManager();
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($devicerule->office_id) && !Yii::$app->user->identity->isUserManager();
                         },
                     ],
                     [
@@ -62,10 +62,10 @@ class DeviceController extends Controller
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            $device = Device::findOne(Yii::$app->request->get('id'));
-                            if($device === null) 
+                            $devicerule = Device::findOne(Yii::$app->request->get('id'));
+                            if($devicerule === null) 
                                 return false;
-                            return Yii::$app->user->identity->canAccessByAssignedOffice($device->office_id);
+                            return Yii::$app->user->identity->canAccessByAssignedOffice($devicerule->office_id);
                         },
                     ],
 
@@ -107,8 +107,8 @@ class DeviceController extends Controller
     public function actionView($id)
     {
         /**/   $model = $this->findModel($id);
-
-         /** Configuraciones */
+            //echo "<pre>";var_dump($model); echo "</pre>";  die();
+         /** DEvice */
          /**/  $searchModelDevice = new DeviceSearch();
          /**/  $searchModelDevice->parent_device = $id;
          /**/  $dataProviderDevice= $searchModelDevice->search($this->request->queryParams);
@@ -116,6 +116,7 @@ class DeviceController extends Controller
 
                 /** Configuraciones */
          /**/  $searchModelSetting = new SettingSearch();
+         
          /**/  $searchModelSetting->device_id = $id;
          /**/  $dataProviderSetting = $searchModelSetting->search($this->request->queryParams);
 
@@ -208,11 +209,17 @@ class DeviceController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $office_id = "", $parent_device = "")
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        if ($office_id == null){
+            return $this->redirect(['/device/view', 'id' =>  $parent_device]);
+        } else {
+            return $this->redirect(['/office/view', 'id' =>  $office_id]);
+        }
+
+        
     }
 
     /**
@@ -224,7 +231,8 @@ class DeviceController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Device::findOne(['id' => $id])) !== null) {
+
+        if (($model = Device::findone(['id' => $id])) !== null) {
             return $model;
         }
 
@@ -248,7 +256,7 @@ public function actionOfficeCustomer($customer_id = false)
     if (isset($_POST['depdrop_parents'])) {
         $parents = $_POST['depdrop_parents'];
         if ($parents != null) {
-            $office = Office::find()->where(['customer_id' => $parents[0] ])->orderBy(['name' => SORT_DESC])->all();
+            $office = Office::find()->where(['customer_id' => $parents[0] ])->activo()->orderBy(['name' => SORT_DESC])->all();
 
             $selected = '';
 

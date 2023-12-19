@@ -132,7 +132,7 @@ class Device extends \yii\db\ActiveRecord
 
     public function getDeviceparent()
     {
-        $deviceparent = Device::find()->orderBy('name')->where(['id' => $this->parent_device])->one();
+        $deviceparent = Device::find()->activo()->orderBy('name')->where(['id' => $this->parent_device])->one();
     
         // Verifica si se encontró un dispositivo antes de acceder a sus propiedades
         if ($deviceparent !== null) {

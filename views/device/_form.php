@@ -23,7 +23,7 @@ use app\models\Device;
 
 
     <?php
-        $data = ArrayHelper::map(Device::find()->orderBy('name')->where(['office_id' => $model->office_id])->all(), 'id', 'name');
+        $data = ArrayHelper::map(Device::find()->orderBy('name')->where(['office_id' => $model->office_id])->activo()->all(), 'id', 'name');
 
     echo $form->field($model, 'parent_device')->widget(Select2::classname(), [
         'data' => $data,
@@ -53,8 +53,8 @@ use app\models\Device;
        ]);*/
         // Parent 
         
-        $customer = ArrayHelper::map(Customer::find()->orderBy('name')->where(['company_id' => Yii::$app->user->identity->company_id])->all(), 'id', 'name');
-        echo $form->field($model, 'customer_id')->dropDownList($customer, ['id' => 'id_customer', 'prompt' => 'Seleccione un cliente...'])->label('Cliente');
+        $customers = ArrayHelper::map(Customer::find()->where(['company_id' => Yii::$app->user->identity->company_id])->activo()->orderBy('name')->all(), 'id', 'name');
+        echo $form->field($model, 'customer_id')->dropDownList($customers, ['id' => 'id_customer', 'prompt' => 'Seleccione un cliente...'])->label('Cliente');
 
     // Additional input fields passed as params to the child dropdown's pluginOptions
     //$data = ArrayHelper::map(Office::find()->orderBy('name')->where(['customer_id' => ])->all(), 'id', 'name');
@@ -63,7 +63,7 @@ use app\models\Device;
         'options' => ['id' => 'office_id'],
         'pluginOptions' => [
             'depends' => ['id_customer'],
-            'placeholder' => 'Selecciona...',
+            
             //'initialize' => !$model->isNewRecord ,
             'initialize' => $model->customer_id && $model->customer_id > 0 ,
             'url' => Url::to(['office-customer','id_customer' => $model->customer_id]),
@@ -75,7 +75,7 @@ use app\models\Device;
     ?>
 
 <?php
-    $data = ArrayHelper::map(Category::find()->orderBy('name')->where(['company_id' => Yii::$app->user->identity->company_id])->all(), 'id', 'name');
+    $data = ArrayHelper::map(Category::find()->orderBy('name')->where(['company_id' => Yii::$app->user->identity->company_id])->activo()->all(), 'id', 'name');
 
     echo $form->field($model, 'category_id')->widget(Select2::classname(), [
         'data' => $data,
@@ -90,7 +90,7 @@ use app\models\Device;
   
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

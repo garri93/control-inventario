@@ -41,7 +41,7 @@ class OfficeController extends Controller
                     ],
         
                     [
-                        'actions' => ['update','delete'],                       
+                        'actions' => ['update','delete', 'Deleteassignment'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -59,6 +59,7 @@ class OfficeController extends Controller
                             $office = Office::findOne(Yii::$app->request->get('id'));
                             if($office === null) 
                                 return false;
+
                             return Yii::$app->user->identity->canAccessByAssignedOffice($office->id);
                         },
                     ],
@@ -171,11 +172,11 @@ class OfficeController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $customer_id)
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['/customer/view', 'id' => $customer_id]);
     }
 
     /**

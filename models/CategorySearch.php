@@ -40,7 +40,7 @@ class CategorySearch extends Category
      */
     public function search($params)
     {
-        $query = Category::find();
+        $query = Category::find()->activo();
 
         // add conditions that should always apply here
 
@@ -60,7 +60,7 @@ class CategorySearch extends Category
         $query->andFilterWhere([
             'id' => $this->id,
             'company_id' => $this->company_id,
-            'activo' => $this->activo,
+            'activo' => Category::ACTIVO_SI,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);

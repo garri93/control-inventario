@@ -40,7 +40,7 @@ class OfficeSearch extends Office
      */
     public function search($params)
     {
-        $query = Office::find();
+        $query = Office::find()->activo();
 
         // add conditions that should always apply here
 
@@ -60,7 +60,7 @@ class OfficeSearch extends Office
         $query->andFilterWhere([
             'id' => $this->id,
             'customer_id' => $this->customer_id,
-            'activo' => $this->activo,
+            'activo' => Office::ACTIVO_SI,
             
         ]);
 

@@ -40,7 +40,7 @@ class SettingSearch extends Setting
      */
     public function search($params)
     {
-        $query = Setting::find();
+        $query = Setting::find()->activo();
 
         // add conditions that should always apply here
 
@@ -62,7 +62,7 @@ class SettingSearch extends Setting
             'device_id' => $this->device_id,
             'creation_date' => $this->creation_date,
             'edition_date' => $this->edition_date,
-            'activo' => $this->activo,
+            'activo' => Setting::ACTIVO_SI,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

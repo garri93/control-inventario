@@ -3,6 +3,7 @@
 namespace app\models;
 use yii\helpers\ArrayHelper;
 use arogachev\ManyToMany\behaviors\ManyToManyBehavior;
+use app\models\Office;
 
 use Yii;
 
@@ -115,7 +116,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'phone' => 'Telefono',
             'company_id' => 'Empresa',
             'role' => 'Rol',
-            'password' => 'Password',
+            'password' => 'Contraseña',
             'email' => 'email',
             'activo' => 'Activo'
         ];
@@ -391,27 +392,54 @@ public function canAccessBycategory($id_category):bool
 }
 
 
-/** Esta funcion es para validar el acceso a las Clientes de la empresa
- */
+// /** Esta funcion es para validar el acceso a las Clientes de la empresa
+//  */
 
-public function canAccessBycustomer($id_customer):bool
-{ 
+ public function canAccessBycustomer($id_customer):bool
+ { 
   
-    $customers = Customer::find()
-    ->where(['company_id' => Yii::$app->user->identity->company_id])
-    ->all();
+     $customers = Customer::find()
+     ->where(['company_id' => Yii::$app->user->identity->company_id])
+     ->all();
 
-    if (count($customers) == 0) return false; 
+     if (count($customers) == 0) return false; 
 
-    $customer_ids = [];
+     $customer_ids = [];
 
-    foreach ($customers as $customer) {
-        $customer_ids[] = $customer->id;
-    }
+     foreach ($customers as $customer) {
+         $customer_ids[] = $customer->id;
+     }
    
 
     return in_array($id_customer, $customer_ids); 
 }
+
+
+/** Esta funcion es para validar el acceso a las Clientes que tengas oficinas asignadas
+ */
+
+//  public function canAccessBycustomer($id_customer):bool
+//  { 
+   
+//      $offices = Office::find()
+//      ->where(['customer_id' => $id_customer])
+//      ->all();
+ 
+//      if (count($offices) == 0) return false; 
+ 
+//      $customer_ids = [];
+ 
+//      foreach ($offices as $customer) {
+//          $customer_ids[] = $customer->customer_id;
+//      }
+     
+//      $customers = Customer::find()
+//     ->where(['company_id' => Yii::$app->user->identity->company_id])
+//     ->all();
+    
+ 
+//      return in_array($id_customer, $customer_ids); 
+//  }
 
 /** Esta funcion es para validar el acceso a los  datos de empresa de la empresa
  */

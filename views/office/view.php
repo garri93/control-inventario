@@ -44,7 +44,7 @@ $this->title = $model->name;
             <div class="tab-pane fade show active" id="datos" role="tabpanel" aria-labelledby="datos-tab">
                 <p class="button-accion">
                     <?= Html::a('Editar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                    <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
+                    <?= Html::a('Borrar', ['delete', 'id' => $model->id, 'customer_id' => $model->customer_id], [
                         'class' => 'btn btn-danger',
                         'data' => [
                             'confirm' => '¿Seguro que desea borrar esta oficina, tenga en cuenta que se borrar los datos de esta y todos sus dispositivos?',
@@ -74,7 +74,7 @@ $this->title = $model->name;
             <div class="tab-pane fade show" id="device" role="tabpanel" aria-labelledby="device-tab">
              
             <p class="button-accion text-left">
-                <?= Html::a('Crear Dispositivo', ['device/create', 'parent_device' => $model->id, 'office_id' => $model->id, 'customer_id' => $model->customer_id], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Crear Dispositivo', ['device/create', 'office_id' => $model->id, 'customer_id' => $model->customer_id], ['class' => 'btn btn-success']) ?>
         
                 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Mostrar Filtros</button>
             </p>
@@ -157,7 +157,7 @@ $this->title = $model->name;
                                     'class' => ActionColumn::className(),
                                     'header' => 'Acciones',
                                     'urlCreator' => function ($action, Device $model, $key, $index, $column) {
-                                        return Url::toRoute(['/device/' . $action, 'id' => $model->id]);
+                                        return Url::toRoute(['/device/' . $action, 'id' => $model->id, 'office_id' => $model->office_id]);
                                     }
                                 ],
                      
@@ -181,14 +181,7 @@ $this->title = $model->name;
                             <td><?= isset(User::$rolOptions[$user->role]) ? User::$rolOptions[$user->role] : 'Desconocido' ?></td>
                             <td><?= 
                                  Html::a('Ver', ['user/view', 'id' => $user->id], ['class' => 'btn btn-success']); ?>
-                         <?= 
-                                Html::a('Quitar', ['deleteassignment', 'user_id' => $user->id, 'office_id' => $model->id], [
-                                'class' => 'btn btn-danger',
-                                'data' => [
-                                    'confirm' => 'Seguro que quieres desvincular al usuario de esta Oficina?',
-                                    'method' => 'post',
-                                ],
-                            ]) ?></td>
+                         </td>
                             </tr>
                 
                 <?php endforeach; ?>

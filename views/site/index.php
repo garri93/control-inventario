@@ -18,7 +18,7 @@ use yii\helpers\Html;
                     <div class="col-lg-6 col-xl-7">
                         <div class="image-container">
                             <div class="img-wrapper">
-                                <img class="img-fluid" src="img/header-software-app.png" alt="alternative">
+                                <img class="img-fluid" src="img/capturaspantalla/dispositivos/vistadispositivos.png " alt="alternative">
                             </div> <!-- end of img-wrapper -->
                         </div> <!-- end of image-container -->
                     </div> <!-- end of col -->
@@ -123,7 +123,7 @@ use yii\helpers\Html;
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="image-container">
-                                        <img class="img-fluid" src="img/features-1.png" alt="alternative">
+                                        <img class="img-fluid" src="img/capturaspantalla/cliente/vista.png" alt="alternative">
                                     </div> <!-- end of image-container -->
                                 </div> <!-- end of col -->
                                 <div class="col-lg-6">
@@ -141,7 +141,7 @@ use yii\helpers\Html;
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="image-container">
-                                        <img class="img-fluid" src="img/features-2.png" alt="alternative">
+                                        <img class="img-fluid" src="img/capturaspantalla/usuario/index.png " alt="alternative">
                                     </div> <!-- end of image-container -->
                                 </div> <!-- end of col -->
                                 <div class="col-lg-6">
@@ -160,7 +160,7 @@ use yii\helpers\Html;
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="image-container">
-                                        <img class="img-fluid" src="img/features-3.png" alt="alternative">
+                                        <img class="img-fluid" src="img/capturaspantalla/indexcategorias.png" alt="alternative">
                                     </div> <!-- end of image-container -->
                                 </div> <!-- end of col -->
                                 <div class="col-lg-6">
@@ -176,7 +176,7 @@ use yii\helpers\Html;
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="image-container">
-                                        <img class="img-fluid" src="img/features-1.png" alt="alternative">
+                                        <img class="img-fluid" src="img/capturaspantalla/dispositivos/vistadispositivos.png " alt="alternative">
                                     </div> <!-- end of image-container -->
                                 </div> <!-- end of col -->
                                 <div class="col-lg-6">

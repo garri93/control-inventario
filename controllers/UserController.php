@@ -25,7 +25,7 @@ class UserController extends Controller
                 'rules' => [
                     // Acceso sólo para usuarios con rol administrador
                     [
-                        'actions' => ['index', 'create'],                       
+                        'actions' => ['index', 'create', 'Deleteassignment'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -157,7 +157,7 @@ class UserController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = User::findOne(['id' => $id])) !== null) {
+        if (($model = User::findone(['id' => $id])) !== null) {
             return $model;
         }
 

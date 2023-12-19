@@ -40,7 +40,7 @@ class PerformanceSearch extends Performance
      */
     public function search($params)
     {
-        $query = Performance::find();
+        $query = Performance::find()->activo();
 
         // add conditions that should always apply here
 
@@ -61,7 +61,6 @@ class PerformanceSearch extends Performance
             'id' => $this->id,
             'device_id' => $this->device_id,
             'date' => $this->date,
-            'activo' => $this->activo,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

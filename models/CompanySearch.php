@@ -40,7 +40,7 @@ class CompanySearch extends Company
      */
     public function search($params)
     {
-        $query = Company::find();
+        $query = Company::find()->activo();
 
         // add conditions that should always apply here
 
@@ -59,7 +59,7 @@ class CompanySearch extends Company
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'activo' => $this->activo,
+            'activo' => Company::ACTIVO_SI,
         ]);
 
         $query->andFilterWhere(['like', 'email', $this->email])

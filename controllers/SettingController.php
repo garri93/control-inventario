@@ -1,7 +1,7 @@
 <?php
 
 namespace app\controllers;
-
+use app\models\Device;
 use app\models\Setting;
 use app\models\SettingSearch;
 use yii\web\Controller;
@@ -41,7 +41,8 @@ class SettingController extends Controller
                             $setting = Setting::findOne(Yii::$app->request->get('id'));
                             if($setting === null) 
                                 return false;
-                            return Yii::$app->user->identity->canAccessByAssignedOffice($setting->device->office_id) && !Yii::$app->user->identity->isUserManager();
+
+                            return !Yii::$app->user->identity->isUserManager() && Yii::$app->user->identity->canAccessByAssignedOffice($setting->device->office_id);
                         },
                     ],
                     [
@@ -52,6 +53,7 @@ class SettingController extends Controller
                             $setting = Setting::findOne(Yii::$app->request->get('id'));
                             if($setting === null) 
                                 return false;
+
                             return Yii::$app->user->identity->canAccessByAssignedOffice($setting->device->office_id);
                         },
                     ],
@@ -93,6 +95,7 @@ class SettingController extends Controller
      */
     public function actionView($id)
     {
+        
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -134,15 +137,16 @@ class SettingController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id, $device_id, $office_id = "")
+    public function actionUpdate($id, $office_id = "")
     {
         $model = $this->findModel($id);
         $model->edition_date=date("y-m-d");
+        
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
         $model->office_id = $office_id;
-        $model->device_id = $device_id;
+
         return $this->render('update', [
             'model' => $model,
             
@@ -156,11 +160,11 @@ class SettingController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $device_id)
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['/device/view', 'id' =>  $device_id]);
     }
 
     /**
@@ -172,7 +176,7 @@ class SettingController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Setting::findOne(['id' => $id])) !== null) {
+        if (($model = Setting::findone(['id' => $id])) !== null) {
             return $model;
         }
 

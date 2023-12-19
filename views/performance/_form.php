@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use kartik\editors\Summernote;
 use yii\helpers\ArrayHelper;
 use app\models\Device;
+use app\models\Performance;
 use app\models\User;
 use kartik\select2\Select2;
 use kartik\date\DatePicker;
@@ -35,19 +36,19 @@ use kartik\date\DatePicker;
 
     <?php
    
-    $data = ArrayHelper::map(Device::find()->orderBy('name')->where(['office_id' => $model->office_id])->all(), 'id', 'name');
+   //$data = ArrayHelper::map(Device::find()->orderBy('name')->where(['office_id' => $model->office_id])->activo()->all(), 'id', 'name');
 
-    echo $form->field($model, 'device_id')->widget(Select2::classname(), [
-        'data' => $data,
-        'size' => Select2::LARGE,
-        'disabled' => true,
+    // echo $form->field($model,'device_id')->widget(Select2::classname(), [
+    //     'disabled' => true,
+    //     'data' => $data,
+    //     'size' => Select2::LARGE,
         
-        'options' => ['placeholder' => 'Selecciona dispositivo ...','prompt' => 'Seleccione una dispositivo...'],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ])->label('Dispositivo');
-    ?>
+    //     'options' => ['placeholder' => 'Selecciona dispositivo ...','prompt' => 'Seleccione una dispositivo...'],
+    //     'pluginOptions' => [
+    //         'allowClear' => true
+    //     ],
+    // ])->label('Dispositivo');
+    //  ?>
 
     <?= $form->field($model, 'description')->widget(Summernote::class, [
         'useKrajeePresets' => false,
@@ -57,7 +58,7 @@ use kartik\date\DatePicker;
 
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

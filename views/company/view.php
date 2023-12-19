@@ -16,7 +16,7 @@ $this->title = $model->name;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Ediar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Editar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
