@@ -35,7 +35,7 @@ class PerformanceController extends Controller
                     ],
         
                     [
-                        'actions' => ['update','delete'],                       
+                        'actions' => ['update','delete','deleteassignment'],                       
                         'allow' => true,                      
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -151,11 +151,11 @@ class PerformanceController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $device_id)
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['/device/view', 'id' =>  $device_id]);
     }
 
     /**
@@ -167,7 +167,7 @@ class PerformanceController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Performance::find(['id' => $id])->activo()->one()) !== null) {
+        if (($model = Performance::findone(['id' => $id])) !== null) {
             return $model;
         }
 

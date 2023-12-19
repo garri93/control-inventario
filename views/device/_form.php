@@ -23,7 +23,7 @@ use app\models\Device;
 
 
     <?php
-        $data = ArrayHelper::map(Device::find()->orderBy('name')->where(['office_id' => $model->office_id])->all(), 'id', 'name');
+        $data = ArrayHelper::map(Device::find()->orderBy('name')->where(['office_id' => $model->office_id])->activo()->all(), 'id', 'name');
 
     echo $form->field($model, 'parent_device')->widget(Select2::classname(), [
         'data' => $data,
@@ -75,7 +75,7 @@ use app\models\Device;
     ?>
 
 <?php
-    $data = ArrayHelper::map(Category::find()->orderBy('name')->where(['company_id' => Yii::$app->user->identity->company_id])->all(), 'id', 'name');
+    $data = ArrayHelper::map(Category::find()->orderBy('name')->where(['company_id' => Yii::$app->user->identity->company_id])->activo()->all(), 'id', 'name');
 
     echo $form->field($model, 'category_id')->widget(Select2::classname(), [
         'data' => $data,

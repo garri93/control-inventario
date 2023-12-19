@@ -21,6 +21,7 @@ class Attribute extends \yii\db\ActiveRecord
     const ACTIVO_NO = 0;
 
     public $office_id;
+    
     /**
      * {@inheritdoc}
      */

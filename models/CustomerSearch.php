@@ -40,7 +40,7 @@ class CustomerSearch extends Customer
      */
     public function search($params)
     {
-        $query = Customer::find();
+        $query = Customer::find()->activo();
 
         // add conditions that should always apply here
 

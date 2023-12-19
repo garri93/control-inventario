@@ -40,7 +40,7 @@ class AttributeSearch extends Attribute
      */
     public function search($params)
     {
-        $query = Attribute::find();
+        $query = Attribute::find()->activo();
 
         // add conditions that should always apply here
 

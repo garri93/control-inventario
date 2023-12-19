@@ -40,7 +40,7 @@ class OfficeSearch extends Office
      */
     public function search($params)
     {
-        $query = Office::find();
+        $query = Office::find()->activo();
 
         // add conditions that should always apply here
 

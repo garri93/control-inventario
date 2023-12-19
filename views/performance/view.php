@@ -20,7 +20,7 @@ $this->title = $model->name;
 
     <p>
         <?= Html::a('Editar', ['update', 'id' => $model->id, 'device_id' => $model->device_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
+        <?= Html::a('Borrar', ['delete', 'id' => $model->id, 'device_id' => $model->device_id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => '¿Seguro que quires borrar esta Actuacion?',
@@ -75,13 +75,7 @@ $this->title = $model->name;
                         <td><?= isset(User::$rolOptions[$user->role]) ? User::$rolOptions[$user->role] : 'Desconocido' ?></td>
                         <td>
                             <?= Html::a('Ver', ['user/view', 'id' => $user->id], ['class' => 'btn btn-success']); ?>
-                            <?= Html::a('Quitar', ['deleteassignment', 'user_id' => $user->id, 'office_id' => $model->id], [
-                                'class' => 'btn btn-danger',
-                                'data' => [
-                                    'confirm' => 'Seguro que quieres desvincular al usuario de esta Actuacion?',
-                                    'method' => 'post',
-                                ],
-                            ]) ?></td>
+                            </td>
                             </tr>
             
             <?php endforeach; ?>

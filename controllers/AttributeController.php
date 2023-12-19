@@ -160,7 +160,7 @@ class AttributeController extends Controller
     {
         $this->findModel($id, $device_id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['/device/view', 'id' =>  $device_id]);
     }
 
     /**
@@ -173,7 +173,7 @@ class AttributeController extends Controller
      */
     protected function findModel($id, $device_id)
     {
-        if (($model = Attribute::find(['id' => $id, 'device_id' => $device_id])->activo()->one()) !== null) {
+        if (($model = Attribute::findone(['id' => $id, 'device_id' => $device_id])) !== null) {
             return $model;
         }
 

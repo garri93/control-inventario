@@ -166,7 +166,7 @@ class CategoryController extends Controller
      */
     protected function findModel($id, $company_id)
     {
-        if (($model = Category::find(['id' => $id, 'company_id' => $company_id])->activo()->one()) !== null) {
+        if (($model = Category::findone(['id' => $id, 'company_id' => $company_id])) !== null) {
             return $model;
         }
 

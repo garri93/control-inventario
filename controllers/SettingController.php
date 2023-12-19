@@ -137,7 +137,7 @@ class SettingController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id, $device_id = "", $office_id = "")
+    public function actionUpdate($id, $office_id = "")
     {
         $model = $this->findModel($id);
         $model->edition_date=date("y-m-d");
@@ -146,7 +146,7 @@ class SettingController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
         $model->office_id = $office_id;
-        $model->device_id = $device_id;
+
         return $this->render('update', [
             'model' => $model,
             
@@ -160,11 +160,11 @@ class SettingController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $device_id)
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['/device/view', 'id' =>  $device_id]);
     }
 
     /**
@@ -176,7 +176,7 @@ class SettingController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Setting::find(['id' => $id])->activo()->one()) !== null) {
+        if (($model = Setting::findone(['id' => $id])) !== null) {
             return $model;
         }
 

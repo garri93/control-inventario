@@ -40,7 +40,7 @@ class SettingSearch extends Setting
      */
     public function search($params)
     {
-        $query = Setting::find();
+        $query = Setting::find()->activo();
 
         // add conditions that should always apply here
 

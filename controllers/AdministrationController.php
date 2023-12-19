@@ -7,8 +7,8 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
-use app\models\officeSearch;
-use app\models\office;
+use app\models\OfficeSearch;
+use app\models\Office;
 
 
 class AdministrationController extends Controller

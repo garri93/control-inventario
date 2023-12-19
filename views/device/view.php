@@ -47,10 +47,10 @@ $this->title = $model->name;
                     <div class="tab-pane fade show active" id="attributes" role="tabpanel" aria-labelledby="attributes-tab">
                                     <p class="button-accion">
                         <?= Html::a('Editar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                        <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
+                        <?= Html::a('Borrar', ['delete', 'id' => $model->id, 'office_id' => $model->office_id], [
                             'class' => 'btn btn-danger',
                             'data' => [
-                                'confirm' => 'Are you sure you want to delete this item?',
+                                'confirm' => '¿Seguro que quieres borrar el dispositivo?',
                                 'method' => 'post',
                             ],
                         ]) ?>
@@ -113,7 +113,7 @@ $this->title = $model->name;
                                         'class' => ActionColumn::className(),
                                         'template' => '{update} {delete} ',
                                         'urlCreator' => function ($action, Attribute $model, $key, $index, $column) {
-                                            return Url::toRoute(['/attribute/'.$action, 'id' => $model->id, 'device_id' => $model->device_id, 'office_id' => $model->office_id]);
+                                            return Url::toRoute(['/attribute/'.$action, 'id' => $model->id, 'device_id' => $model->device_id, 'office_id' => $model->device->office_id]);
                                          }
                                     ],
                                         
@@ -153,7 +153,7 @@ $this->title = $model->name;
                                         'class' => ActionColumn::className(),
                                         'template' => '{view} {update} {delete} ',
                                         'urlCreator' => function ($action, Setting $model, $key, $index, $column) {
-                                            return Url::toRoute(['/setting/'.$action, 'id' => $model->id, 'device_id' => $model->device_id, 'office_id' => $model->office_id]);
+                                            return Url::toRoute(['/setting/'.$action, 'id' => $model->id, 'device_id' => $model->device_id, 'office_id' => $model->device->office_id]);
                                          }
                                     ],              
                                 ],
@@ -191,7 +191,7 @@ $this->title = $model->name;
                                     'class' => ActionColumn::className(),
                                     'header' => 'Acciones',
                                     'urlCreator' => function ($action, Device $model, $key, $index, $column) {
-                                        return Url::toRoute([$action, 'id' => $model->id]);
+                                        return Url::toRoute([$action, 'id' => $model->id, 'parent_device' => $model->parent_device]);
                                     }
                                 ],
                             ],
@@ -231,7 +231,7 @@ $this->title = $model->name;
                                 'header' => 'Acciones',
                                 'class' => ActionColumn::className(),
                                 'urlCreator' => function ($action, Performance $model, $key, $index, $column) {
-                                    return Url::toRoute(['performance/'.$action, 'id' => $model->id, 'office_id' => $model->device->office_id]);
+                                    return Url::toRoute(['performance/'.$action, 'id' => $model->id, 'office_id' => $model->device->office_id, 'device_id' => $model->device_id]);
                                 }
                             ],
                         ],

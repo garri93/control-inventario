@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use kartik\editors\Summernote;
 use yii\helpers\ArrayHelper;
 use app\models\Device;
+use app\models\Setting;
 use kartik\select2\Select2;
 
 /** @var yii\web\View $this */
@@ -20,12 +21,12 @@ use kartik\select2\Select2;
 
     <?php
    
-    $data = ArrayHelper::map(Device::find()->orderBy('name')->where(['office_id' => $model->office_id])->all(), 'id', 'name');
-
-    echo $form->field($model, 'device_id')->widget(Select2::classname(), [
+    $data = ArrayHelper::map(Device::find()->orderBy('name')->where(['office_id' => $model->office_id])->activo()->all(), 'id', 'name');
+ 
+  
+    echo $form->field($model,'device_id')->widget(Select2::classname(), [
         'data' => $data,
         'size' => Select2::LARGE,
-
         
         'options' => ['placeholder' => 'Selecciona dispositivo ...','prompt' => 'Seleccione una dispositivo...'],
         'pluginOptions' => [

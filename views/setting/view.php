@@ -17,8 +17,8 @@ $this->title = $model->name;
     <h1>Configuracion: <?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Editar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
+        <?= Html::a('Editar', ['update', 'id' => $model->id, 'office_id' => $model->device->office_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Borrar', ['delete', 'id' => $model->id, 'device_id' => $model->device_id ], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => '¿Seguro que deseas Borrar la configuracion: '.Html::encode($this->title).' ?',

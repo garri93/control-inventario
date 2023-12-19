@@ -67,14 +67,8 @@ $this->title = $model->username;
                             
                             <td><?= 
                                  Html::a('Ver', ['office/view', 'id' => $office->id], ['class' => 'btn btn-success']); ?>
-                         <?= 
-                                Html::a('Quitar', ['deleteassignment', 'user_id' => $model->id, 'office_id' => $office->id], [
-                                'class' => 'btn btn-danger',
-                                'data' => [
-                                    'confirm' => 'Seguro que quieres desvincular al usuario de esta Oficina?',
-                                    'method' => 'post',
-                                ],
-                            ]) ?></td>
+                         
+                               </td>
                             </tr>
                 
                 <?php endforeach; ?>
