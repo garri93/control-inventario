@@ -56,9 +56,12 @@ class CustomerSearch extends Customer
             return $dataProvider;
         }
 
+        $query->andFilterWhere(['in', 'id', Customer::customerview()]);
+
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
+
+            
             'company_id' => $this->company_id,
             'phone' => $this->phone, 
             'activo' => Customer::ACTIVO_SI,
@@ -69,6 +72,7 @@ class CustomerSearch extends Customer
             ->andFilterWhere(['like', 'cif', $this->cif])
             ->andFilterWhere(['like', 'notes', $this->notes])
             ->andFilterWhere(['like', 'activo', $this->activo]);
+            
 
         return $dataProvider;
     }

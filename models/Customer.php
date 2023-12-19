@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use app\models\OfficeAssignment;
+
 use Yii;
 
 /**
@@ -116,4 +118,33 @@ class Customer extends \yii\db\ActiveRecord
         $this->save();
     }
     
+
+    public static function customerview ()
+    {
+        
+        $oficinas = Yii::$app->user->identity->offices;
+       
+        
+        if(count($oficinas) > 0) {
+            $clientes_id = [];
+        
+            foreach ($oficinas as $oficina) {
+            
+                if (!in_array($oficina->customer_id, $clientes_id)) {
+                    array_push($clientes_id, $oficina->customer_id);
+                }
+                
+            }
+            
+        return $clientes_id;
+
+ 
+
+        } 
+        return [''];
+    }
+
+
+    
+
 }
