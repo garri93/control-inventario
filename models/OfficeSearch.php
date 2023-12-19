@@ -5,6 +5,7 @@ namespace app\models;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Office;
+use yii;
 
 /**
  * OfficeSearch represents the model behind the search form of `app\models\Office`.
@@ -56,9 +57,11 @@ class OfficeSearch extends Office
             return $dataProvider;
         }
 
+        $query->andFilterWhere(['in', 'id', Yii::$app->user->identity->offices]);
+
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
+            
             'customer_id' => $this->customer_id,
             'activo' => Office::ACTIVO_SI,
             

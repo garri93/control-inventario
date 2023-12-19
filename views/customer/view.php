@@ -104,7 +104,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     echo '<div class="col-sm-12 col-md-4 col-xl-4 py-2   h-100">';
                                     echo '<div class="card rounded ">';
                                     echo '<div class="headercardofffice d-flex align-items-center col-12 d-flex justify-content-around text-center">';
-                                    echo Html::img('@web/img/icono-edificio-de-oficinas.png', ['class' => 'w-25 rounded-circle float-start ' ],);
+                                    echo Html::img('@web/img/icono-edificio-de-oficinas.png', ['class' => 'w-25 rounded-circle float-start ' ]);
                                     echo Html::a(Html::encode($model->name), ['view', 'id' => $model->id]);
                                     echo '</div>';
                                     echo '<div class="card-body d-flex align-items-stretch">';
@@ -147,7 +147,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     
                                                     'class' => 'btn btn-danger',
                                                     'data' => [
-                                                        'confirm' => 'Are you sure you want to delete this item?',
+                                                        'confirm' => '¿ Seguro que deseas borrar al cliente?',
                                                         'method' => 'post',
                                                     ],
                                                 ]) ?><?php endif; ?>
